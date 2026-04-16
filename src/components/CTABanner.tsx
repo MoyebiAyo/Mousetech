@@ -47,7 +47,7 @@ export default function CTABanner() {
               <ArrowRight className="w-4 h-4" />
             </a>
             <a 
-              href="mailto:moyebiayodelesegun@gmail.com" 
+              href="mailto:hello@mousetech.app" 
               className="inline-flex items-center gap-2 px-8 py-4 text-white font-medium rounded-lg border transition-all duration-200 hover:border-white/60"
               style={{ borderColor: 'rgba(255,255,255,0.25)' }}
             >

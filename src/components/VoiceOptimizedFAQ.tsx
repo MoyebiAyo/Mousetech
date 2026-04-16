@@ -31,7 +31,7 @@ const faqs = [
   },
   {
     question: "How do I contact MouseTech for a project?",
-    answer: "You can reach us via WhatsApp at +234-807-893-3943, email us, or visit our website at mousetech.app. We offer free consultations and typically respond within 2 business hours.",
+    answer: "You can reach us via WhatsApp at +234-807-893-3943, email us at hello@mousetech.app, or visit our website at mousetech.app. We offer free consultations and typically respond within 2 business hours.",
   },
   {
     question: "What makes MouseTech different from other software companies?",

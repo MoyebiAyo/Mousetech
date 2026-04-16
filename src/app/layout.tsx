@@ -100,6 +100,7 @@ export default function RootLayout({
               "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+234-807-893-3943",
+                "email": "hello@mousetech.app",
                 "contactType": "customer service",
                 "availableLanguage": ["English"]
               },

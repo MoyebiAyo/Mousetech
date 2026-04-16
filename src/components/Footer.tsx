@@ -36,7 +36,7 @@ export default function Footer() {
               <li><a href="/about" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>About Us</a></li>
               <li><a href="/pricing" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Pricing</a></li>
               <li><a href="/#faq" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>FAQ</a></li>
-              <li><a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I%20have%20a%20question%20about%20your%20services." target="_blank" rel="noopener noreferrer" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Contact</a></li>
+              <li><a href="mailto:hello@mousetech.app" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>hello@mousetech.app</a></li>
               <li><a href="/" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Home</a></li>
             </ul>
           </div>
