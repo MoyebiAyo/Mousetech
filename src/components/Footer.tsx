@@ -1,138 +1,69 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter, Youtube } from "lucide-react";
-import Image from "next/image";
-
-const quickLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Pricing", href: "#packages" },
-];
-
-const services = [
-  "Church Websites",
-  "School Websites",
-  "Payment Integration",
-  "Email Marketing",
-  "SMS System",
-  "Maintenance",
-];
-
 export default function Footer() {
   return (
-    <footer className="relative pt-20 pb-8 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <footer style={{ background: '#0d1b2a', color: 'rgba(255,255,255,0.55)' }}>
+      <div className="max-w-[1100px] mx-auto px-[5%] py-16">
+        <div className="grid md:grid-cols-4 gap-12 pb-12" style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <a href="/" className="flex items-center gap-3 mb-4 relative w-32 h-10">
-              <Image 
-                src="/mouse-tech-logo.png" 
-                alt="Mouse Tech" 
-                fill
-                className="object-contain object-left"
-              />
+          <div className="md:col-span-1">
+            <a href="#" className="font-serif text-2xl font-bold text-white no-underline mb-4 inline-block">
+              MouseTech
             </a>
-            <p className="text-white/60 text-sm mb-6">
-              Transforming churches and schools with AI-powered digital solutions across Nigeria.
+            <p className="text-sm leading-relaxed max-w-[260px]" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              We design, develop, and maintain professional websites, mobile apps, and custom software solutions for businesses and organizations.
             </p>
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold-500/20 transition-colors"
-              >
-                <Facebook className="w-5 h-5 text-white/60 hover:text-gold-400" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold-500/20 transition-colors"
-              >
-                <Instagram className="w-5 h-5 text-white/60 hover:text-gold-400" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold-500/20 transition-colors"
-              >
-                <Twitter className="w-5 h-5 text-white/60 hover:text-gold-400" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold-500/20 transition-colors"
-              >
-                <Youtube className="w-5 h-5 text-white/60 hover:text-gold-400" />
-              </a>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-heading font-semibold text-lg mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-white/60 hover:text-gold-400 transition-colors"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-lg mb-4">Services</h4>
-            <ul className="space-y-3">
-              {services.map((service) => (
-                <li key={service}>
-                  <a
-                    href="#services"
-                    className="text-white/60 hover:text-gold-400 transition-colors"
-                  >
-                    {service}
+            <h4 className="text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>Services</h4>
+            <ul className="flex flex-col gap-3 list-none">
+              {['Web Development', 'Mobile Apps', 'Custom Software', 'UI/UX Design', 'Maintenance'].map((item) => (
+                <li key={item}>
+                  <a href="/services" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                    {item}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Company */}
           <div>
-            <h4 className="font-heading font-semibold text-lg mb-4">Contact</h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-gold-400 flex-shrink-0 mt-0.5" />
-                <span className="text-white/60 text-sm">0807 893 3943</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-gold-400 flex-shrink-0 mt-0.5" />
-                <span className="text-white/60 text-sm">moyebiayodelesegun@gmail.com</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gold-400 flex-shrink-0 mt-0.5" />
-                <span className="text-white/60 text-sm">Nigeria</span>
-              </li>
+            <h4 className="text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>Company</h4>
+            <ul className="flex flex-col gap-3 list-none">
+              <li><a href="/about" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>About Us</a></li>
+              <li><a href="/pricing" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Pricing</a></li>
+              <li><a href="/#faq" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>FAQ</a></li>
+              <li><a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I%20have%20a%20question%20about%20your%20services." target="_blank" rel="noopener noreferrer" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Contact</a></li>
+              <li><a href="/" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Home</a></li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>Legal</h4>
+            <ul className="flex flex-col gap-3 list-none">
+              {['Privacy Policy', 'Terms of Service', 'SLA', 'Cookie Policy'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
-            &copy; {new Date().getFullYear()} Mouse Tech. All rights reserved.
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8">
+          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            © 2026 MouseTech. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-white/40 hover:text-gold-400 text-sm transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-white/40 hover:text-gold-400 text-sm transition-colors">
-              Terms of Service
-            </a>
-          </div>
+          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>
+            Designed to perform. Built to last.
+          </p>
         </div>
       </div>
     </footer>

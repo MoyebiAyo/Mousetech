@@ -1,17 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Target,
-  Eye,
-  Heart,
-  Users,
-  Award,
-  Zap,
-  ArrowRight,
-  Quote,
-} from "lucide-react";
+import { Target, Eye, Heart, Users, Zap, ArrowRight, Quote, MessageCircle } from "lucide-react";
 import Image from "next/image";
+import Footer from "@/components/Footer";
 
 const stats = [
   { value: "50+", label: "Projects Delivered" },
@@ -24,26 +17,22 @@ const values = [
   {
     icon: Heart,
     title: "Passion",
-    description:
-      "We love what we do, and it shows in every project we deliver. Our passion drives us to go above and beyond.",
+    description: "We love what we do, and it shows in every project we deliver. Our passion drives us to go above and beyond.",
   },
   {
     icon: Target,
     title: "Excellence",
-    description:
-      "Good enough is never enough. We strive for excellence in every line of code and every pixel we place.",
+    description: "Good enough is never enough. We strive for excellence in every line of code and every pixel we place.",
   },
   {
     icon: Zap,
     title: "Innovation",
-    description:
-      "We stay ahead of the curve, adopting the latest technologies and trends to give you a competitive edge.",
+    description: "We stay ahead of the curve, adopting the latest technologies and trends to give you a competitive edge.",
   },
   {
     icon: Users,
     title: "Partnership",
-    description:
-      "We don't just build projects; we build relationships. Your success is our success, and we're with you every step of the way.",
+    description: "We don't just build projects; we build relationships. Your success is our success, and we're with you every step of the way.",
   },
 ];
 
@@ -51,89 +40,83 @@ const timeline = [
   {
     year: "2026",
     title: "The Beginning",
-    description:
-      "Mouse Tech was founded with a vision to help businesses thrive in the digital age.",
+    description: "MouseTech was founded with a vision to help businesses and organizations thrive in the digital age.",
   },
   {
     year: "2027",
     title: "Rapid Expansion",
-    description:
-      "Projected to expand our team and services, delivering over 50 successful projects.",
+    description: "Projected to expand our team and services, delivering over 50 successful projects.",
   },
   {
     year: "2028",
     title: "Innovation Hub",
-    description:
-      "Introducing cutting-edge solutions including AI integration and advanced analytics.",
+    description: "Introducing cutting-edge solutions including AI integration and advanced analytics for businesses.",
   },
   {
     year: "2029",
     title: "Industry Leader",
-    description:
-      "Aiming to be recognized as a leading tech agency in Nigeria with clients across multiple industries.",
-  },
-];
-
-const team = [
-  {
-    name: "Ayodele Moyebi",
-    role: "Founder & Lead Developer",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-    bio: "Full-stack developer with a passion for creating beautiful, functional digital experiences.",
+    description: "Aiming to be recognized as a leading tech agency in Nigeria with clients across multiple states.",
   },
 ];
 
 export default function AboutPage() {
-  return (
-    <main className="min-h-screen bg-navy-900 pt-16">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(56,189,248,0.15),transparent_50%)]" />
+  const [scrolled, setScrolled] = useState(false);
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <main className="min-h-screen bg-white">
+      {/* Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300 ${scrolled ? 'bg-white/97 shadow-lg' : 'bg-transparent'}`} style={{ backdropFilter: 'blur(12px)', borderBottom: scrolled ? '1px solid #dce6f0' : 'none' }}>
+        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: scrolled ? '#0d1b2a' : '#0d1b2a' }}>
+          MouseTech
+        </a>
+        <ul className="hidden md:flex gap-10 list-none">
+          <li><a href="/#how" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: scrolled ? '#1a2535' : '#1a2535' }}>How It Works</a></li>
+          <li><a href="/#services" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: scrolled ? '#1a2535' : '#1a2535' }}>Services</a></li>
+          <li><a href="/#pricing" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: scrolled ? '#1a2535' : '#1a2535' }}>Pricing</a></li>
+          <li><a href="/about" className="text-sm font-medium opacity-100 transition-opacity no-underline" style={{ color: '#1e5fa8' }}>About</a></li>
+        </ul>
+        <div className="flex gap-3 items-center">
+          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20your%20software%20solutions.%20Can%20we%20discuss%20my%20project?" target="_blank" rel="noopener noreferrer" className="btn-solid text-sm no-underline flex items-center gap-2"><MessageCircle className="w-4 h-4" /> Get Started</a>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 md:py-32 overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(30,95,168,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(30,95,168,0.15) 0%, transparent 40%)' }} />
+        
+        <div className="relative max-w-[1100px] mx-auto px-[5%]">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-400/10 to-amber-500/10 border border-amber-400/20 mb-6">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <span className="text-amber-400 text-sm font-medium">
-                  About Us
-                </span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(30,95,168,0.3)', border: '1px solid rgba(30,95,168,0.5)' }}>
+                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#7ab8f5' }} />
+                <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#7ab8f5' }}>About Us</span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Building Digital
-                <span className="block bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 bg-clip-text text-transparent">
-                  Excellence
-                </span>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
+                Building Digital<br />
+                <em className="not-italic" style={{ color: '#7ab8f5' }}>Excellence</em>
               </h1>
 
-              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                Mouse Tech is a forward-thinking technology agency dedicated to
-                helping businesses thrive in the digital age. We combine
-                creativity, technical expertise, and strategic thinking to
-                deliver solutions that drive real results.
+              <p className="text-lg leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                MouseTech is a forward-thinking technology agency dedicated to helping businesses and organizations thrive in the digital age. We combine creativity, technical expertise, and strategic thinking to deliver solutions that drive real results.
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <a
-                  href="/services"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-400 to-amber-500 text-navy-900 font-semibold rounded-full hover:shadow-lg hover:shadow-amber-400/25 transition-all"
-                >
+                <a href="/#services" className="btn-hero-primary no-underline">
                   Our Services
                   <ArrowRight className="w-4 h-4" />
                 </a>
-                <a
-                  href="/pricing"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-slate-600 text-white font-semibold rounded-full hover:bg-slate-800 transition-colors"
-                >
-                  View Pricing
-                </a>
+                <a href="/#pricing" className="btn-hero-ghost no-underline">View Pricing</a>
               </div>
             </motion.div>
 
@@ -143,13 +126,13 @@ export default function AboutPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-400/20 to-amber-500/20 rounded-3xl blur-2xl" />
-              <div className="relative rounded-2xl overflow-hidden border border-slate-700/50">
+              <div className="absolute -inset-4 rounded-3xl blur-2xl" style={{ background: 'linear-gradient(to right, rgba(30,95,168,0.2), rgba(30,95,168,0.1))' }} />
+              <div className="relative rounded-2xl overflow-hidden border" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80"
-                  alt="Mouse Tech Team"
-                  width={800}
-                  height={600}
+                  src="/team-lead.png"
+                  alt="Ayodele Moyebi - Founder"
+                  width={600}
+                  height={500}
                   className="w-full h-auto object-cover"
                 />
               </div>
@@ -159,8 +142,8 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-16 bg-navy-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16" style={{ background: '#f7f9fc', borderTop: '1px solid #dce6f0', borderBottom: '1px solid #dce6f0' }}>
+        <div className="max-w-[1100px] mx-auto px-[5%]">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
@@ -171,10 +154,10 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 to-amber-500 bg-clip-text text-transparent mb-2">
+                <div className="font-serif text-4xl md:text-5xl font-bold leading-none mb-2" style={{ color: '#0d1b2a' }}>
                   {stat.value}
                 </div>
-                <div className="text-slate-400">{stat.label}</div>
+                <div className="text-sm" style={{ color: '#8a9ab0' }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -182,27 +165,23 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="relative py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
+      <section className="py-24">
+        <div className="max-w-[1100px] mx-auto px-[5%]">
+          <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="p-8 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50"
+              className="p-8 rounded-2xl"
+              style={{ background: 'linear-gradient(to bottom right, rgba(248,250,252,0.5), rgba(241,245,249,0.5))', border: '1px solid #e2e8f0' }}
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 mb-6">
-                <Target className="w-7 h-7 text-navy-900" />
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-6" style={{ background: '#1e5fa8' }}>
+                <Target className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">
-                Our Mission
-              </h2>
-              <p className="text-slate-300 leading-relaxed">
-                To empower businesses with innovative digital solutions that
-                drive growth, enhance efficiency, and create meaningful
-                connections with their audiences. We believe technology should
-                be accessible, powerful, and beautiful.
+              <h2 className="font-serif text-2xl font-bold mb-4" style={{ color: '#0d1b2a' }}>Our Mission</h2>
+              <p className="leading-relaxed" style={{ color: '#64748b' }}>
+                To empower businesses and organizations with innovative digital solutions that drive growth, enhance efficiency, and create meaningful connections with their customers. We believe technology should be accessible, powerful, and beautiful.
               </p>
             </motion.div>
 
@@ -211,19 +190,15 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 border border-slate-700/50"
+              className="p-8 rounded-2xl"
+              style={{ background: 'linear-gradient(to bottom right, rgba(248,250,252,0.5), rgba(241,245,249,0.5))', border: '1px solid #e2e8f0' }}
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-r from-amber-400 to-amber-500 mb-6">
-                <Eye className="w-7 h-7 text-navy-900" />
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-6" style={{ background: '#1e5fa8' }}>
+                <Eye className="w-7 h-7 text-white" />
               </div>
-              <h2 className="text-2xl font-bold text-white mb-4">
-                Our Vision
-              </h2>
-              <p className="text-slate-300 leading-relaxed">
-                To be the leading technology partner for businesses across
-                Africa and beyond, known for our innovation, reliability, and
-                commitment to client success. We envision a world where every
-                business can leverage technology to achieve its full potential.
+              <h2 className="font-serif text-2xl font-bold mb-4" style={{ color: '#0d1b2a' }}>Our Vision</h2>
+              <p className="leading-relaxed" style={{ color: '#64748b' }}>
+                To be the leading technology partner for businesses and organizations across Nigeria and beyond, known for our innovation, reliability, and commitment to client success. We envision a world where every business can leverage technology to achieve its full potential.
               </p>
             </motion.div>
           </div>
@@ -231,8 +206,8 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="relative py-20 bg-navy-800/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24" style={{ background: '#f7f9fc' }}>
+        <div className="max-w-[1100px] mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -240,15 +215,20 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Our Values</span>
+              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0d1b2a' }}>
               Our Core Values
             </h2>
-            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b' }}>
               The principles that guide everything we do
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
@@ -256,17 +236,14 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-slate-800/50 border border-slate-700/50 hover:border-amber-400/30 transition-colors"
+                className="p-6 rounded-2xl bg-white border transition-all duration-300 hover:border-[#1e5fa8]/30"
+                style={{ borderColor: '#e2e8f0' }}
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r from-amber-400/20 to-amber-500/20 mb-4">
-                  <value.icon className="w-6 h-6 text-amber-400" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4" style={{ background: '#e8f1fb' }}>
+                  <value.icon className="w-6 h-6" style={{ color: '#1e5fa8' }} />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  {value.description}
-                </p>
+                <h3 className="font-serif text-xl font-semibold mb-2" style={{ color: '#0d1b2a' }}>{value.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#64748b' }}>{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -274,8 +251,8 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline Section */}
-      <section className="relative py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24">
+        <div className="max-w-[1100px] mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -283,16 +260,21 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Our Journey</span>
+              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0d1b2a' }}>
               Our Journey
             </h2>
-            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b' }}>
               Milestones that mark our growth and evolution
             </p>
           </motion.div>
 
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-gradient-to-b from-amber-400/50 via-amber-400/20 to-transparent hidden md:block" />
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full hidden md:block" style={{ background: 'linear-gradient(to bottom, #1e5fa8, transparent)' }} />
 
             <div className="space-y-12">
               {timeline.map((item, index) => (
@@ -302,27 +284,17 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`flex flex-col md:flex-row items-center gap-8 ${
-                    index % 2 === 1 ? "md:flex-row-reverse" : ""
-                  }`}
+                  className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
                 >
                   <div className="flex-1 text-center md:text-right">
-                    <div
-                      className={`${
-                        index % 2 === 1 ? "md:text-left" : "md:text-right"
-                      }`}
-                    >
-                      <div className="text-3xl font-bold text-amber-400 mb-2">
-                        {item.year}
-                      </div>
-                      <h3 className="text-xl font-semibold text-white mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-400">{item.description}</p>
+                    <div className={`${index % 2 === 1 ? 'md:text-left' : 'md:text-right'}`}>
+                      <div className="font-serif text-3xl font-bold mb-2" style={{ color: '#1e5fa8' }}>{item.year}</div>
+                      <h3 className="text-xl font-semibold mb-2" style={{ color: '#0d1b2a' }}>{item.title}</h3>
+                      <p style={{ color: '#64748b' }}>{item.description}</p>
                     </div>
                   </div>
 
-                  <div className="w-4 h-4 rounded-full bg-amber-400 border-4 border-navy-900 relative z-10 hidden md:block" />
+                  <div className="w-4 h-4 rounded-full border-4 relative z-10 hidden md:block" style={{ background: '#1e5fa8', borderColor: '#ffffff' }} />
 
                   <div className="flex-1" />
                 </motion.div>
@@ -332,61 +304,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="relative py-20 bg-navy-800/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Meet Our Team
-            </h2>
-            <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-              Talented individuals dedicated to your success
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="relative rounded-2xl overflow-hidden border border-slate-700/50 bg-slate-800/50">
-                  <div className="aspect-square overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-white mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-amber-400 text-sm mb-3">{member.role}</p>
-                    <p className="text-slate-400 text-sm">{member.bio}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Testimonial Section */}
-      <section className="relative py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24" style={{ background: '#f7f9fc' }}>
+        <div className="max-w-4xl mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -394,19 +314,17 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Quote className="w-16 h-16 text-amber-400/30 mx-auto mb-8" />
-            <blockquote className="text-2xl md:text-3xl font-medium text-white mb-8 leading-relaxed">
-              &ldquo;Mouse Tech transformed our online presence completely. Their
-              attention to detail and commitment to excellence is unmatched.
-              Highly recommended!&rdquo;
+            <Quote className="w-16 h-16 mx-auto mb-8" style={{ color: 'rgba(30,95,168,0.2)' }} />
+            <blockquote className="font-serif text-2xl md:text-3xl font-medium leading-relaxed mb-8" style={{ color: '#0d1b2a' }}>
+              &ldquo;Mouse Tech transformed our online presence completely. Their attention to detail and commitment to excellence is unmatched. Highly recommended!&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 flex items-center justify-center text-navy-900 font-bold">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold" style={{ background: '#1e5fa8' }}>
                 OA
               </div>
               <div className="text-left">
-                <div className="text-white font-semibold">Oluwaseun Adeyemi</div>
-                <div className="text-slate-400 text-sm">CEO, GraceTech Solutions</div>
+                <div className="font-semibold" style={{ color: '#0d1b2a' }}>Oluwaseun Adeyemi</div>
+                <div className="text-sm" style={{ color: '#64748b' }}>CEO, GraceTech Solutions</div>
               </div>
             </div>
           </motion.div>
@@ -414,8 +332,8 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24">
+        <div className="max-w-[1100px] mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -423,21 +341,17 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
             className="relative rounded-3xl overflow-hidden"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500" />
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&q=80')] bg-cover bg-center opacity-10" />
-
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #1e5fa8, #eab308)' }} />
+            
             <div className="relative px-8 py-16 md:px-16 md:py-20 text-center">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-navy-900 mb-6">
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#0d1b2a' }}>
                 Let&apos;s Work Together
               </h2>
-              <p className="text-lg md:text-xl text-navy-800/80 max-w-2xl mx-auto mb-8">
-                Ready to bring your vision to life? We&apos;re here to help you
-                succeed.
+              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8" style={{ color: 'rgba(13,27,42,0.7)' }}>
+                Ready to bring your vision to life? We&apos;re here to help you succeed.
               </p>
-              <a
-                href="/pricing"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-navy-900 text-white font-semibold text-lg rounded-full hover:bg-navy-800 transition-colors"
-              >
+              <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20ready%20to%20bring%20my%20vision%20to%20life.%20Can%20we%20discuss%20my%20project?" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-lg transition-colors" style={{ background: '#0d1b2a', color: '#ffffff' }}>
+                <MessageCircle className="w-5 h-5" />
                 Get Started
                 <ArrowRight className="w-5 h-5" />
               </a>
@@ -445,6 +359,8 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }

@@ -75,7 +75,7 @@ export default function ContactForm() {
               <span className="text-gradient-gold">connect</span>
             </h2>
             <p className="text-white/50">
-              Tell us about your institution and we&apos;ll craft the perfect solution.
+              Tell us about your business and we&apos;ll craft the perfect solution.
             </p>
           </div>
 

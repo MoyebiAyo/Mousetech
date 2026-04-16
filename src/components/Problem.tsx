@@ -8,22 +8,22 @@ const problems = [
   {
     icon: Globe,
     title: "No Online Presence",
-    description: "Missing website means lost connections every single day.",
+    description: "Missing website means lost customers and opportunities every day.",
   },
   {
     icon: CreditCard,
     title: "No Online Payments",
-    description: "You're missing out on tithes, offerings, and school fees.",
+    description: "You're missing out on sales, subscriptions, and digital revenue.",
   },
   {
     icon: Users,
-    title: "No Member Tracking",
-    description: "No systematic way to track attendance or membership.",
+    title: "No Customer Tracking",
+    description: "No systematic way to track leads, customers, or user engagement.",
   },
   {
     icon: Mail,
     title: "No Automation",
-    description: "Visitors slip through the cracks without follow-up.",
+    description: "Potential customers slip through the cracks without follow-up.",
   },
   {
     icon: BarChart,
@@ -33,7 +33,7 @@ const problems = [
   {
     icon: Shield,
     title: "No Structure",
-    description: "Disorganized operations slow down your mission.",
+    description: "Disorganized operations slow down your business growth.",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function Problem() {
             The Problem
           </div>
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
-            Is your institution{" "}
+            Is your business{" "}
             <span className="text-white/90">missing out?</span>
           </h2>
           <p className="text-white/50 max-w-xl mx-auto text-sm md:text-lg">

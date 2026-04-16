@@ -8,30 +8,30 @@ const features = [
   {
     icon: Globe,
     title: "Smart Websites",
-    description: "Beautiful, fast, mobile-optimized websites designed to convert visitors into members.",
+    description: "Beautiful, fast, mobile-optimized websites designed to convert visitors into customers.",
     gradient: "from-amber-400/20 to-amber-500/10",
     iconGradient: "from-amber-400 to-amber-500",
     iconColor: "text-amber-400",
   },
   {
     icon: CreditCard,
-    title: "Payment & Donations",
-    description: "Secure online payment processing for tithes, offerings, school fees, and donations.",
+    title: "E-Commerce & Payments",
+    description: "Secure online payment processing for products, services, subscriptions, and digital goods.",
     gradient: "from-green-400/20 to-green-500/10",
     iconGradient: "from-green-400 to-green-500",
     iconColor: "text-green-400",
   },
   {
     icon: Mail,
-    title: "Automation & Email",
-    description: "Automated follow-up sequences, email marketing, and member communication systems.",
+    title: "Automation & Marketing",
+    description: "Automated email sequences, marketing campaigns, and customer communication systems.",
     gradient: "from-blue-400/20 to-blue-500/10",
     iconGradient: "from-blue-400 to-cyan-400",
     iconColor: "text-blue-400",
   },
   {
     icon: Shield,
-    title: "Security & Backup",
+    title: "Security & Reliability",
     description: "Enterprise-grade security, daily backups, and 99.9% uptime guarantee.",
     gradient: "from-purple-400/20 to-purple-500/10",
     iconGradient: "from-purple-400 to-pink-400",
@@ -66,7 +66,7 @@ export default function Solution() {
           </h2>
           <p className="text-white/50 max-w-2xl mx-auto text-sm md:text-lg">
             From websites to payments, automation to analytics — everything you need 
-            to grow your institution digitally.
+            to grow your business digitally.
           </p>
         </motion.div>
 

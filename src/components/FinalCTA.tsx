@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Check } from "lucide-react";
+import { ArrowRight, Sparkles, Check, MessageCircle } from "lucide-react";
 
 const benefits = [
   "No credit card required",
@@ -56,7 +56,7 @@ export default function FinalCTA() {
                 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mb-6"
               >
                 Ready to scale your{" "}
-                <span className="text-gradient-gold">institution?</span>
+                <span className="text-gradient-gold">business?</span>
               </motion.h2>
 
               <motion.p
@@ -66,8 +66,8 @@ export default function FinalCTA() {
                 transition={{ delay: 0.4 }}
                 className="text-white/50 max-w-lg mx-auto text-lg mb-10"
               >
-                Join 50+ churches and schools already leveraging our platform 
-                to grow their digital presence and impact.
+                Join 50+ businesses and organizations already leveraging our solutions 
+                to grow their digital presence and revenue.
               </motion.p>
 
               <motion.div
@@ -78,9 +78,12 @@ export default function FinalCTA() {
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
               >
                 <a
-                  href="#contact"
+                  href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'd%20like%20to%20book%20a%20free%20consultation%20for%20my%20business."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-primary inline-flex items-center justify-center gap-2 text-lg"
                 >
+                  <MessageCircle className="w-5 h-5" />
                   <span>Book Free Consultation</span>
                   <ArrowRight className="w-5 h-5" />
                 </a>

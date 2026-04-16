@@ -6,30 +6,30 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    name: "Pastor Emmanuel",
-    role: "Senior Pastor, Grace Assembly",
-    content: "Mouse Tech transformed our church's digital presence. Our online donations increased by 300% in just 3 months!",
+    name: "Michael Okafor",
+    role: "CEO, TechVentures Nigeria",
+    content: "Mouse Tech transformed our digital presence. Our online sales increased by 300% in just 3 months!",
     rating: 5,
     icon: Building2,
   },
   {
     name: "Dr. Sarah Johnson",
-    role: "Proprietor, Bright Future Academy",
-    content: "The school management system has made parent communication so much easier. Highly recommended!",
+    role: "Founder, EduSmart Academy",
+    content: "The custom software solution has made our operations so much easier. Highly recommended!",
     rating: 5,
     icon: GraduationCap,
   },
   {
-    name: "Pastor Michael",
-    role: "Youth Pastor, The Potter's House",
-    content: "Our youth doubled after launching the new website with event registration. Game changer!",
+    name: "David Nwosu",
+    role: "Director, QuickDelivery",
+    content: "Our customer base doubled after launching the new mobile app. Game changer!",
     rating: 5,
     icon: Building2,
   },
 ];
 
 const partners = [
-  "Grace Assembly", "Bright Future Academy", "Living Faith Church", "Victory Academy", "The Potter's House", "Faith Academy"
+  "TechVentures", "EduSmart Academy", "QuickDelivery", "FinServe Bank", "HealthPlus", "RetailMax"
 ];
 
 export default function SocialProof() {
@@ -51,14 +51,14 @@ export default function SocialProof() {
         >
           <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.1] text-white/60 text-xs md:text-sm mb-4 md:mb-6">
             <Star className="w-3 h-3 md:w-4 md:h-4 text-amber-400" />
-            Trusted by 50+ Institutions
+            Trusted by 50+ Clients
           </div>
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
-            Loved by leaders{" "}
+            Loved by businesses{" "}
             <span className="text-gradient-gold">across Nigeria</span>
           </h2>
           <p className="text-white/50 max-w-xl mx-auto text-sm md:text-lg">
-            Join hundreds of churches and schools already transforming their digital presence.
+            Join hundreds of businesses and organizations already transforming their digital presence.
           </p>
         </motion.div>
 
@@ -82,7 +82,7 @@ export default function SocialProof() {
               <div className="grid grid-cols-3 gap-4 md:gap-8 lg:gap-16 text-center">
                 <div>
                   <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient-gold">50+</div>
-                  <div className="text-white/60 text-xs md:text-sm">Institutions</div>
+                  <div className="text-white/60 text-xs md:text-sm">Clients</div>
                 </div>
                 <div>
                   <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-gradient-gold">300%</div>
@@ -99,7 +99,7 @@ export default function SocialProof() {
 
         {/* Partner Logos */}
         <div className="mb-10 md:mb-16">
-          <p className="text-center text-white/30 text-xs uppercase tracking-widest mb-6 md:mb-8">Trusted by institutions</p>
+          <p className="text-center text-white/30 text-xs uppercase tracking-widest mb-6 md:mb-8">Trusted by businesses</p>
           <div className="flex flex-wrap justify-center items-center gap-3 md:gap-6 lg:gap-10">
             {partners.map((partner) => (
               <div

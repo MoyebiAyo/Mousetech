@@ -1,247 +1,169 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, TrendingUp, Users, Shield, Globe, Zap, Play } from "lucide-react";
-import Image from "next/image";
-
-const features = [
-  { icon: Users, label: "50+ Churches", color: "from-amber-400 to-amber-500" },
-  { icon: TrendingUp, label: "300% Growth", color: "from-green-400 to-green-500" },
-  { icon: Shield, label: "99.9% Uptime", color: "from-blue-400 to-blue-500" },
-];
-
-const floatingApps = [
-  { icon: Globe, label: "Website", color: "bg-amber-500/20 border-amber-500/30" },
-  { icon: Zap, label: "Automation", color: "bg-blue-500/20 border-blue-500/30" },
-  { icon: Shield, label: "Security", color: "bg-green-500/20 border-green-500/30" },
-];
+import { ArrowRight, Play } from "lucide-react";
 
 export default function Hero() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section id="home" className="min-h-screen flex items-center pt-24 pb-20 relative overflow-hidden">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
+    <div className="hero min-h-screen flex flex-col relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)', paddingTop: '72px' }}>
+      {/* Background Pattern */}
+      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(30,95,168,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(30,95,168,0.15) 0%, transparent 40%)' }} />
+      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
       
-      {/* Background glow spots with animation */}
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.2, 1],
-          opacity: [0.1, 0.15, 0.1]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 -left-20 w-[400px] h-[400px] md:w-[500px] md:h-[500px] bg-amber-500/20 rounded-full blur-[120px] pointer-events-none" 
-      />
-      <motion.div 
-        animate={{ 
-          scale: [1.2, 1, 1.2],
-          opacity: [0.1, 0.15, 0.1]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 -right-20 w-[350px] h-[350px] md:w-[500px] md:h-[500px] bg-blue-500/20 rounded-full blur-[100px] pointer-events-none" 
-      />
-      <motion.div 
-        animate={{ 
-          scale: [1, 1.3, 1],
-          opacity: [0.05, 0.1, 0.05]
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px] pointer-events-none" 
-      />
+      {/* Navigation */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300 ${scrolled ? 'bg-white/97 shadow-lg' : 'bg-transparent'}`} style={{ backdropFilter: 'blur(12px)', borderBottom: scrolled ? '1px solid #dce6f0' : 'none' }}>
+        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: scrolled ? '#0d1b2a' : '#ffffff' }}>
+          MouseTech
+        </a>
+        <ul className="hidden md:flex gap-10 list-none">
+          <li><a href="/#how" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>How It Works</a></li>
+          <li><a href="/services" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Services</a></li>
+          <li><a href="/pricing" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Pricing</a></li>
+          <li><a href="/about" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>About</a></li>
+          <li><a href="/#testimonials" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Clients</a></li>
+        </ul>
+        <div className="flex gap-3 items-center">
+          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I%20have%20a%20question%20about%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className={`hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-md transition-all duration-200 no-underline items-center gap-2 ${scrolled ? 'border-2 border-[#dce6f0] text-[#0d1b2a] hover:border-[#1e5fa8] hover:text-[#1e5fa8]' : 'border-2 border-white/30 text-white hover:border-white/60'}`}>
+            Contact
+          </a>
+          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20your%20software%20solutions.%20Can%20we%20discuss?" target="_blank" rel="noopener noreferrer" className="text-sm font-semibold px-4 py-2 rounded-md bg-[#1e5fa8] text-white hover:bg-[#2a7dd4] transition-colors no-underline">Get Started</a>
+        </div>
+      </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl"
-          >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.05] border border-white/[0.1] mb-6 md:mb-8 backdrop-blur-sm"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
-              </span>
-              <span className="text-white/70 text-sm font-medium">Trusted by 50+ Institutions</span>
-            </motion.div>
+      {/* Hero Content */}
+      <div className="flex-1 flex items-center px-[5%] py-20 relative z-10" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', gap: '5rem' }}>
+        <motion.div 
+          className="flex-1 max-w-[580px]"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-7" style={{ background: 'rgba(30,95,168,0.3)', border: '1px solid rgba(30,95,168,0.5)', color: '#7ab8f5', fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#7ab8f5' }} />
+            Trusted by 50+ Organizations & Businesses
+          </div>
 
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6"
-            >
-              Transform Your{" "}
-              <span className="bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
-                Institution
-              </span>
-              <br />
-              <span className="text-white">Digitally</span>
-            </motion.h1>
+          {/* Headline */}
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
+            Custom software solutions,<br />
+            <em className="not-italic" style={{ color: '#7ab8f5' }}>built to scale</em><br />
+            your business.
+          </h1>
 
-            {/* Subheadline */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-lg md:text-xl text-white/50 leading-relaxed mb-8 max-w-xl"
-            >
-              The all-in-one digital platform for churches and schools. 
-              Build, automate, and grow with enterprise-grade technology 
-              designed for Nigeria.
-            </motion.p>
+          {/* Subheadline */}
+          <p className="text-lg leading-relaxed mb-10" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            We design, develop, and maintain professional websites, mobile apps, and custom software solutions. From startups to enterprises, we transform your ideas into powerful digital products.
+          </p>
 
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 mb-10"
-            >
-              <a href="#contact" className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-400 to-gold-500 text-navy-900 font-bold text-base rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(251,191,36,0.4)] hover:scale-[1.02]">
-                <span className="relative z-10">Get Free Consultation</span>
-                <ArrowRight className="relative z-10 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a href="#packages" className="group inline-flex items-center justify-center gap-2 px-8 py-4 text-white font-semibold text-base rounded-full border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-300">
-                <Sparkles className="w-5 h-5" />
-                <span>View Pricing</span>
-              </a>
-            </motion.div>
+          {/* CTAs */}
+          <div className="flex flex-wrap gap-4 mb-14">
+            <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20discussing%20a%20software%20solution%20for%20my%20business." target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
+              Start Free Consultation
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a href="/#how" className="btn-hero-ghost">
+              <Play className="w-4 h-4 fill-current" />
+              See how it works
+            </a>
+          </div>
 
-            {/* Social Proof Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap items-center gap-4 md:gap-8"
-            >
-              {features.map((feature, i) => (
-                <div key={feature.label} className="flex items-center gap-2 md:gap-3">
-                  <div className={`w-8 h-8 md:w-10 md:h-10 rounded-lg bg-gradient-to-br ${feature.color} flex items-center justify-center`}>
-                    <feature.icon className="w-4 h-4 md:w-5 md:h-5 text-navy-900" />
-                  </div>
-                  <div>
-                    <div className="text-sm md:text-lg font-semibold">{feature.label}</div>
-                    <div className="text-white/40 text-xs">{i === 0 ? "Churches & Schools" : i === 1 ? "Average Growth" : "Guaranteed"}</div>
-                  </div>
+          {/* Trust */}
+          <div className="flex items-center gap-6">
+            <div className="flex -space-x-2">
+              {['AK', 'BL', 'CR', 'DM'].map((initials, i) => (
+                <div key={i} className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white border-2" style={{ background: i === 0 ? '#1e5fa8' : i === 1 ? '#1a3a5c' : i === 2 ? '#0d4a2a' : '#4a1a1a', borderColor: '#1a2e42', marginLeft: i > 0 ? '-8px' : '0' }}>
+                  {initials}
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
+              <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white border-2" style={{ background: '#3a2a0d', borderColor: '#1a2e42', marginLeft: '-8px' }}>+</div>
+            </div>
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
+              <strong className="text-white/90">50+ clients</strong> trust MouseTech with their digital solutions
+            </p>
+          </div>
+        </motion.div>
 
-          {/* Right Content - Dashboard Visual - Hidden on mobile */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative hidden lg:block"
-          >
-            {/* Main Dashboard Card */}
-            <div className="relative">
-              {/* Glow behind */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-gold-500/10 to-blue-500/20 rounded-3xl blur-2xl" />
-              
-              {/* Card */}
-              <div className="relative glass-card rounded-2xl p-2 border border-white/[0.1] overflow-hidden">
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <Image 
-                    src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop" 
-                    alt="Dashboard"
-                    fill
-                    className="object-cover opacity-30"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-navy-900/80 to-navy-900/60" />
-                </div>
-                
-                {/* Browser chrome */}
-                <div className="relative z-10 flex items-center gap-2 mb-4 pb-4 pt-2 border-b border-white/[0.08]">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                    <div className="w-3 h-3 rounded-full bg-green-500/60" />
-                  </div>
-                  <div className="flex-1 mx-4">
-                    <div className="px-4 py-1.5 bg-navy-900/60 rounded-lg text-white/40 text-xs text-center">
-                      mousetech.com
-                    </div>
-                  </div>
-                </div>
-
-                {/* Dashboard content */}
-                <div className="relative z-10 space-y-4">
-                  {/* Header */}
-                  <div className="flex items-center justify-between">
-                    <div className="h-6 bg-white/10 rounded w-32" />
-                    <div className="flex gap-2">
-                      <div className="h-6 w-6 rounded bg-amber-500/20" />
-                      <div className="h-6 w-6 rounded bg-blue-500/20" />
-                    </div>
-                  </div>
-
-                  {/* Stats row */}
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-amber-500/10 to-amber-600/5 border border-amber-500/20">
-                      <div className="h-3 w-12 bg-amber-500/30 rounded mb-2" />
-                      <div className="h-4 w-16 bg-white/10 rounded" />
-                    </div>
-                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                      <div className="h-3 w-12 bg-white/20 rounded mb-2" />
-                      <div className="h-4 w-16 bg-white/10 rounded" />
-                    </div>
-                    <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
-                      <div className="h-3 w-12 bg-white/20 rounded mb-2" />
-                      <div className="h-4 w-16 bg-white/10 rounded" />
-                    </div>
-                  </div>
-
-                  {/* Chart placeholder */}
-                  <div className="h-24 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/[0.06] flex items-end justify-between px-4 pb-2">
-                    {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88].map((h, i) => (
-                      <div key={i} className="w-4 bg-gradient-to-t from-blue-500/40 to-cyan-400/40 rounded-t" style={{ height: `${h}%` }} />
-                    ))}
-                  </div>
-
-                  {/* Activity row */}
-                  <div className="flex gap-3">
-                    <div className="flex-1 h-10 rounded-lg bg-white/[0.03] border border-white/[0.06]" />
-                    <div className="flex-1 h-10 rounded-lg bg-white/[0.03] border border-white/[0.06]" />
-                  </div>
+        {/* Hero Visual - Browser Mockup */}
+        <motion.div 
+          className="hidden lg:flex flex-1 justify-center items-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+        >
+          <div className="rounded-xl overflow-hidden w-full max-w-md" style={{ background: '#1e2d3d', boxShadow: '0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)' }}>
+            {/* Browser Chrome */}
+            <div className="flex items-center gap-2 px-4 py-3" style={{ background: '#16232f', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+              <div className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
+              <div className="w-3 h-3 rounded-full" style={{ background: '#febc2e' }} />
+              <div className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
+              <div className="flex-1 ml-2 px-3 py-1 rounded text-xs font-mono" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)' }}>mousetech.app</div>
+            </div>
+            
+            {/* Browser Body */}
+            <div>
+              {/* Nav */}
+              <div className="flex items-center justify-between px-5 py-3" style={{ background: '#0d1b2a', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <div className="w-16 h-3 rounded" style={{ background: '#1e5fa8', opacity: 0.8 }} />
+                <div className="flex gap-2">
+                  <div className="w-8 h-2 rounded" style={{ background: 'rgba(255,255,255,0.12)' }} />
+                  <div className="w-8 h-2 rounded" style={{ background: 'rgba(255,255,255,0.12)' }} />
+                  <div className="w-8 h-2 rounded" style={{ background: 'rgba(255,255,255,0.12)' }} />
                 </div>
               </div>
-
-              {/* Floating app cards */}
-              {floatingApps.map((app, i) => (
-                <motion.div
-                  key={app.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ 
-                    delay: 0.8 + i * 0.2, 
-                    duration: 4 + i * 0.5, 
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className={`absolute ${i === 0 ? '-top-4 right-0' : i === 1 ? 'bottom-8 left-0' : 'top-1/3 right-0'} 
-                    ${app.color} backdrop-blur-xl rounded-xl p-3 border flex items-center gap-2 shadow-xl hidden lg:flex`}
-                >
-                  <app.icon className="w-4 h-4 text-white/80" />
-                  <span className="text-xs font-medium text-white/80">{app.label}</span>
-                </motion.div>
-              ))}
+              
+              {/* Hero */}
+              <div className="px-5 py-6" style={{ background: 'linear-gradient(135deg, #0d1b2a, #1a2e42)' }}>
+                <div className="h-3.5 rounded mb-2 w-3/4" style={{ background: '#ffffff' }} />
+                <div className="h-3.5 rounded mb-4 w-1/2" style={{ background: '#ffffff', opacity: 0.85 }} />
+                <div className="h-2 rounded mb-1.5 w-full" style={{ background: 'rgba(255,255,255,0.3)' }} />
+                <div className="h-2 rounded mb-4 w-3/4" style={{ background: 'rgba(255,255,255,0.3)' }} />
+                <div className="w-24 h-7 rounded" style={{ background: '#1e5fa8' }} />
+              </div>
+              
+              {/* Cards */}
+              <div className="grid grid-cols-3 gap-3 p-4" style={{ background: '#f7f9fc' }}>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-white rounded-md p-3 shadow-sm">
+                    <div className="w-5 h-5 rounded mb-1.5" style={{ background: '#e8f1fb' }} />
+                    <div className="h-1.5 rounded mb-1" style={{ background: '#dce6f0' }} />
+                    <div className="h-1.5 rounded w-2/3" style={{ background: '#dce6f0' }} />
+                  </div>
+                ))}
+              </div>
+              
+              {/* Stats */}
+              <div className="flex border-t" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="flex-1 py-3 px-4 text-center border-r last:border-r-0" style={{ background: '#0d1b2a', borderColor: 'rgba(255,255,255,0.05)' }}>
+                    <div className="h-3 rounded w-1/2 mx-auto mb-1" style={{ background: '#1e5fa8' }} />
+                    <div className="h-1.5 rounded w-2/3 mx-auto" style={{ background: 'rgba(255,255,255,0.1)' }} />
+                  </div>
+                ))}
+              </div>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Hero Bottom */}
+      <div className="border-t px-[5%] py-6 relative z-10" style={{ borderColor: 'rgba(255,255,255,0.07)', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+        <div className="flex items-center gap-10 flex-wrap">
+          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Trusted by</span>
+          {['TechCorp', 'FinServe', 'HealthPlus', 'EduSmart', 'RetailMax'].map((name) => (
+            <span key={name} className="font-serif text-base font-bold italic" style={{ color: 'rgba(255,255,255,0.25)' }}>{name}</span>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
