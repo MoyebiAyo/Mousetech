@@ -129,7 +129,7 @@ export default function AboutPage() {
               <div className="absolute -inset-4 rounded-3xl blur-2xl" style={{ background: 'linear-gradient(to right, rgba(30,95,168,0.2), rgba(30,95,168,0.1))' }} />
               <div className="relative rounded-2xl overflow-hidden border" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
                 <Image
-                  src="/team-lead.png"
+                  src="/profile-picture.jpeg"
                   alt="Ayodele Moyebi - Founder"
                   width={600}
                   height={500}
