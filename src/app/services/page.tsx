@@ -74,26 +74,33 @@ export default function ServicesPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:py-32 overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
-        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(30,95,168,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(30,95,168,0.15) 0%, transparent 40%)' }} />
+      <section className="relative pt-32 pb-20 md:py-32 overflow-hidden" style={{ background: '#000' }}>
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px'
+        }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0,112,243,0.15) 0%, transparent 60%)' }} />
         
-        <div className="relative max-w-[1100px] mx-auto px-[5%] text-center">
+        <div className="relative max-w-[1200px] mx-auto px-[5%] text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(30,95,168,0.3)', border: '1px solid rgba(30,95,168,0.5)' }}>
-              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#7ab8f5' }} />
-              <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#7ab8f5' }}>Our Services</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-6" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+              <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#0070F3' }} />
+              <span className="text-xs font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.9)' }}>Our Services</span>
             </div>
 
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
+            <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.04em' }}>
               Comprehensive software<br />
-              <em className="not-italic" style={{ color: '#7ab8f5' }}>solutions for everyone.</em>
+              <span style={{ color: '#0070F3' }}>solutions for everyone.</span>
             </h1>
 
-            <p className="text-lg leading-relaxed max-w-2xl mx-auto mb-10" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            <p className="text-xl leading-relaxed max-w-2xl mx-auto mb-10" style={{ color: 'rgba(255,255,255,0.6)' }}>
               From websites to mobile apps and custom software, we deliver end-to-end solutions for businesses, organizations, and individuals.
             </p>
 
