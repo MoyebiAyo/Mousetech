@@ -37,15 +37,15 @@ export default function Features() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-xl p-8 relative overflow-hidden"
-            style={{ background: '#0d1b2a', boxShadow: '0 30px 60px rgba(13,27,42,0.15)' }}
+            className="rounded-lg p-8 relative overflow-hidden"
+            style={{ background: '#000', boxShadow: '0 30px 60px rgba(0,0,0,0.15)', border: '1px solid #eaeaea' }}
           >
-            <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 70% 30%, rgba(30,95,168,0.3), transparent 60%)' }} />
+            <div className="absolute inset-0" style={{ background: 'radial-gradient(circle at 70% 30%, rgba(0,112,243,0.2), transparent 60%)' }} />
             
             {/* Header */}
             <div className="flex items-center justify-between mb-6 relative z-10">
-              <span className="font-serif text-base font-bold text-white">Site Health Dashboard</span>
-              <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: 'rgba(30,95,168,0.3)', border: '1px solid rgba(30,95,168,0.5)', color: '#7ab8f5' }}>● Live</span>
+              <span className="font-sans text-base font-semibold text-white">Site Health Dashboard</span>
+              <span className="text-xs font-medium px-3 py-1 rounded-full" style={{ background: 'rgba(0,112,243,0.2)', border: '1px solid rgba(0,112,243,0.4)', color: '#0070F3' }}>● Live</span>
             </div>
 
             {/* Rows */}
@@ -55,9 +55,9 @@ export default function Features() {
               { icon: RefreshCw, label: "Last Backup", sub: "Today at 3:00 AM" },
               { icon: Search, label: "SEO Health", sub: "94/100 · 3 suggestions" },
             ].map((item, i) => (
-              <div key={i} className="flex items-center justify-between py-3 px-4 rounded-lg mb-3 relative z-10" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
+              <div key={i} className="flex items-center justify-between py-3 px-4 rounded-lg mb-3 relative z-10" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
                 <div className="flex items-center gap-3">
-                  <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: 'rgba(30,95,168,0.3)' }}>
+                  <div className="w-7 h-7 rounded-md flex items-center justify-center" style={{ background: 'rgba(0,112,243,0.2)' }}>
                     <item.icon className="w-4 h-4 text-white" />
                   </div>
                   <div>
@@ -81,10 +81,10 @@ export default function Features() {
                 <div key={i} className="mb-4">
                   <div className="flex justify-between mb-1">
                     <span className="text-xs text-white/40">{bar.label}</span>
-                    <span className="text-xs font-semibold" style={{ color: '#7ab8f5' }}>{bar.value}</span>
+                    <span className="text-xs font-semibold" style={{ color: '#0070F3' }}>{bar.value}</span>
                   </div>
-                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.08)' }}>
-                    <div className="h-full rounded-full" style={{ width: bar.width, background: 'linear-gradient(90deg, #1e5fa8, #7ab8f5)' }} />
+                  <div className="h-1.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                    <div className="h-full rounded-full" style={{ width: bar.width, background: 'linear-gradient(90deg, #0070F3, #0060df)' }} />
                   </div>
                 </div>
               ))}
@@ -99,10 +99,10 @@ export default function Features() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Why MouseTech</span>
+              <div className="w-5 h-px" style={{ background: '#000' }} />
+              <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>Why MouseTech</span>
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-10" style={{ color: '#0d1b2a' }}>
+            <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight mb-10" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Stop worrying about<br />your website. Ever.
             </h2>
 
@@ -116,12 +116,12 @@ export default function Features() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="flex gap-5 items-start"
                 >
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: '#e8f1fb' }}>
-                    <feature.icon className="w-5 h-5" style={{ color: '#1e5fa8' }} />
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={{ background: '#fafafa', border: '1px solid #eaeaea' }}>
+                    <feature.icon className="w-5 h-5" style={{ color: '#000' }} />
                   </div>
                   <div>
-                    <h4 className="font-serif text-base font-bold mb-2" style={{ color: '#0d1b2a' }}>{feature.title}</h4>
-                    <p className="text-sm leading-relaxed" style={{ color: '#8a9ab0' }}>{feature.description}</p>
+                    <h4 className="font-sans text-base font-semibold mb-2" style={{ color: '#000' }}>{feature.title}</h4>
+                    <p className="text-sm leading-relaxed" style={{ color: '#666' }}>{feature.description}</p>
                   </div>
                 </motion.div>
               ))}
