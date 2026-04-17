@@ -120,11 +120,11 @@ const servicesData: Record<string, {
     ],
     features: [
       "Multiple payment gateways (Paystack, Flutterwave)",
-      "One-time and recurring donations",
-      "Event ticket sales",
-      "School fee payments",
+      "One-time and recurring payments",
+      "Product catalog management",
+      "Order tracking system",
       "Automated email receipts",
-      "Donor management system",
+      "Customer management system",
       "Financial dashboards",
       "Bank reconciliation"
     ],

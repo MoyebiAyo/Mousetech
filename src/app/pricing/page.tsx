@@ -92,7 +92,7 @@ const comparisons = [
   { feature: "SSL Certificate", starter: true, growth: true, enterprise: true },
   { feature: "Content Updates", starter: "3/month", growth: "Unlimited", enterprise: "Unlimited" },
   { feature: "SEO Management", starter: "Basic", growth: "Full", enterprise: "Advanced" },
-  { feature: "Online Giving", starter: false, growth: true, enterprise: true },
+  { feature: "E-Commerce", starter: false, growth: true, enterprise: true },
   { feature: "Analytics Dashboard", starter: "Basic", growth: "Custom", enterprise: "Advanced" },
   { feature: "Support", starter: "Email", growth: "Priority", enterprise: "24/7 Phone" },
 ];

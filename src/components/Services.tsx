@@ -58,7 +58,7 @@ export default function Services() {
             </h2>
           </div>
           <p className="text-base leading-relaxed max-w-md" style={{ color: '#8a9ab0' }}>
-            From websites to mobile apps and custom software, we deliver end-to-end solutions for businesses, organizations, churches, and individuals.
+            From websites to mobile apps and custom software, we deliver end-to-end solutions for businesses and organizations.
           </p>
         </div>
 

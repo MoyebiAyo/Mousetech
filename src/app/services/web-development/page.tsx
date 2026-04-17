@@ -154,7 +154,7 @@ export default function WebDevelopmentPage() {
                   ))}
                 </ul>
                 <a
-                  href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I'm%20interested%20in%20the%20{encodeURIComponent(pkg.name)}%20package."
+                  href={`https://wa.me/2348078933943?text=${encodeURIComponent(`Hi MouseTech! I'm interested in the ${pkg.name} package.`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 no-underline"

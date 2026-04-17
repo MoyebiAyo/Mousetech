@@ -124,7 +124,7 @@ export default function ContactForm() {
                       value={formData.organization}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-navy-900/50 border border-white/[0.08] rounded-xl text-white placeholder-white/30 focus:outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition-all"
-                      placeholder="Church/School Name"
+                      placeholder="Company/Organization Name"
                     />
                   </div>
                 </div>

@@ -29,10 +29,10 @@ const services = [
   },
   {
     icon: ShoppingCart,
-    title: "Online Giving & Payments",
-    slug: "online-giving",
-    description: "Full donation and payment systems with multiple payment gateways, automated receipts, and financial reporting built in.",
-    features: ["Multiple Gateways", "Auto Receipts", "Donor Management", "Financial Reports"],
+    title: "E-Commerce Solutions",
+    slug: "ecommerce-solutions",
+    description: "Complete online store setups with payment integration, inventory management, and automated order processing.",
+    features: ["Payment Gateways", "Inventory Management", "Order Tracking", "Sales Analytics"],
   },
   {
     icon: Shield,
@@ -52,10 +52,10 @@ const services = [
 
 const additionalServices = [
   { icon: Mail, title: "Email Marketing", description: "Automated email campaigns and newsletter management" },
-  { icon: MessageSquare, title: "SMS Notifications", description: "Bulk SMS for events, announcements, and reminders" },
-  { icon: Users, title: "Member Management", description: "Database systems for congregation or student tracking" },
-  { icon: Video, title: "Livestream Integration", description: "Embed live services and events on your website" },
-  { icon: FileText, title: "Content Creation", description: "Blog posts, sermons, and educational content" },
+  { icon: MessageSquare, title: "SMS Notifications", description: "Bulk SMS for marketing, alerts, and reminders" },
+  { icon: Users, title: "CRM Systems", description: "Customer relationship management and tracking systems" },
+  { icon: Video, title: "Video Integration", description: "Embed live streams and video content on your website" },
+  { icon: FileText, title: "Content Management", description: "Blog systems, documentation, and content workflows" },
   { icon: HeadphonesIcon, title: "Priority Support", description: "Dedicated account manager and 24/7 support" },
 ];
 

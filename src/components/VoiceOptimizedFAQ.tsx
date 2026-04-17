@@ -23,7 +23,7 @@ const faqs = [
   },
   {
     question: "Can MouseTech help my business in Lagos, Nigeria?",
-    answer: "Absolutely! We serve businesses across Nigeria, with a strong presence in Lagos. We work with local businesses, startups, established companies, churches, schools, and organizations throughout the country.",
+    answer: "Absolutely! We serve businesses across Nigeria, with a strong presence in Lagos. We work with local businesses, startups, established companies, and organizations throughout the country.",
   },
   {
     question: "Do you offer e-commerce solutions?",

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     default: "MouseTech — Software Solutions Company in Nigeria | Web & Mobile Apps",
     template: "%s | MouseTech"
   },
-  description: "MouseTech is a leading software solutions company in Nigeria. We design, develop, and maintain professional websites, mobile apps, and custom software for businesses, organizations, and churches. Get a free consultation today.",
+  description: "MouseTech is a leading software solutions company in Nigeria. We design, develop, and maintain professional websites, mobile apps, and custom software for businesses and organizations. Get a free consultation today.",
   keywords: [
     "software company Nigeria",
     "web development Nigeria",
