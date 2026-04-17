@@ -35,8 +35,8 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-24" style={{ background: '#f7f9fc' }}>
-      <div className="max-w-[1100px] mx-auto px-[5%]">
+    <section id="faq" className="py-28 bg-white">
+      <div className="max-w-[1200px] mx-auto px-[5%]">
         <div className="grid lg:grid-cols-5 gap-16">
           {/* Left Column */}
           <motion.div 
@@ -47,26 +47,26 @@ export default function FAQ() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>FAQ</span>
+              <div className="w-5 h-px" style={{ background: '#000' }} />
+              <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>FAQ</span>
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-4" style={{ color: '#0d1b2a' }}>
+            <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Common questions,<br />honest answers.
             </h2>
-            <p className="text-base leading-relaxed mb-8" style={{ color: '#8a9ab0' }}>
+            <p className="text-base leading-relaxed mb-8" style={{ color: '#666' }}>
               Still not sure? Here are the questions we get asked most often. If yours isn&apos;t here, we&apos;re happy to chat.
             </p>
 
             {/* Contact Card */}
-            <div className="rounded-xl p-6 text-white" style={{ background: '#0d1b2a' }}>
-              <h4 className="font-serif font-bold mb-2">Still have questions?</h4>
-              <p className="text-sm mb-5" style={{ color: 'rgba(255,255,255,0.55)' }}>
+            <div className="rounded-lg p-6 text-white" style={{ background: '#000', border: '1px solid #eaeaea' }}>
+              <h4 className="font-sans font-semibold mb-2">Still have questions?</h4>
+              <p className="text-sm mb-5" style={{ color: '#999' }}>
                 Our team typically responds within 2 business hours.
               </p>
               <a 
                 href="#contact" 
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-semibold transition-colors"
-                style={{ background: '#1e5fa8', color: '#ffffff' }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium transition-all duration-200"
+                style={{ background: '#fff', color: '#000' }}
               >
                 Chat with us →
               </a>
@@ -86,20 +86,20 @@ export default function FAQ() {
                 <div 
                   key={index} 
                   className="border-b"
-                  style={{ borderColor: '#dce6f0', borderTop: index === 0 ? '1px solid #dce6f0' : 'none' }}
+                  style={{ borderColor: '#eaeaea' }}
                 >
                   <button
                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                    className="w-full py-5 flex items-center justify-between gap-4 text-left font-serif font-bold transition-colors hover:text-[#1e5fa8]"
-                    style={{ color: openIndex === index ? '#1e5fa8' : '#0d1b2a' }}
+                    className="w-full py-5 flex items-center justify-between gap-4 text-left font-sans font-semibold transition-colors"
+                    style={{ color: openIndex === index ? '#000' : '#333' }}
                   >
                     <span className="text-base">{faq.question}</span>
                     <span 
-                      className="w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0 transition-all duration-300"
+                      className="w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0 transition-all duration-200"
                       style={{ 
-                        borderColor: openIndex === index ? '#1e5fa8' : '#dce6f0',
-                        background: openIndex === index ? '#1e5fa8' : 'transparent',
-                        color: openIndex === index ? '#ffffff' : '#8a9ab0',
+                        borderColor: openIndex === index ? '#000' : '#eaeaea',
+                        background: openIndex === index ? '#000' : 'transparent',
+                        color: openIndex === index ? '#fff' : '#666',
                         transform: openIndex === index ? 'rotate(45deg)' : 'none'
                       }}
                     >
@@ -113,7 +113,7 @@ export default function FAQ() {
                       paddingBottom: openIndex === index ? '1.25rem' : '0'
                     }}
                   >
-                    <p className="text-sm leading-relaxed" style={{ color: '#8a9ab0' }}>
+                    <p className="text-sm leading-relaxed" style={{ color: '#666' }}>
                       {faq.answer}
                     </p>
                   </div>
