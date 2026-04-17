@@ -1,0 +1,77 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1b2a"/>
+      <stop offset="50%" style="stop-color:#1a2e42"/>
+      <stop offset="100%" style="stop-color:#1a3a5c"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Pattern -->
+  <g opacity="0.1">
+    <circle cx="200" cy="300" r="200" fill="#1e5fa8"/>
+    <circle cx="1000" cy="150" r="180" fill="#1e5fa8"/>
+  </g>
+  
+  <!-- Grid Pattern -->
+  <g opacity="0.05" fill="#ffffff">
+    <circle cx="0" cy="0" r="1"/>
+    <circle cx="40" cy="0" r="1"/>
+    <circle cx="80" cy="0" r="1"/>
+    <circle cx="120" cy="0" r="1"/>
+    <circle cx="160" cy="0" r="1"/>
+    <circle cx="200" cy="0" r="1"/>
+    <circle cx="240" cy="0" r="1"/>
+    <circle cx="280" cy="0" r="1"/>
+    <circle cx="320" cy="0" r="1"/>
+    <circle cx="360" cy="0" r="1"/>
+    <circle cx="400" cy="0" r="1"/>
+    <circle cx="440" cy="0" r="1"/>
+    <circle cx="480" cy="0" r="1"/>
+    <circle cx="520" cy="0" r="1"/>
+    <circle cx="560" cy="0" r="1"/>
+    <circle cx="600" cy="0" r="1"/>
+    <circle cx="640" cy="0" r="1"/>
+    <circle cx="680" cy="0" r="1"/>
+    <circle cx="720" cy="0" r="1"/>
+    <circle cx="760" cy="0" r="1"/>
+    <circle cx="800" cy="0" r="1"/>
+    <circle cx="840" cy="0" r="1"/>
+    <circle cx="880" cy="0" r="1"/>
+    <circle cx="920" cy="0" r="1"/>
+    <circle cx="960" cy="0" r="1"/>
+    <circle cx="1000" cy="0" r="1"/>
+    <circle cx="1040" cy="0" r="1"/>
+    <circle cx="1080" cy="0" r="1"/>
+    <circle cx="1120" cy="0" r="1"/>
+    <circle cx="1160" cy="0" r="1"/>
+    <circle cx="1200" cy="0" r="1"/>
+  </g>
+  
+  <!-- Logo/Brand -->
+  <text x="100" y="140" font-family="Georgia, serif" font-size="72" font-weight="bold" fill="#ffffff">MouseTech</text>
+  
+  <!-- Tagline -->
+  <text x="100" y="220" font-family="Arial, sans-serif" font-size="32" fill="#7ab8f5">Software Solutions Company</text>
+  
+  <!-- Main Headline -->
+  <text x="100" y="320" font-family="Georgia, serif" font-size="48" font-weight="bold" fill="#ffffff">Custom Software,</text>
+  <text x="100" y="380" font-family="Georgia, serif" font-size="48" font-weight="bold" fill="#7ab8f5">Built to Scale</text>
+  
+  <!-- Features -->
+  <g font-family="Arial, sans-serif" font-size="28" fill="#ffffff">
+    <text x="100" y="470">✓ Web Development</text>
+    <text x="100" y="520">✓ Mobile Apps</text>
+    <text x="500" y="470">✓ Custom Software</text>
+    <text x="500" y="520">✓ UI/UX Design</text>
+  </g>
+  
+  <!-- Website URL -->
+  <text x="100" y="590" font-family="Arial, sans-serif" font-size="24" fill="#7ab8f5">mousetech.app</text>
+  
+  <!-- Decorative Line -->
+  <line x1="100" y1="250" x2="1100" y2="250" stroke="#1e5fa8" stroke-width="3" opacity="0.5"/>
+</svg>

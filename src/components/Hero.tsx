@@ -27,9 +27,9 @@ export default function Hero() {
         <ul className="hidden md:flex gap-10 list-none">
           <li><a href="/#how" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>How It Works</a></li>
           <li><a href="/services" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Services</a></li>
+          <li><a href="/portfolio" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Portfolio</a></li>
           <li><a href="/pricing" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Pricing</a></li>
           <li><a href="/about" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>About</a></li>
-          <li><a href="/#testimonials" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Clients</a></li>
         </ul>
         <div className="flex gap-3 items-center">
           <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I%20have%20a%20question%20about%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className={`hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-md transition-all duration-200 no-underline items-center gap-2 ${scrolled ? 'border-2 border-[#dce6f0] text-[#0d1b2a] hover:border-[#1e5fa8] hover:text-[#1e5fa8]' : 'border-2 border-white/30 text-white hover:border-white/60'}`}>

@@ -34,10 +34,10 @@ export default function Footer() {
             <h4 className="text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>Company</h4>
             <ul className="flex flex-col gap-3 list-none">
               <li><a href="/about" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>About Us</a></li>
+              <li><a href="/portfolio" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Portfolio</a></li>
               <li><a href="/pricing" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Pricing</a></li>
-              <li><a href="/#faq" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>FAQ</a></li>
+              <li><a href="/faq" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>FAQ</a></li>
               <li><a href="mailto:hello@mousetech.app" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>hello@mousetech.app</a></li>
-              <li><a href="/" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Home</a></li>
             </ul>
           </div>
 
@@ -45,13 +45,9 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>Legal</h4>
             <ul className="flex flex-col gap-3 list-none">
-              {['Privacy Policy', 'Terms of Service', 'SLA', 'Cookie Policy'].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li><a href="/privacy" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Privacy Policy</a></li>
+              <li><a href="/terms" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Terms of Service</a></li>
+              <li><a href="#" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>SLA</a></li>
             </ul>
           </div>
         </div>

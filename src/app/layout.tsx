@@ -51,10 +51,10 @@ export const metadata: Metadata = {
     siteName: "MouseTech",
     images: [
       {
-        url: "/og-image.png", // Create this image (1200x630px)
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "MouseTech - Software Solutions",
+        alt: "MouseTech - Software Solutions Company in Nigeria",
       },
     ],
   },
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "MouseTech — Software Solutions Company in Nigeria",
     description: "Leading software solutions company in Nigeria. Professional websites, mobile apps, and custom software.",
-    images: ["/og-image.png"],
+    images: ["/og-image.svg"],
   },
   alternates: {
     canonical: "https://mousetech.app",
@@ -78,6 +78,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics 4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            `
+          }}
+        />
+        
+        {/* Hreflang Tags for Regional Targeting */}
+        <link rel="alternate" hrefLang="en-ng" href="https://mousetech.app" />
+        <link rel="alternate" hrefLang="en" href="https://mousetech.app" />
+        
         {/* Structured Data for Google & AI */}
         <script
           type="application/ld+json"
@@ -105,8 +122,11 @@ export default function RootLayout({
                 "availableLanguage": ["English"]
               },
               "sameAs": [
-                "https://wa.me/2348078933943"
-                // Add your social media URLs here
+                "https://wa.me/2348078933943",
+                "https://linkedin.com/company/mousetech",
+                "https://twitter.com/mousetech_ng",
+                "https://facebook.com/mousetechng",
+                "https://instagram.com/mousetech_ng"
               ]
             })
           }}
