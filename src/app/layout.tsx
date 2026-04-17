@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mousetech.app'),
   title: {
     default: "MouseTech — Software Solutions Company in Nigeria | Web & Mobile Apps",
     template: "%s | MouseTech"

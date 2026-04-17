@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight, HelpCircle, MessageCircle } from "lucide-react";
+import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 
 const plans = [
@@ -98,34 +99,20 @@ const comparisons = [
 ];
 
 export default function PricingPage() {
-  const [scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <main className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] bg-white/97 shadow-lg" style={{ backdropFilter: 'blur(12px)', borderBottom: '1px solid #dce6f0' }}>
-        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: '#0d1b2a' }}>
-          MouseTech
-        </a>
-        <ul className="hidden md:flex gap-10 list-none">
-          <li><a href="/#how" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: '#1a2535' }}>How It Works</a></li>
-          <li><a href="/services" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: '#1a2535' }}>Services</a></li>
-          <li><a href="/pricing" className="text-sm font-medium opacity-100 transition-opacity no-underline" style={{ color: '#1e5fa8' }}>Pricing</a></li>
-          <li><a href="/about" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: '#1a2535' }}>About</a></li>
-        </ul>
-        <div className="flex gap-3 items-center">
-          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20your%20website%20services.%20Can%20we%20discuss%20my%20project?" target="_blank" rel="noopener noreferrer" className="btn-solid text-sm no-underline flex items-center gap-2">
-            <MessageCircle className="w-4 h-4" /> Get Started
-          </a>
-        </div>
-      </nav>
+      <NavBar 
+        variant="dark"
+        lightLinks={[
+          { label: "How It Works", href: "/#how" },
+          { label: "Services", href: "/services" },
+          { label: "Pricing", href: "/pricing", active: true },
+          { label: "About", href: "/about" },
+        ]}
+      />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:py-32 overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>

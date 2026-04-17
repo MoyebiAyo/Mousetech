@@ -1,124 +1,75 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowRight } from "lucide-react";
-import Image from "next/image";
+import { MessageCircle } from "lucide-react";
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Pricing", href: "/pricing" },
-];
+interface NavBarProps {
+  variant?: "light" | "dark" | "auto";
+  lightLinks?: Array<{ label: string; href: string; active?: boolean }>;
+  ctaText?: string;
+  ctaHref?: string;
+}
 
-export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+export default function NavBar({ 
+  variant = "auto", 
+  lightLinks = [],
+  ctaText = "Get Started",
+  ctaHref = "https://wa.me/2348078933943"
+}: NavBarProps) {
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Determine if we should use light text (white) or dark text
+  const useLightText = variant === "dark" || (variant === "auto" && !scrolled);
+
+  const bgColor = scrolled ? "bg-white/97 shadow-lg" : (variant === "light" ? "bg-white/97 shadow-lg" : "bg-transparent");
+  const borderColor = scrolled || variant === "light" ? "1px solid #dce6f0" : "none";
+  const textColor = useLightText ? "#ffffff" : "#0d1b2a";
+  const linkColor = useLightText ? "rgba(255,255,255,0.9)" : "#1a2535";
+  const mobileMenuBg = scrolled || variant === "light" ? "#ffffff" : "#0d1b2a";
+  const mobileMenuTextColor = useLightText ? "#ffffff" : "#1a2535";
+
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled || isMobileMenuOpen
-            ? "bg-navy-900/95 backdrop-blur-xl border-b border-white/[0.05] py-3" 
-            : "bg-navy-900/80 backdrop-blur-md py-4"
-        }`}
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300 ${bgColor}`} 
+        style={{ backdropFilter: 'blur(12px)', borderBottom: borderColor }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-3 group relative w-32 h-10">
-              <Image 
-                src="/mouse-tech-logo.png" 
-                alt="Mouse Tech" 
-                fill
-                className="object-contain object-left"
-                priority
-              />
-            </a>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="px-4 py-2 text-white/60 hover:text-white transition-colors duration-200 text-sm font-medium rounded-lg hover:bg-white/[0.05]"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
-
-            {/* CTA Button */}
-            <div className="hidden md:flex items-center gap-3">
-              <a
-                href="/pricing"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-400 to-gold-500 text-navy-900 font-semibold text-sm rounded-full hover:shadow-[0_0_20px_rgba(212,168,85,0.3)] transition-all duration-300 hover:-translate-y-0.5"
+        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: textColor }}>
+          MouseTech
+        </a>
+        
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex gap-10 list-none">
+          {lightLinks.map((link, index) => (
+            <li key={index}>
+              <a 
+                href={link.href} 
+                className={`text-sm font-medium no-underline transition-colors duration-200 ${link.active ? 'opacity-100' : 'opacity-70 hover:opacity-100'}`}
+                style={{ color: link.active ? '#7ab8f5' : linkColor }}
               >
-                Get Started
-                <ArrowRight className="w-4 h-4" />
+                {link.label}
               </a>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 text-white hover:text-amber-400 transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-      </motion.header>
-
-      {/* Mobile Menu - Separate from header to avoid z-index issues */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-[60px] left-0 right-0 z-40 md:hidden bg-navy-900/98 backdrop-blur-xl border-b border-white/[0.05]"
+            </li>
+          ))}
+        </ul>
+        
+        <div className="flex gap-3 items-center">
+          <a 
+            href={ctaHref} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-md bg-[#1e5fa8] text-white hover:bg-[#2a7dd4] transition-colors no-underline"
           >
-            <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block text-white/70 hover:text-white hover:bg-white/[0.05] transition-colors duration-200 text-base font-medium py-3 px-4 rounded-lg"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className="pt-3 mt-3 border-t border-white/[0.05]">
-                <a
-                  href="/pricing"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-400 to-gold-500 text-navy-900 font-semibold rounded-full"
-                >
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {ctaText}
+          </a>
+        </div>
+      </nav>
     </>
   );
 }
