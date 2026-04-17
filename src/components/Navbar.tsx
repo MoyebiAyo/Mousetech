@@ -18,10 +18,15 @@ export default function NavBar({
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
+      console.log('Navbar scroll state:', isScrolled, 'variant:', variant);
+    };
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial state
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [variant]);
 
   // Determine appearance based on variant and scroll state
   // For "auto" mode: starts with white text (dark bg assumption), switches to dark text on scroll
