@@ -71,14 +71,14 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300 ${scrolled ? 'bg-white/97 shadow-lg' : 'bg-transparent'}`} style={{ backdropFilter: 'blur(12px)', borderBottom: scrolled ? '1px solid #dce6f0' : 'none' }}>
-        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: scrolled ? '#0d1b2a' : '#0d1b2a' }}>
+      <nav className="fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] bg-white/97 shadow-lg" style={{ backdropFilter: 'blur(12px)', borderBottom: '1px solid #dce6f0' }}>
+        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: '#0d1b2a' }}>
           MouseTech
         </a>
         <ul className="hidden md:flex gap-10 list-none">
-          <li><a href="/#how" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: scrolled ? '#1a2535' : '#1a2535' }}>How It Works</a></li>
-          <li><a href="/#services" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: scrolled ? '#1a2535' : '#1a2535' }}>Services</a></li>
-          <li><a href="/#pricing" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: scrolled ? '#1a2535' : '#1a2535' }}>Pricing</a></li>
+          <li><a href="/#how" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: '#1a2535' }}>How It Works</a></li>
+          <li><a href="/#services" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: '#1a2535' }}>Services</a></li>
+          <li><a href="/#pricing" className="text-sm font-medium opacity-70 hover:opacity-100 transition-opacity no-underline" style={{ color: '#1a2535' }}>Pricing</a></li>
           <li><a href="/about" className="text-sm font-medium opacity-100 transition-opacity no-underline" style={{ color: '#1e5fa8' }}>About</a></li>
         </ul>
         <div className="flex gap-3 items-center">

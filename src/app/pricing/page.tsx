@@ -110,7 +110,7 @@ export default function PricingPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300 ${scrolled ? 'bg-white/97 shadow-lg' : 'bg-transparent'}`} style={{ backdropFilter: 'blur(12px)', borderBottom: scrolled ? '1px solid #dce6f0' : 'none' }}>
+      <nav className="fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] bg-white/97 shadow-lg" style={{ backdropFilter: 'blur(12px)', borderBottom: '1px solid #dce6f0' }}>
         <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: '#0d1b2a' }}>
           MouseTech
         </a>
