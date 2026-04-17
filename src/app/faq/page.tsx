@@ -58,26 +58,33 @@ export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<string | null>(null);
 
   return (
-    <main className="min-h-screen" style={{ background: '#0d1b2a' }}>
-      <section className="px-[5%] py-20" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
-        <div className="max-w-[900px] mx-auto">
-          <div className="mb-4">
+    <main className="min-h-screen bg-white">
+      <section className="px-[5%] py-32" style={{ background: '#000' }}>
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px'
+        }} />
+        <div className="max-w-[900px] mx-auto relative">
+          <div className="mb-6">
             <Link href="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">← Back to Home</Link>
           </div>
-          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-6">
-            Frequently Asked <span style={{ color: '#7ab8f5' }}>Questions</span>
+          <h1 className="font-sans text-4xl sm:text-5xl font-bold text-white mb-6" style={{ letterSpacing: '-0.04em' }}>
+            Frequently Asked <span style={{ color: '#0070F3' }}>Questions</span>
           </h1>
-          <p className="text-lg text-white/70">
+          <p className="text-xl text-white/60">
             Find answers to common questions about our services, pricing, and process.
           </p>
         </div>
       </section>
 
-      <section className="px-[5%] py-20">
+      <section className="px-[5%] py-28">
         <div className="max-w-[900px] mx-auto space-y-12">
           {faqCategories.map((category, catIdx) => (
             <div key={catIdx}>
-              <h2 className="text-2xl font-bold text-white mb-6">{category.category}</h2>
+              <h2 className="text-2xl font-bold text-black mb-6" style={{ letterSpacing: '-0.02em' }}>{category.category}</h2>
               <div className="space-y-4">
                 {category.faqs.map((faq, idx) => {
                   const key = `${catIdx}-${idx}`;
@@ -85,23 +92,22 @@ export default function FAQPage() {
                   return (
                     <div
                       key={key}
-                      className="rounded-xl border overflow-hidden transition-all duration-300"
-                      style={{ borderColor: 'rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)' }}
+                      className="rounded-lg border border-subtle overflow-hidden transition-all duration-200"
                     >
                       <button
                         onClick={() => setOpenIndex(isOpen ? null : key)}
                         className="w-full flex items-center justify-between p-6 text-left"
                       >
-                        <span className="text-lg font-semibold text-white pr-4">{faq.q}</span>
+                        <span className="text-lg font-semibold text-black pr-4">{faq.q}</span>
                         {isOpen ? (
-                          <ChevronUp className="w-6 h-6 flex-shrink-0" style={{ color: '#7ab8f5' }} />
+                          <ChevronUp className="w-6 h-6 flex-shrink-0" style={{ color: '#000' }} />
                         ) : (
-                          <ChevronDown className="w-6 h-6 flex-shrink-0" style={{ color: '#7ab8f5' }} />
+                          <ChevronDown className="w-6 h-6 flex-shrink-0" style={{ color: '#666' }} />
                         )}
                       </button>
                       {isOpen && (
                         <div className="px-6 pb-6">
-                          <p className="text-white/70 leading-relaxed">{faq.a}</p>
+                          <p className="text-gray-600 leading-relaxed">{faq.a}</p>
                         </div>
                       )}
                     </div>
@@ -113,11 +119,11 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <section className="px-[5%] py-20 text-center">
+      <section className="px-[5%] py-28 text-center" style={{ background: '#fafafa', borderTop: '1px solid #eaeaea' }}>
         <div className="max-w-[700px] mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-4">Still Have Questions?</h2>
-          <p className="text-white/60 mb-8">We&apos;re here to help! Contact us and we&apos;ll answer any questions you have.</p>
-          <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg" style={{ background: '#1e5fa8' }}>
+          <h2 className="text-3xl font-bold text-black mb-4" style={{ letterSpacing: '-0.03em' }}>Still Have Questions?</h2>
+          <p className="text-gray-600 mb-8">We&apos;re here to help! Contact us and we&apos;ll answer any questions you have.</p>
+          <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-medium bg-black text-white transition-all duration-200 hover:bg-gray-900">
             Contact Us
           </a>
         </div>

@@ -92,33 +92,33 @@ export default function Hero() {
       )}
 
       {/* Hero Content */}
-      <div className="flex-1 flex items-center px-[5%] py-20 relative z-10" style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', gap: '5rem' }}>
+      <div className="flex-1 flex items-center px-[5%] py-32 lg:py-40 relative z-10" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', gap: '6rem' }}>
         <motion.div 
-          className="flex-1 max-w-[580px]"
+          className="flex-1 max-w-[640px]"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-6" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.9)', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.02em' }}>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-8" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.9)', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.02em' }}>
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#0070F3' }} />
             Trusted by 50+ Organizations & Businesses
           </div>
 
           {/* Headline */}
-          <h1 className="font-sans text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tighter mb-6" style={{ letterSpacing: '-0.04em' }}>
+          <h1 className="font-sans text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tighter mb-8" style={{ letterSpacing: '-0.04em' }}>
             Custom software solutions,<br />
             <span style={{ color: '#0070F3' }}>built to scale</span><br />
             your business.
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl leading-relaxed mb-10" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '560px' }}>
+          <p className="text-xl leading-relaxed mb-12" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '580px' }}>
             We design, develop, and maintain professional websites, mobile apps, and custom software solutions. From startups to enterprises, we transform your ideas into powerful digital products.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-4 mb-14">
+          <div className="flex flex-wrap gap-4 mb-16">
             <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20discussing%20a%20software%20solution%20for%20my%20business." target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
               Start Free Consultation
               <ArrowRight className="w-4 h-4" />
