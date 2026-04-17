@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Code, Globe, Smartphone, Palette, Server, Headphones } from "lucide-react";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Web Development Services - MouseTech | Professional Websites in Nigeria",
@@ -190,6 +191,7 @@ export default function WebDevelopmentPage() {
           </a>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

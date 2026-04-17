@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Code, Smartphone, Layout, ShoppingCart } from "lucide-react";
+import { ArrowRight, ExternalLink, Code, Smartphone, Layout, ShoppingCart, Globe } from "lucide-react";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Our Portfolio - MouseTech | Web & Mobile Projects",
@@ -10,64 +11,48 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    title: "E-Commerce Platform",
+    title: "Mouse Steam Club",
     category: "Web Development",
-    description: "Full-featured online store with payment integration, inventory management, and real-time analytics dashboard for a Lagos-based retail business.",
-    image: "/projects/ecommerce.png",
-    icon: ShoppingCart,
-    tags: ["Next.js", "Stripe", "MongoDB", "Tailwind CSS"],
-    results: "150% increase in online sales",
-    link: "/services/web-development",
+    description: "Community platform for gaming enthusiasts with real-time chat, event management, and member profiles.",
+    image: "https://steam.mousetech.app",
+    icon: Globe,
+    tags: ["Next.js", "Real-time", "Community", "Gaming"],
+    results: "Active gaming community platform",
+    link: "https://steam.mousetech.app",
+    external: true,
   },
   {
-    title: "Health & Fitness App",
-    category: "Mobile App",
-    description: "iOS and Android fitness tracking app with workout plans, nutrition tracking, and social features for a Nigerian fitness brand.",
-    image: "/projects/fitness.png",
-    icon: Smartphone,
-    tags: ["React Native", "Firebase", "Node.js", "HealthKit"],
-    results: "10,000+ downloads in first month",
-    link: "/services/mobile-apps",
-  },
-  {
-    title: "Business Analytics Dashboard",
-    category: "Custom Software",
-    description: "Real-time business intelligence platform with data visualization, automated reporting, and predictive analytics for a consulting firm.",
-    image: "/projects/analytics.png",
-    icon: Layout,
-    tags: ["React", "D3.js", "Python", "PostgreSQL"],
-    results: "40% faster decision-making",
-    link: "/services/custom-software",
-  },
-  {
-    title: "Task Management System",
-    category: "Custom Software",
-    description: "Enterprise project management tool with team collaboration, time tracking, and automated workflows for a tech startup.",
-    image: "/projects/taskmanager.png",
-    icon: Code,
-    tags: ["Vue.js", "GraphQL", "Docker", "Redis"],
-    results: "60% improvement in team productivity",
-    link: "/services/custom-software",
-  },
-  {
-    title: "Weather Forecast App",
-    category: "Mobile App",
-    description: "Beautiful weather application with real-time forecasts, radar maps, and severe weather alerts for Nigerian cities.",
-    image: "/projects/weather.png",
-    icon: Smartphone,
-    tags: ["Flutter", "Weather API", "Google Maps", "Dart"],
-    results: "50,000+ active users",
-    link: "/services/mobile-apps",
-  },
-  {
-    title: "Corporate Website Redesign",
+    title: "Ayodele Portfolio",
     category: "Web Development",
-    description: "Modern, responsive website with CMS integration, SEO optimization, and performance improvements for a financial services company.",
-    image: "/projects/corporate-site.jpg",
-    icon: Layout,
-    tags: ["Next.js", "Sanity CMS", "Vercel", "Framer Motion"],
-    results: "200% increase in organic traffic",
-    link: "/services/web-development",
+    description: "Professional portfolio website showcasing design work and creative projects with modern UI/UX.",
+    image: "https://ayo.mousetech.app",
+    icon: Globe,
+    tags: ["Portfolio", "Design", "Next.js", "Creative"],
+    results: "Professional online presence",
+    link: "https://ayo.mousetech.app",
+    external: true,
+  },
+  {
+    title: "Dorcas Ayomide Portfolio",
+    category: "Web Development",
+    description: "Elegant portfolio website for a virtual assistant showcasing services and professional experience.",
+    image: "https://dorcasayomide.vercel.app",
+    icon: Globe,
+    tags: ["Portfolio", "Virtual Assistant", "Next.js", "Professional"],
+    results: "Clean, professional portfolio",
+    link: "https://dorcasayomide.vercel.app",
+    external: true,
+  },
+  {
+    title: "Praise Okwuchi Portfolio",
+    category: "Web Development",
+    description: "Modern portfolio website with smooth animations and responsive design for showcasing creative work.",
+    image: "https://praiseokwuchi.vercel.app",
+    icon: Globe,
+    tags: ["Portfolio", "Animations", "Responsive", "Modern"],
+    results: "Engaging user experience",
+    link: "https://praiseokwuchi.vercel.app",
+    external: true,
   },
 ];
 
@@ -160,13 +145,15 @@ export default function PortfolioPage() {
                   </div>
 
                   {/* Link */}
-                  <Link
+                  <a
                     href={project.link}
+                    target={project.external ? "_blank" : undefined}
+                    rel={project.external ? "noopener noreferrer" : undefined}
                     className="inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors hover:gap-3"
                     style={{ color: '#7ab8f5' }}
                   >
-                    View Service <ArrowRight className="w-4 h-4" />
-                  </Link>
+                    {project.external ? "Visit Site" : "View Service"} {project.external ? <ExternalLink className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
+                  </a>
                 </div>
               </div>
             ))}
@@ -199,6 +186,7 @@ export default function PortfolioPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

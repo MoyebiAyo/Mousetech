@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Smartphone, Apple, Wifi, Shield, Zap, Headphones } from "lucide-react";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Mobile App Development - MouseTech | iOS & Android Apps Nigeria",
@@ -67,6 +68,7 @@ export default function MobileAppsPage() {
           </a>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

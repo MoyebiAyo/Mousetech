@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - MouseTech",
@@ -52,6 +53,7 @@ export default function PrivacyPolicy() {
           </p>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

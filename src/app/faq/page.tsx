@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 const faqCategories = [
   {
@@ -121,6 +122,7 @@ export default function FAQPage() {
           </a>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
