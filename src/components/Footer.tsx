@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 pb-12" style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
           {/* Brand */}
           <div className="md:col-span-1">
-            <a href="#" className="font-serif text-2xl font-bold text-white no-underline mb-4 inline-block">
+            <a href="/" className="font-serif text-2xl font-bold text-white no-underline mb-4 inline-block">
               MouseTech
             </a>
             <p className="text-sm leading-relaxed max-w-[260px]" style={{ color: 'rgba(255,255,255,0.5)' }}>
@@ -19,13 +19,11 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold tracking-widest uppercase mb-5" style={{ color: 'rgba(255,255,255,0.4)' }}>Services</h4>
             <ul className="flex flex-col gap-3 list-none">
-              {['Web Development', 'Mobile Apps', 'Custom Software', 'UI/UX Design', 'Maintenance'].map((item) => (
-                <li key={item}>
-                  <a href="/services" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li><a href="/services/web-development" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Web Development</a></li>
+              <li><a href="/services/mobile-apps" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Mobile Apps</a></li>
+              <li><a href="/services" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Custom Software</a></li>
+              <li><a href="/services" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>UI/UX Design</a></li>
+              <li><a href="/services" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Maintenance</a></li>
             </ul>
           </div>
 
@@ -47,7 +45,6 @@ export default function Footer() {
             <ul className="flex flex-col gap-3 list-none">
               <li><a href="/privacy" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Privacy Policy</a></li>
               <li><a href="/terms" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>Terms of Service</a></li>
-              <li><a href="#" className="text-sm no-underline transition-colors hover:text-white" style={{ color: 'rgba(255,255,255,0.5)' }}>SLA</a></li>
             </ul>
           </div>
         </div>

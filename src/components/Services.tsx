@@ -7,37 +7,37 @@ const services = [
   {
     icon: Globe,
     title: "Website Development",
-    slug: "website-development",
+    slug: "web-development",
     description: "Professional, responsive websites tailored to your brand. From landing pages to complex web applications, we build digital experiences that convert.",
   },
   {
     icon: Smartphone,
     title: "Mobile App Development",
-    slug: "mobile-app-development",
+    slug: "mobile-apps",
     description: "Native and cross-platform mobile apps for iOS and Android. Intuitive design, smooth performance, and seamless user experiences.",
   },
   {
     icon: Code,
     title: "Custom Software Solutions",
-    slug: "custom-software",
+    slug: null,
     description: "Bespoke software built for your unique business needs. CRM systems, automation tools, dashboards, and enterprise applications.",
   },
   {
     icon: Palette,
     title: "UI/UX Design",
-    slug: "ui-ux-design",
+    slug: null,
     description: "User-centered design that delights and converts. Wireframing, prototyping, and polished interfaces that enhance user satisfaction.",
   },
   {
     icon: Zap,
     title: "Performance & Hosting",
-    slug: "performance-hosting",
+    slug: null,
     description: "Lightning-fast load times, global CDN, and reliable hosting. Your applications run smoothly 24/7 with optimal performance.",
   },
   {
     icon: Shield,
     title: "Maintenance & Support",
-    slug: "maintenance-support",
+    slug: null,
     description: "Ongoing updates, security patches, backups, and technical support. We keep your software running perfectly so you can focus on business.",
   },
 ];
@@ -78,7 +78,7 @@ export default function Services() {
               </div>
               <h3 className="font-serif text-lg font-bold mb-3" style={{ color: '#0d1b2a' }}>{service.title}</h3>
               <p className="text-sm leading-relaxed mb-5" style={{ color: '#8a9ab0' }}>{service.description}</p>
-              <a href={`/services/${service.slug}`} className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 group-hover:gap-3" style={{ color: '#1e5fa8' }}>
+              <a href={service.slug ? `/services/${service.slug}` : "/services"} className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 group-hover:gap-3" style={{ color: '#1e5fa8' }}>
                 Learn more <ArrowRight className="w-4 h-4" />
               </a>
             </motion.div>
