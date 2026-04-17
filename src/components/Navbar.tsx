@@ -19,57 +19,63 @@ export default function NavBar({
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Determine if we should use light text (white) or dark text
-  const useLightText = variant === "dark" || (variant === "auto" && !scrolled);
-
-  const bgColor = scrolled ? "bg-white/97 shadow-lg" : (variant === "light" ? "bg-white/97 shadow-lg" : "bg-transparent");
-  const borderColor = scrolled || variant === "light" ? "1px solid #dce6f0" : "none";
-  const textColor = useLightText ? "#ffffff" : "#0d1b2a";
-  const linkColor = useLightText ? "rgba(255,255,255,0.9)" : "#1a2535";
-  const mobileMenuBg = scrolled || variant === "light" ? "#ffffff" : "#0d1b2a";
-  const mobileMenuTextColor = useLightText ? "#ffffff" : "#1a2535";
+  // Determine appearance based on variant and scroll state
+  // For "auto" mode: starts with white text (dark bg assumption), switches to dark text on scroll
+  const isDarkBackground = variant === "dark" || (variant === "auto" && !scrolled);
+  const hasWhiteBg = variant === "light" || (variant === "auto" && scrolled);
+  
+  // Text colors - white on dark backgrounds, dark on light backgrounds
+  const textColor = isDarkBackground ? "#ffffff" : "#0d1b2a";
+  const linkColor = isDarkBackground ? "rgba(255,255,255,0.9)" : "#1a2535";
+  const borderColor = hasWhiteBg ? "1px solid #dce6f0" : "1px solid rgba(255,255,255,0.1)";
 
   return (
-    <>
-      <nav 
-        className={`fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300 ${bgColor}`} 
-        style={{ backdropFilter: 'blur(12px)', borderBottom: borderColor }}
-      >
-        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: textColor }}>
-          MouseTech
+    <nav 
+      className="fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300" 
+      style={{ 
+        backdropFilter: 'blur(12px)',
+        backgroundColor: hasWhiteBg ? 'rgba(255,255,255,0.97)' : 'transparent',
+        borderBottom: borderColor,
+        boxShadow: hasWhiteBg ? '0 4px 6px -1px rgba(0,0,0,0.1)' : 'none'
+      }}
+    >
+      <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline transition-colors duration-300" style={{ color: textColor }}>
+        MouseTech
+      </a>
+      
+      {/* Desktop Menu */}
+      <ul className="hidden md:flex gap-10 list-none">
+        {lightLinks.map((link, index) => (
+          <li key={index}>
+            <a 
+              href={link.href} 
+              className="text-sm font-medium no-underline transition-all duration-300"
+              style={{ 
+                color: link.active ? '#7ab8f5' : linkColor,
+                opacity: link.active ? 1 : 0.9
+              }}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      
+      <div className="flex gap-3 items-center">
+        <a 
+          href={ctaHref} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-md bg-[#1e5fa8] text-white hover:bg-[#2a7dd4] transition-colors no-underline"
+        >
+          {ctaText}
         </a>
-        
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-10 list-none">
-          {lightLinks.map((link, index) => (
-            <li key={index}>
-              <a 
-                href={link.href} 
-                className={`text-sm font-medium no-underline transition-colors duration-200 ${link.active ? 'opacity-100' : 'opacity-70 hover:opacity-100'}`}
-                style={{ color: link.active ? '#7ab8f5' : linkColor }}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        
-        <div className="flex gap-3 items-center">
-          <a 
-            href={ctaHref} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-md bg-[#1e5fa8] text-white hover:bg-[#2a7dd4] transition-colors no-underline"
-          >
-            {ctaText}
-          </a>
-        </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
