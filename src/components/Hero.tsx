@@ -9,8 +9,13 @@ export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50;
+      setScrolled(isScrolled);
+      console.log('Hero nav scroll state:', isScrolled);
+    };
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial state
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -21,18 +26,26 @@ export default function Hero() {
       <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
       
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300 ${scrolled ? 'bg-white/97 shadow-lg' : 'bg-transparent'}`} style={{ backdropFilter: 'blur(12px)', borderBottom: scrolled ? '1px solid #dce6f0' : 'none' }}>
-        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline" style={{ color: scrolled ? '#0d1b2a' : '#ffffff' }}>
+      <nav 
+        className="fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300" 
+        style={{ 
+          backdropFilter: 'blur(12px)',
+          backgroundColor: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
+          borderBottom: scrolled ? '1px solid #dce6f0' : '1px solid rgba(255,255,255,0.1)',
+          boxShadow: scrolled ? '0 4px 6px -1px rgba(0,0,0,0.1)' : 'none'
+        }}
+      >
+        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline transition-colors duration-300" style={{ color: scrolled ? '#0d1b2a' : '#ffffff' }}>
           MouseTech
         </a>
         
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-10 list-none">
-          <li><a href="/#how" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>How It Works</a></li>
-          <li><a href="/services" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Services</a></li>
-          <li><a href="/portfolio" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Portfolio</a></li>
-          <li><a href="/pricing" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Pricing</a></li>
-          <li><a href="/about" className="text-sm font-medium no-underline transition-colors duration-200 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>About</a></li>
+          <li><a href="/#how" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>How It Works</a></li>
+          <li><a href="/services" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Services</a></li>
+          <li><a href="/portfolio" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Portfolio</a></li>
+          <li><a href="/pricing" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Pricing</a></li>
+          <li><a href="/about" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>About</a></li>
         </ul>
         
         <div className="flex gap-3 items-center">
@@ -44,7 +57,7 @@ export default function Hero() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-md transition-colors"
+            className="md:hidden p-2 rounded-md transition-all duration-300"
             style={{ color: scrolled ? '#0d1b2a' : '#ffffff' }}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
