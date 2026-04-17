@@ -67,25 +67,25 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24" style={{ background: '#f7f9fc' }}>
-      <div className="max-w-[1100px] mx-auto px-[5%]">
+    <section id="pricing" className="py-28 bg-white">
+      <div className="max-w-[1200px] mx-auto px-[5%]">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-            <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Pricing</span>
-            <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+            <div className="w-5 h-px" style={{ background: '#000' }} />
+            <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>Pricing</span>
+            <div className="w-5 h-px" style={{ background: '#000' }} />
           </div>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-4" style={{ color: '#0d1b2a' }}>
+          <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
             Simple, transparent pricing.
           </h2>
-          <p className="text-base leading-relaxed max-w-lg mx-auto" style={{ color: '#8a9ab0' }}>
+          <p className="text-base leading-relaxed max-w-lg mx-auto" style={{ color: '#666' }}>
             All plans include design, hosting, maintenance, and support. No hidden fees. Cancel anytime.
           </p>
         </div>
 
         {/* Pricing Grid */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-[960px] mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.tier}
@@ -93,44 +93,44 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`rounded-xl p-8 transition-all duration-300 ${plan.popular ? 'transform -translate-y-2' : ''}`}
+              className={`rounded-lg p-8 transition-all duration-200 ${plan.popular ? 'transform -translate-y-1' : ''}`}
               style={{ 
-                background: plan.popular ? '#0d1b2a' : '#ffffff',
-                border: `1px solid ${plan.popular ? '#0d1b2a' : '#dce6f0'}`,
-                boxShadow: plan.popular ? '0 20px 50px rgba(13,27,42,0.2)' : 'none'
+                background: plan.popular ? '#000' : '#fff',
+                border: `1px solid ${plan.popular ? '#000' : '#eaeaea'}`,
+                boxShadow: plan.popular ? '0 16px 40px rgba(0,0,0,0.2)' : 'none'
               }}
             >
               {/* Popular Badge */}
               {plan.popular && (
-                <div className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-5" style={{ background: '#1e5fa8', color: '#ffffff' }}>
+                <div className="inline-block px-3 py-1 rounded-md text-xs font-semibold tracking-wide uppercase mb-5" style={{ background: '#0070F3', color: '#fff' }}>
                   Most Popular
                 </div>
               )}
 
               {/* Tier */}
-              <div className="text-xs font-bold tracking-widest uppercase mb-2" style={{ color: plan.popular ? '#7ab8f5' : '#1e5fa8' }}>
+              <div className="text-xs font-semibold tracking-wide uppercase mb-2" style={{ color: plan.popular ? '#999' : '#666' }}>
                 {plan.tier}
               </div>
 
               {/* Price */}
-              <div className="font-serif text-4xl font-bold leading-none mb-1" style={{ color: plan.popular ? '#ffffff' : '#0d1b2a' }}>
-                {plan.price}<span className="text-xl font-sans font-normal">{plan.priceNote}</span>
+              <div className="font-sans text-4xl font-bold leading-none mb-1" style={{ color: plan.popular ? '#fff' : '#000', letterSpacing: '-0.03em' }}>
+                {plan.price}<span className="text-xl font-normal">{plan.priceNote}</span>
               </div>
 
               {/* Description */}
-              <p className="text-sm leading-relaxed mb-6" style={{ color: plan.popular ? 'rgba(255,255,255,0.5)' : '#8a9ab0' }}>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: plan.popular ? '#999' : '#666' }}>
                 {plan.description}
               </p>
 
               {/* Divider */}
-              <div className="h-px mb-6" style={{ background: plan.popular ? 'rgba(255,255,255,0.1)' : '#dce6f0' }} />
+              <div className="h-px mb-6" style={{ background: plan.popular ? 'rgba(255,255,255,0.1)' : '#eaeaea' }} />
 
               {/* Features */}
               <ul className="flex flex-col gap-3 mb-8">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3 text-sm" style={{ color: plan.popular ? 'rgba(255,255,255,0.8)' : '#1a2535' }}>
-                    <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: plan.popular ? 'rgba(30,95,168,0.4)' : '#e8f1fb', color: plan.popular ? '#7ab8f5' : '#1e5fa8' }}>
-                      <Check className="w-3 h-3" />
+                  <li key={feature} className="flex items-center gap-3 text-sm" style={{ color: plan.popular ? '#ccc' : '#333' }}>
+                    <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: plan.popular ? 'rgba(255,255,255,0.1)' : '#fafafa' }}>
+                      <Check className="w-3 h-3" style={{ color: plan.popular ? '#fff' : '#000' }} />
                     </span>
                     {feature}
                   </li>
@@ -142,11 +142,12 @@ export default function Pricing() {
                 href={`https://wa.me/2348078933943?text=${encodeURIComponent(plan.whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex items-center justify-center gap-2 w-full py-3.5 text-center text-sm font-semibold rounded-lg transition-all duration-200 no-underline ${
-                  plan.ctaStyle === 'white' 
-                    ? 'bg-white text-[#0d1b2a] hover:bg-[#e8f1fb]' 
-                    : 'bg-transparent border-2 border-[#dce6f0] text-[#0d1b2a] hover:border-[#1e5fa8] hover:text-[#1e5fa8]'
-                }`}
+                className="flex items-center justify-center gap-2 w-full py-3 text-center text-sm font-medium rounded-md transition-all duration-200 no-underline"
+                style={{
+                  background: plan.popular ? '#fff' : '#000',
+                  color: plan.popular ? '#000' : '#fff',
+                  border: plan.popular ? 'none' : '1px solid #000'
+                }}
               >
                 <MessageCircle className="w-4 h-4" />
                 {plan.cta}
