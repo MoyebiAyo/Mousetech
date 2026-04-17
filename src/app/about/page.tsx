@@ -74,27 +74,34 @@ export default function AboutPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:py-32 overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
-        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(30,95,168,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(30,95,168,0.15) 0%, transparent 40%)' }} />
+      <section className="relative pt-32 pb-20 md:py-32 overflow-hidden" style={{ background: '#000' }}>
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px'
+        }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0,112,243,0.15) 0%, transparent 60%)' }} />
         
-        <div className="relative max-w-[1100px] mx-auto px-[5%]">
+        <div className="relative max-w-[1200px] mx-auto px-[5%]">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ background: 'rgba(30,95,168,0.3)', border: '1px solid rgba(30,95,168,0.5)' }}>
-                <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: '#7ab8f5' }} />
-                <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#7ab8f5' }}>About Us</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-6" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#0070F3' }} />
+                <span className="text-xs font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.9)' }}>About Us</span>
               </div>
 
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
+              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.04em' }}>
                 Building Digital<br />
-                <em className="not-italic" style={{ color: '#7ab8f5' }}>Excellence</em>
+                <span style={{ color: '#0070F3' }}>Excellence</span>
               </h1>
 
-              <p className="text-lg leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.65)' }}>
+              <p className="text-xl leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 MouseTech is a forward-thinking technology agency dedicated to helping businesses and organizations thrive in the digital age. We combine creativity, technical expertise, and strategic thinking to deliver solutions that drive real results.
               </p>
 
@@ -113,8 +120,8 @@ export default function AboutPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="absolute -inset-4 rounded-3xl blur-2xl" style={{ background: 'linear-gradient(to right, rgba(30,95,168,0.2), rgba(30,95,168,0.1))' }} />
-              <div className="relative rounded-2xl overflow-hidden border" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
+              <div className="absolute -inset-4 rounded-2xl blur-2xl" style={{ background: 'linear-gradient(to right, rgba(0,112,243,0.2), rgba(0,112,243,0.1))' }} />
+              <div className="relative rounded-lg overflow-hidden border" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
                 <Image
                   src="/profile-picture.jpeg"
                   alt="Ayodele Moyebi - Founder"
@@ -129,9 +136,9 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16" style={{ background: '#f7f9fc', borderTop: '1px solid #dce6f0', borderBottom: '1px solid #dce6f0' }}>
-        <div className="max-w-[1100px] mx-auto px-[5%]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className="py-16 border-t border-b" style={{ borderColor: '#eaeaea' }}>
+        <div className="max-w-[1200px] mx-auto px-[5%]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -139,12 +146,12 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                className="text-center md:border-r last:md:border-r-0 px-4" style={{ borderColor: '#eaeaea' }}
               >
-                <div className="font-serif text-4xl md:text-5xl font-bold leading-none mb-2" style={{ color: '#0d1b2a' }}>
+                <div className="font-sans text-4xl md:text-5xl font-bold leading-none mb-2" style={{ color: '#000', letterSpacing: '-0.03em' }}>
                   {stat.value}
                 </div>
-                <div className="text-sm" style={{ color: '#8a9ab0' }}>{stat.label}</div>
+                <div className="text-xs uppercase tracking-wider font-medium" style={{ color: '#666' }}>{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -152,22 +159,21 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-24">
-        <div className="max-w-[1100px] mx-auto px-[5%]">
+      <section className="py-28">
+        <div className="max-w-[1200px] mx-auto px-[5%]">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="p-8 rounded-2xl"
-              style={{ background: 'linear-gradient(to bottom right, rgba(248,250,252,0.5), rgba(241,245,249,0.5))', border: '1px solid #e2e8f0' }}
+              className="p-8 rounded-lg border-subtle"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-6" style={{ background: '#1e5fa8' }}>
-                <Target className="w-7 h-7 text-white" />
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-md mb-6" style={{ background: '#000' }}>
+                <Target className="w-6 h-6 text-white" />
               </div>
-              <h2 className="font-serif text-2xl font-bold mb-4" style={{ color: '#0d1b2a' }}>Our Mission</h2>
-              <p className="leading-relaxed" style={{ color: '#64748b' }}>
+              <h2 className="font-sans text-2xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.02em' }}>Our Mission</h2>
+              <p className="leading-relaxed" style={{ color: '#666' }}>
                 To empower businesses and organizations with innovative digital solutions that drive growth, enhance efficiency, and create meaningful connections with their customers. We believe technology should be accessible, powerful, and beautiful.
               </p>
             </motion.div>
@@ -177,14 +183,13 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-2xl"
-              style={{ background: 'linear-gradient(to bottom right, rgba(248,250,252,0.5), rgba(241,245,249,0.5))', border: '1px solid #e2e8f0' }}
+              className="p-8 rounded-lg border-subtle"
             >
-              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-6" style={{ background: '#1e5fa8' }}>
-                <Eye className="w-7 h-7 text-white" />
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-md mb-6" style={{ background: '#000' }}>
+                <Eye className="w-6 h-6 text-white" />
               </div>
-              <h2 className="font-serif text-2xl font-bold mb-4" style={{ color: '#0d1b2a' }}>Our Vision</h2>
-              <p className="leading-relaxed" style={{ color: '#64748b' }}>
+              <h2 className="font-sans text-2xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.02em' }}>Our Vision</h2>
+              <p className="leading-relaxed" style={{ color: '#666' }}>
                 To be the leading technology partner for businesses and organizations across Nigeria and beyond, known for our innovation, reliability, and commitment to client success. We envision a world where every business can leverage technology to achieve its full potential.
               </p>
             </motion.div>
@@ -193,8 +198,8 @@ export default function AboutPage() {
       </section>
 
       {/* Values Section */}
-      <section className="py-24" style={{ background: '#f7f9fc' }}>
-        <div className="max-w-[1100px] mx-auto px-[5%]">
+      <section className="py-28 bg-white">
+        <div className="max-w-[1200px] mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -203,14 +208,14 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Our Values</span>
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+              <div className="w-5 h-px" style={{ background: '#000' }} />
+              <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>Our Values</span>
+              <div className="w-5 h-px" style={{ background: '#000' }} />
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0d1b2a' }}>
+            <h2 className="font-sans text-3xl md:text-4xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Our Core Values
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#666' }}>
               The principles that guide everything we do
             </p>
           </motion.div>
@@ -223,14 +228,13 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-white border transition-all duration-300 hover:border-[#1e5fa8]/30"
-                style={{ borderColor: '#e2e8f0' }}
+                className="p-6 rounded-lg bg-white border-subtle transition-all duration-200"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4" style={{ background: '#e8f1fb' }}>
-                  <value.icon className="w-6 h-6" style={{ color: '#1e5fa8' }} />
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-md mb-4" style={{ background: '#fafafa' }}>
+                  <value.icon className="w-5 h-5" style={{ color: '#000' }} />
                 </div>
-                <h3 className="font-serif text-xl font-semibold mb-2" style={{ color: '#0d1b2a' }}>{value.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#64748b' }}>{value.description}</p>
+                <h3 className="font-sans text-lg font-semibold mb-2" style={{ color: '#000', letterSpacing: '-0.01em' }}>{value.title}</h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#666' }}>{value.description}</p>
               </motion.div>
             ))}
           </div>
@@ -319,25 +323,32 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24">
+      <section className="py-28">
         <div className="max-w-[1100px] mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative rounded-3xl overflow-hidden"
+            className="relative rounded-lg overflow-hidden" style={{ background: '#000' }}
           >
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #1e5fa8, #eab308)' }} />
+            <div className="absolute inset-0" style={{ 
+              backgroundImage: `
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+              `,
+              backgroundSize: '48px 48px'
+            }} />
+            <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(0,112,243,0.15), transparent 60%)' }} />
             
             <div className="relative px-8 py-16 md:px-16 md:py-20 text-center">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#0d1b2a' }}>
+              <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white" style={{ letterSpacing: '-0.03em' }}>
                 Let&apos;s Work Together
               </h2>
-              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8" style={{ color: 'rgba(13,27,42,0.7)' }}>
+              <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8" style={{ color: 'rgba(255,255,255,0.6)' }}>
                 Ready to bring your vision to life? We&apos;re here to help you succeed.
               </p>
-              <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20ready%20to%20bring%20my%20vision%20to%20life.%20Can%20we%20discuss%20my%20project?" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-lg transition-colors" style={{ background: '#0d1b2a', color: '#ffffff' }}>
+              <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20ready%20to%20bring%20my%20vision%20to%20life.%20Can%20we%20discuss%20my%20project?" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-medium text-lg transition-all duration-200" style={{ background: '#fff', color: '#000' }}>
                 <MessageCircle className="w-5 h-5" />
                 Get Started
                 <ArrowRight className="w-5 h-5" />
