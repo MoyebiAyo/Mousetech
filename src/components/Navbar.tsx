@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MessageCircle } from "lucide-react";
 
 interface NavBarProps {
   variant?: "light" | "dark" | "auto";
