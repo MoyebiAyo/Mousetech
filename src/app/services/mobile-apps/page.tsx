@@ -61,7 +61,7 @@ export default function MobileAppsPage() {
       <section className="px-[5%] py-20 text-center">
         <div className="max-w-[800px] mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Your App?</h2>
-          <p className="text-white/60 mb-8">Let's discuss your app idea and create a mobile experience your users will love.</p>
+          <p className="text-white/60 mb-8">Let&apos;s discuss your app idea and create a mobile experience your users will love.</p>
           <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20want%20to%20build%20a%20mobile%20app." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg" style={{ background: '#1e5fa8' }}>
             Get Free Consultation <ArrowRight className="w-4 h-4" />
           </a>

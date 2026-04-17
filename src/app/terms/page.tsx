@@ -24,7 +24,7 @@ export default function TermsOfService() {
       <section className="px-[5%] py-20">
         <div className="max-w-[800px] mx-auto prose" style={{ color: 'rgba(255,255,255,0.8)' }}>
           <h2 className="text-2xl font-bold text-white mb-4">1. Acceptance of Terms</h2>
-          <p className="mb-6">By accessing and using MouseTech's services, you accept and agree to be bound by these Terms of Service.</p>
+          <p className="mb-6">By accessing and using MouseTech&apos;s services, you accept and agree to be bound by these Terms of Service.</p>
 
           <h2 className="text-2xl font-bold text-white mb-4">2. Services Description</h2>
           <p className="mb-6">MouseTech provides web development, mobile app development, custom software solutions, and related services as described on our website.</p>

@@ -177,7 +177,7 @@ export default function WebDevelopmentPage() {
         <div className="max-w-[800px] mx-auto text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Need a Custom Solution?</h2>
           <p className="text-white/60 mb-8">
-            Every business is unique. Let's discuss your specific requirements and build a website that perfectly fits your needs.
+            Every business is unique. Let&apos;s discuss your specific requirements and build a website that perfectly fits your needs.
           </p>
           <a
             href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20need%20a%20custom%20web%20development%20solution."

@@ -88,7 +88,7 @@ export default function PortfolioPage() {
             Our <span style={{ color: '#7ab8f5' }}>Portfolio</span>
           </h1>
           <p className="text-lg text-white/70 max-w-[700px] mb-8">
-            Real results for real businesses. Explore our successful projects and see how we've helped organizations across Nigeria achieve their digital goals.
+            Real results for real businesses. Explore our successful projects and see how we&apos;ve helped organizations across Nigeria achieve their digital goals.
           </p>
         </div>
       </section>
@@ -176,7 +176,7 @@ export default function PortfolioPage() {
           <div className="mt-20 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Your Project?</h2>
             <p className="text-white/60 mb-8 max-w-[600px] mx-auto">
-              Let's create something amazing together. Get a free consultation and see how we can help your business grow.
+              Let&apos;s create something amazing together. Get a free consultation and see how we can help your business grow.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

@@ -1,12 +1,8 @@
-import { Metadata } from "next";
-import Link from "next/link";
+"use client";
+
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "Frequently Asked Questions - MouseTech | Software Solutions",
-  description: "Find answers to common questions about MouseTech's web development, mobile app development, and custom software services.",
-};
+import Link from "next/link";
 
 const faqCategories = [
   {
@@ -119,7 +115,7 @@ export default function FAQPage() {
       <section className="px-[5%] py-20 text-center">
         <div className="max-w-[700px] mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4">Still Have Questions?</h2>
-          <p className="text-white/60 mb-8">We're here to help! Contact us and we'll answer any questions you have.</p>
+          <p className="text-white/60 mb-8">We&apos;re here to help! Contact us and we&apos;ll answer any questions you have.</p>
           <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20have%20a%20question." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg" style={{ background: '#1e5fa8' }}>
             Contact Us
           </a>
