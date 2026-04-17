@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Palette, Zap, Search, ShoppingCart, Shield, BarChart3, Mail, MessageSquare, Users, Video, FileText, HeadphonesIcon, MessageCircle } from "lucide-react";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const services = [
@@ -64,7 +64,7 @@ export default function ServicesPage() {
     <main className="min-h-screen bg-white">
       {/* Navigation */}
       <NavBar 
-        variant="dark"
+        variant="auto"
         lightLinks={[
           { label: "How It Works", href: "/#how" },
           { label: "Services", href: "/services", active: true },

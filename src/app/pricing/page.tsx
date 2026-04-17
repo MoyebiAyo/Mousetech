@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ArrowRight, HelpCircle, MessageCircle } from "lucide-react";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const plans = [
@@ -105,7 +105,7 @@ export default function PricingPage() {
     <main className="min-h-screen bg-white">
       {/* Navigation */}
       <NavBar 
-        variant="dark"
+        variant="auto"
         lightLinks={[
           { label: "How It Works", href: "/#how" },
           { label: "Services", href: "/services" },

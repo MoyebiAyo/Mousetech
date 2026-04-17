@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Target, Eye, Heart, Users, Zap, ArrowRight, Quote, MessageCircle } from "lucide-react";
 import Image from "next/image";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const stats = [
@@ -64,7 +64,7 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white">
       {/* Navigation */}
       <NavBar 
-        variant="dark"
+        variant="auto"
         lightLinks={[
           { label: "How It Works", href: "/#how" },
           { label: "Services", href: "/#services" },
