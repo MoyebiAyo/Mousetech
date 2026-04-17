@@ -11,9 +11,9 @@ const stats = [
 
 export default function StatsBand() {
   return (
-    <section className="py-12" style={{ background: '#f7f9fc', borderTop: '1px solid #dce6f0', borderBottom: '1px solid #dce6f0' }}>
-      <div className="max-w-[1100px] mx-auto px-[5%]">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section className="py-16 border-t border-b" style={{ borderColor: '#eaeaea' }}>
+      <div className="max-w-[1200px] mx-auto px-[5%]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 text-center">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -21,11 +21,12 @@ export default function StatsBand() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="md:border-r last:md:border-r-0 px-4" style={{ borderColor: '#eaeaea' }}
             >
-              <div className="font-serif text-4xl md:text-5xl font-bold leading-none mb-2" style={{ color: '#0d1b2a' }}>
+              <div className="font-sans text-4xl md:text-5xl font-bold leading-none mb-2" style={{ color: '#000', letterSpacing: '-0.03em' }}>
                 {stat.value}
               </div>
-              <div className="text-sm" style={{ color: '#8a9ab0' }}>{stat.label}</div>
+              <div className="text-xs uppercase tracking-wider font-medium" style={{ color: '#666' }}>{stat.label}</div>
             </motion.div>
           ))}
         </div>

@@ -20,39 +20,46 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="hero min-h-screen flex flex-col relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)', paddingTop: '72px' }}>
-      {/* Background Pattern */}
-      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(30,95,168,0.2) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(30,95,168,0.15) 0%, transparent 40%)' }} />
-      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+    <div className="hero min-h-screen flex flex-col relative overflow-hidden" style={{ background: '#000', paddingTop: '72px' }}>
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0" style={{ 
+        backgroundImage: `
+          linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+        `,
+        backgroundSize: '48px 48px'
+      }} />
+      <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0,112,243,0.15) 0%, transparent 60%)' }} />
       
       {/* Navigation */}
       <nav 
         className="fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300" 
         style={{ 
           backdropFilter: 'blur(12px)',
-          backgroundColor: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
-          borderBottom: scrolled ? '1px solid #dce6f0' : '1px solid rgba(255,255,255,0.1)',
-          boxShadow: scrolled ? '0 4px 6px -1px rgba(0,0,0,0.1)' : 'none'
+          backgroundColor: scrolled ? 'rgba(255,255,255,0.98)' : 'transparent',
+          borderBottom: scrolled ? '1px solid #eaeaea' : '1px solid rgba(255,255,255,0.08)',
         }}
       >
-        <a href="/" className="font-serif text-2xl font-bold tracking-tight no-underline transition-colors duration-300" style={{ color: scrolled ? '#0d1b2a' : '#ffffff' }}>
+        <a href="/" className="font-sans text-xl font-bold tracking-tight no-underline transition-colors duration-300" style={{ color: scrolled ? '#000' : '#fff' }}>
           MouseTech
         </a>
         
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-10 list-none">
-          <li><a href="/#how" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>How It Works</a></li>
-          <li><a href="/services" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Services</a></li>
-          <li><a href="/portfolio" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Portfolio</a></li>
-          <li><a href="/pricing" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>Pricing</a></li>
-          <li><a href="/about" className="text-sm font-medium no-underline transition-all duration-300 hover:text-[#1e5fa8]" style={{ color: scrolled ? '#1a2535' : 'rgba(255,255,255,0.9)' }}>About</a></li>
+        <ul className="hidden md:flex gap-8 list-none">
+          <li><a href="/#how" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>How It Works</a></li>
+          <li><a href="/services" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>Services</a></li>
+          <li><a href="/portfolio" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>Portfolio</a></li>
+          <li><a href="/pricing" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>Pricing</a></li>
+          <li><a href="/about" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>About</a></li>
         </ul>
         
         <div className="flex gap-3 items-center">
-          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I%20have%20a%20question%20about%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className={`hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-md transition-all duration-200 no-underline items-center gap-2 ${scrolled ? 'border-2 border-[#dce6f0] text-[#0d1b2a] hover:border-[#1e5fa8] hover:text-[#1e5fa8]' : 'border-2 border-white/30 text-white hover:border-white/60'}`}>
+          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I%20have%20a%20question%20about%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-md transition-all duration-200 no-underline items-center gap-2" style={{ color: scrolled ? '#000' : '#fff', border: `1px solid ${scrolled ? '#eaeaea' : 'rgba(255,255,255,0.3)'}` }}>
             Contact
           </a>
-          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20your%20software%20solutions.%20Can%20we%20discuss?" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-sm font-semibold px-4 py-2 rounded-md bg-[#1e5fa8] text-white hover:bg-[#2a7dd4] transition-colors no-underline">Get Started</a>
+          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20your%20software%20solutions.%20Can%20we%20discuss?" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-md transition-all duration-200 no-underline" style={{ background: scrolled ? '#000' : '#fff', color: scrolled ? '#fff' : '#000' }}>
+            Get Started
+          </a>
           
           {/* Mobile Menu Button */}
           <button
@@ -67,16 +74,16 @@ export default function Hero() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="fixed top-[72px] left-0 right-0 z-40 px-[5%] py-6 shadow-xl" style={{ background: scrolled ? '#ffffff' : '#0d1b2a', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+        <div className="fixed top-[72px] left-0 right-0 z-40 px-[5%] py-6 shadow-xl" style={{ background: scrolled ? '#fff' : '#000', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
           <div className="flex flex-col gap-4">
-            <a href="/#how" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#1a2535' : '#ffffff' }}>How It Works</a>
-            <a href="/services" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#1a2535' : '#ffffff' }}>Services</a>
-            <a href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#1a2535' : '#ffffff' }}>Portfolio</a>
-            <a href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#1a2535' : '#ffffff' }}>Pricing</a>
-            <a href="/about" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#1a2535' : '#ffffff' }}>About</a>
-            <a href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#1a2535' : '#ffffff' }}>FAQ</a>
+            <a href="/#how" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>How It Works</a>
+            <a href="/services" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>Services</a>
+            <a href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>Portfolio</a>
+            <a href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>Pricing</a>
+            <a href="/about" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>About</a>
+            <a href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>FAQ</a>
             <div className="pt-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
-              <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I'm%20interested%20in%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className="block w-full text-center text-base font-semibold px-6 py-3 rounded-md bg-[#1e5fa8] text-white no-underline">
+              <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I'm%20interested%20in%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className="block w-full text-center text-base font-medium px-6 py-3 rounded-md no-underline" style={{ background: '#fff', color: '#000' }}>
                 Get Started
               </a>
             </div>
@@ -93,20 +100,20 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-7" style={{ background: 'rgba(30,95,168,0.3)', border: '1px solid rgba(30,95,168,0.5)', color: '#7ab8f5', fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#7ab8f5' }} />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-6" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.9)', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.02em' }}>
+            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#0070F3' }} />
             Trusted by 50+ Organizations & Businesses
           </div>
 
           {/* Headline */}
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight mb-6">
+          <h1 className="font-sans text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tighter mb-6" style={{ letterSpacing: '-0.04em' }}>
             Custom software solutions,<br />
-            <em className="not-italic" style={{ color: '#7ab8f5' }}>built to scale</em><br />
+            <span style={{ color: '#0070F3' }}>built to scale</span><br />
             your business.
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg leading-relaxed mb-10" style={{ color: 'rgba(255,255,255,0.65)' }}>
+          <p className="text-xl leading-relaxed mb-10" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '560px' }}>
             We design, develop, and maintain professional websites, mobile apps, and custom software solutions. From startups to enterprises, we transform your ideas into powerful digital products.
           </p>
 
@@ -126,14 +133,14 @@ export default function Hero() {
           <div className="flex items-center gap-6">
             <div className="flex -space-x-2">
               {['AK', 'BL', 'CR', 'DM'].map((initials, i) => (
-                <div key={i} className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white border-2" style={{ background: i === 0 ? '#1e5fa8' : i === 1 ? '#1a3a5c' : i === 2 ? '#0d4a2a' : '#4a1a1a', borderColor: '#1a2e42', marginLeft: i > 0 ? '-8px' : '0' }}>
+                <div key={i} className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold text-white border-2 border-black" style={{ background: i === 0 ? '#333' : i === 1 ? '#555' : i === 2 ? '#777' : '#999', marginLeft: i > 0 ? '-8px' : '0' }}>
                   {initials}
                 </div>
               ))}
-              <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold text-white border-2" style={{ background: '#3a2a0d', borderColor: '#1a2e42', marginLeft: '-8px' }}>+</div>
+              <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold text-white border-2 border-black" style={{ background: '#222', marginLeft: '-8px' }}>+</div>
             </div>
-            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              <strong className="text-white/90">50+ clients</strong> trust MouseTech with their digital solutions
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
+              <strong className="text-white/90">50+ clients</strong> trust MouseTech
             </p>
           </div>
         </motion.div>
@@ -145,52 +152,52 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <div className="rounded-xl overflow-hidden w-full max-w-md" style={{ background: '#1e2d3d', boxShadow: '0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)' }}>
+          <div className="rounded-lg overflow-hidden w-full max-w-md" style={{ background: '#111', boxShadow: '0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08)' }}>
             {/* Browser Chrome */}
-            <div className="flex items-center gap-2 px-4 py-3" style={{ background: '#16232f', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+            <div className="flex items-center gap-2 px-4 py-3" style={{ background: '#0a0a0a', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
               <div className="w-3 h-3 rounded-full" style={{ background: '#ff5f57' }} />
               <div className="w-3 h-3 rounded-full" style={{ background: '#febc2e' }} />
               <div className="w-3 h-3 rounded-full" style={{ background: '#28c840' }} />
-              <div className="flex-1 ml-2 px-3 py-1 rounded text-xs font-mono" style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.4)' }}>mousetech.app</div>
+              <div className="flex-1 ml-2 px-3 py-1 rounded text-xs font-mono" style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.3)' }}>mousetech.app</div>
             </div>
             
             {/* Browser Body */}
             <div>
               {/* Nav */}
-              <div className="flex items-center justify-between px-5 py-3" style={{ background: '#0d1b2a', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                <div className="w-16 h-3 rounded" style={{ background: '#1e5fa8', opacity: 0.8 }} />
+              <div className="flex items-center justify-between px-5 py-3" style={{ background: '#000', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                <div className="w-16 h-2.5 rounded" style={{ background: '#fff', opacity: 0.9 }} />
                 <div className="flex gap-2">
-                  <div className="w-8 h-2 rounded" style={{ background: 'rgba(255,255,255,0.12)' }} />
-                  <div className="w-8 h-2 rounded" style={{ background: 'rgba(255,255,255,0.12)' }} />
-                  <div className="w-8 h-2 rounded" style={{ background: 'rgba(255,255,255,0.12)' }} />
+                  <div className="w-8 h-1.5 rounded" style={{ background: 'rgba(255,255,255,0.15)' }} />
+                  <div className="w-8 h-1.5 rounded" style={{ background: 'rgba(255,255,255,0.15)' }} />
+                  <div className="w-8 h-1.5 rounded" style={{ background: 'rgba(255,255,255,0.15)' }} />
                 </div>
               </div>
               
               {/* Hero */}
-              <div className="px-5 py-6" style={{ background: 'linear-gradient(135deg, #0d1b2a, #1a2e42)' }}>
-                <div className="h-3.5 rounded mb-2 w-3/4" style={{ background: '#ffffff' }} />
-                <div className="h-3.5 rounded mb-4 w-1/2" style={{ background: '#ffffff', opacity: 0.85 }} />
-                <div className="h-2 rounded mb-1.5 w-full" style={{ background: 'rgba(255,255,255,0.3)' }} />
-                <div className="h-2 rounded mb-4 w-3/4" style={{ background: 'rgba(255,255,255,0.3)' }} />
-                <div className="w-24 h-7 rounded" style={{ background: '#1e5fa8' }} />
+              <div className="px-5 py-8" style={{ background: '#000' }}>
+                <div className="h-4 rounded mb-2 w-3/4" style={{ background: '#fff' }} />
+                <div className="h-4 rounded mb-4 w-1/2" style={{ background: '#fff', opacity: 0.7 }} />
+                <div className="h-1.5 rounded mb-1.5 w-full" style={{ background: 'rgba(255,255,255,0.2)' }} />
+                <div className="h-1.5 rounded mb-4 w-3/4" style={{ background: 'rgba(255,255,255,0.2)' }} />
+                <div className="w-24 h-8 rounded" style={{ background: '#0070F3' }} />
               </div>
               
               {/* Cards */}
-              <div className="grid grid-cols-3 gap-3 p-4" style={{ background: '#f7f9fc' }}>
+              <div className="grid grid-cols-3 gap-3 p-4" style={{ background: '#fafafa' }}>
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-white rounded-md p-3 shadow-sm">
-                    <div className="w-5 h-5 rounded mb-1.5" style={{ background: '#e8f1fb' }} />
-                    <div className="h-1.5 rounded mb-1" style={{ background: '#dce6f0' }} />
-                    <div className="h-1.5 rounded w-2/3" style={{ background: '#dce6f0' }} />
+                  <div key={i} className="bg-white rounded p-3 shadow-sm" style={{ border: '1px solid #eaeaea' }}>
+                    <div className="w-5 h-5 rounded mb-1.5" style={{ background: '#f5f5f5' }} />
+                    <div className="h-1.5 rounded mb-1" style={{ background: '#eaeaea' }} />
+                    <div className="h-1.5 rounded w-2/3" style={{ background: '#eaeaea' }} />
                   </div>
                 ))}
               </div>
               
               {/* Stats */}
-              <div className="flex border-t" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+              <div className="flex border-t" style={{ borderColor: 'rgba(255,255,255,0.06)', background: '#000' }}>
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="flex-1 py-3 px-4 text-center border-r last:border-r-0" style={{ background: '#0d1b2a', borderColor: 'rgba(255,255,255,0.05)' }}>
-                    <div className="h-3 rounded w-1/2 mx-auto mb-1" style={{ background: '#1e5fa8' }} />
+                  <div key={i} className="flex-1 py-3 px-4 text-center border-r last:border-r-0" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+                    <div className="h-3 rounded w-1/2 mx-auto mb-1" style={{ background: '#0070F3' }} />
                     <div className="h-1.5 rounded w-2/3 mx-auto" style={{ background: 'rgba(255,255,255,0.1)' }} />
                   </div>
                 ))}
@@ -201,11 +208,11 @@ export default function Hero() {
       </div>
 
       {/* Hero Bottom */}
-      <div className="border-t px-[5%] py-6 relative z-10" style={{ borderColor: 'rgba(255,255,255,0.07)', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
+      <div className="border-t px-[5%] py-6 relative z-10" style={{ borderColor: 'rgba(255,255,255,0.06)', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
         <div className="flex items-center gap-10 flex-wrap">
-          <span className="text-xs tracking-widest uppercase" style={{ color: 'rgba(255,255,255,0.3)' }}>Trusted by</span>
+          <span className="text-xs tracking-wider uppercase" style={{ color: 'rgba(255,255,255,0.25)' }}>Trusted by</span>
           {['TechCorp', 'FinServe', 'HealthPlus', 'EduSmart', 'RetailMax'].map((name) => (
-            <span key={name} className="font-serif text-base font-bold italic" style={{ color: 'rgba(255,255,255,0.25)' }}>{name}</span>
+            <span key={name} className="font-sans text-base font-semibold" style={{ color: 'rgba(255,255,255,0.2)' }}>{name}</span>
           ))}
         </div>
       </div>
