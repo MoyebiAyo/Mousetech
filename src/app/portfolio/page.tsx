@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 
 const projects = [
   {
-    title: "Mouse Steam Club",
-    category: "Web Development",
-    description: "Community platform for gaming enthusiasts with real-time chat, event management, and member profiles.",
+    title: "Mouse STEAM Club",
+    category: "Education Platform",
+    description: "Interactive STEM education platform for schools with science, technology, engineering, arts, and mathematics resources and activities.",
     image: "https://steam.mousetech.app",
     icon: Globe,
-    tags: ["Next.js", "Real-time", "Community", "Gaming"],
-    results: "Active gaming community platform",
+    tags: ["Next.js", "Education", "STEM", "Interactive"],
+    results: "Engaging STEM learning platform",
     link: "https://steam.mousetech.app",
     external: true,
   },
@@ -109,14 +109,20 @@ export default function PortfolioPage() {
                   background: 'linear-gradient(145deg, #1a2e42 0%, #0d1b2a 100%)'
                 }}
               >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden" style={{ background: '#1a3a5c' }}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <project.icon className="w-16 h-16" style={{ color: '#7ab8f5' }} />
-                  </div>
+                {/* Site Preview */}
+                <div className="relative h-56 overflow-hidden" style={{ background: '#f7f9fc' }}>
+                  <iframe
+                    src={project.image}
+                    title={project.title}
+                    className="w-full h-full border-0 pointer-events-none"
+                    style={{ transform: 'scale(0.9)', transformOrigin: 'top left' }}
+                    loading="lazy"
+                    sandbox="allow-scripts"
+                  />
                   <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold" style={{ background: '#1e5fa8', color: '#ffffff' }}>
                     {project.category}
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1b2a]/80 to-transparent" />
                 </div>
 
                 {/* Content */}
