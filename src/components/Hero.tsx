@@ -19,7 +19,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="hero min-h-screen flex flex-col relative overflow-hidden" style={{ background: '#000', paddingTop: '72px' }}>
+    <div className="hero flex flex-col relative overflow-hidden" style={{ background: '#000', paddingTop: '72px', minHeight: '100vh' }}>
       {/* Background Grid Pattern */}
       <div className="absolute inset-0" style={{ 
         backgroundImage: `
@@ -91,33 +91,27 @@ export default function Hero() {
       )}
 
       {/* Hero Content */}
-      <div className="flex-1 flex items-center px-[5%] py-32 lg:py-40 relative z-10" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', gap: '6rem' }}>
+      <div className="flex-1 flex items-center px-[5%] py-3 sm:py-5 md:py-8 lg:py-16 relative z-10" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', gap: '4rem' }}>
         <motion.div 
           className="flex-1 max-w-[640px]"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-8" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.9)', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.02em' }}>
-            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#0070F3' }} />
-            Trusted by 50+ Organizations & Businesses
-          </div>
-
           {/* Headline */}
-          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tighter mb-8" style={{ letterSpacing: '-0.04em' }}>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tighter mb-2 sm:mb-3 md:mb-4" style={{ letterSpacing: '-0.04em' }}>
             Custom software solutions,<br />
             <span style={{ color: '#0070F3' }}>built to scale</span><br />
             your business.
           </h1>
 
           {/* Subheadline */}
-          <p className="text-xl leading-relaxed mb-12" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '580px' }}>
+          <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-3 sm:mb-4 md:mb-5" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '580px' }}>
             We design, develop, and maintain professional websites, mobile apps, and custom software solutions. From startups to enterprises, we transform your ideas into powerful digital products.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-4 mb-16">
+          <div className="flex flex-wrap gap-2 sm:gap-3 mb-2 sm:mb-4 md:mb-6">
             <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20discussing%20a%20software%20solution%20for%20my%20business." target="_blank" rel="noopener noreferrer" className="btn-hero-primary">
               Start Free Consultation
               <ArrowRight className="w-4 h-4" />
@@ -129,14 +123,14 @@ export default function Hero() {
           </div>
 
           {/* Trust */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2.5">
             <div className="flex -space-x-2">
               {['AK', 'BL', 'CR', 'DM'].map((initials, i) => (
-                <div key={i} className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold text-white border-2 border-black" style={{ background: i === 0 ? '#333' : i === 1 ? '#555' : i === 2 ? '#777' : '#999', marginLeft: i > 0 ? '-8px' : '0' }}>
+                <div key={i} className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white border-2 border-black" style={{ background: i === 0 ? '#333' : i === 1 ? '#555' : i === 2 ? '#777' : '#999', marginLeft: i > 0 ? '-6px' : '0' }}>
                   {initials}
                 </div>
               ))}
-              <div className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold text-white border-2 border-black" style={{ background: '#222', marginLeft: '-8px' }}>+</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold text-white border-2 border-black" style={{ background: '#222', marginLeft: '-6px' }}>+</div>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
               <strong className="text-white/90">50+ clients</strong> trust MouseTech
@@ -206,15 +200,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Hero Bottom */}
-      <div className="border-t px-[5%] py-6 relative z-10" style={{ borderColor: 'rgba(255,255,255,0.06)', maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
-        <div className="flex items-center gap-10 flex-wrap">
-          <span className="text-xs tracking-wider uppercase" style={{ color: 'rgba(255,255,255,0.25)' }}>Trusted by</span>
-          {['TechCorp', 'FinServe', 'HealthPlus', 'EduSmart', 'RetailMax'].map((name) => (
-            <span key={name} className="font-sans text-base font-semibold" style={{ color: 'rgba(255,255,255,0.2)' }}>{name}</span>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
