@@ -21,7 +21,7 @@ const plans = [
     popular: false,
     cta: "Get Started",
     ctaStyle: "outline",
-    whatsappMessage: "Hi Mouse Tech! I'm interested in your Starter Package (₦150k-₦300k) for my business. Can we discuss getting started?",
+    whatsappMessage: "Hi MouseTech! I'm interested in your Starter Package (₦150k-₦300k) for my business. Can we discuss getting started?",
   },
   {
     tier: "Growth",
@@ -41,7 +41,7 @@ const plans = [
     popular: true,
     cta: "Get Started",
     ctaStyle: "white",
-    whatsappMessage: "Hi Mouse Tech! I'm interested in your Growth Package (₦400k-₦700k). I need a professional website with e-commerce and full SEO. Can we schedule a call?",
+    whatsappMessage: "Hi MouseTech! I'm interested in your Growth Package (₦400k-₦700k). I need a professional website with e-commerce and full SEO. Can we schedule a call?",
   },
   {
     tier: "Enterprise",
@@ -61,7 +61,7 @@ const plans = [
     popular: false,
     cta: "Talk to Sales",
     ctaStyle: "outline",
-    whatsappMessage: "Hi Mouse Tech! I'm interested in your Enterprise Package (₦1M+) for our organization. We need a custom solution with dedicated support. Can we discuss our requirements?",
+    whatsappMessage: "Hi MouseTech! I'm interested in your Enterprise Package (₦1M+) for our organization. We need a custom solution with dedicated support. Can we discuss our requirements?",
   },
 ];
 
@@ -76,7 +76,7 @@ export default function Pricing() {
             <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>Pricing</span>
             <div className="w-5 h-px" style={{ background: '#000' }} />
           </div>
-          <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
+          <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
             Simple, transparent pricing.
           </h2>
           <p className="text-base leading-relaxed max-w-lg mx-auto" style={{ color: '#666' }}>
@@ -113,7 +113,7 @@ export default function Pricing() {
               </div>
 
               {/* Price */}
-              <div className="font-sans text-4xl font-bold leading-none mb-1" style={{ color: plan.popular ? '#fff' : '#000', letterSpacing: '-0.03em' }}>
+              <div className="font-serif text-4xl font-bold leading-none mb-1" style={{ color: plan.popular ? '#fff' : '#000', letterSpacing: '-0.03em' }}>
                 {plan.price}<span className="text-xl font-normal">{plan.priceNote}</span>
               </div>
 

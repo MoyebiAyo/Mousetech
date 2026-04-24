@@ -23,7 +23,7 @@ export default function StatsBand() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="md:border-r last:md:border-r-0 px-4" style={{ borderColor: '#eaeaea' }}
             >
-              <div className="font-sans text-4xl md:text-5xl font-bold leading-none mb-2" style={{ color: '#000', letterSpacing: '-0.03em' }}>
+              <div className="font-serif text-4xl md:text-5xl font-bold leading-none mb-2" style={{ color: '#000', letterSpacing: '-0.03em' }}>
                 {stat.value}
               </div>
               <div className="text-xs uppercase tracking-wider font-medium" style={{ color: '#666' }}>{stat.label}</div>

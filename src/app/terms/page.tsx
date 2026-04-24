@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function TermsOfService() {
   return (
     <main className="min-h-screen bg-white">
-      <section className="px-[5%] py-32" style={{ background: '#000' }}>
+      <section className="relative overflow-hidden px-[5%] py-32" style={{ background: '#000' }}>
         <div className="absolute inset-0" style={{ 
           backgroundImage: `
             linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -22,15 +22,15 @@ export default function TermsOfService() {
           <div className="mb-6">
             <Link href="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">← Back to Home</Link>
           </div>
-          <h1 className="font-sans text-4xl sm:text-5xl font-bold text-white mb-6" style={{ letterSpacing: '-0.04em' }}>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-6" style={{ letterSpacing: '-0.04em' }}>
             Terms of <span style={{ color: '#0070F3' }}>Service</span>
           </h1>
-          <p className="text-white/60">Last updated: February 14, 2025</p>
+          <p className="text-white/60">Last updated: April 24, 2026</p>
         </div>
       </section>
 
       <section className="px-[5%] py-28">
-        <div className="max-w-[800px] mx-auto prose" style={{ color: '#333' }}>
+        <div className="max-w-[800px] mx-auto" style={{ color: '#333' }}>
           <h2 className="text-2xl font-bold text-black mb-4" style={{ letterSpacing: '-0.02em' }}>1. Acceptance of Terms</h2>
           <p className="mb-6">By accessing and using MouseTech&apos;s services, you accept and agree to be bound by these Terms of Service.</p>
 

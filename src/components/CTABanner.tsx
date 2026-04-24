@@ -31,7 +31,7 @@ export default function CTABanner() {
           </div>
 
           {/* Headline */}
-          <h2 className="font-sans text-3xl md:text-5xl font-bold leading-tight text-white mb-6" style={{ letterSpacing: '-0.03em' }}>
+          <h2 className="font-serif text-3xl md:text-5xl font-bold leading-tight text-white mb-6" style={{ letterSpacing: '-0.03em' }}>
             Your best website is<br />
             <span style={{ color: '#0070F3' }}>one conversation away.</span>
           </h2>

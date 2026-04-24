@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Within 90 days our online presence transformed completely. Customer engagement went up 340%. I genuinely stopped thinking about our website — Mouse Tech just handles it.",
+    quote: "Within 90 days our online presence transformed completely. Customer engagement went up 340%. I genuinely stopped thinking about our website — MouseTech just handles it.",
     author: "Michael Okafor",
     role: "CEO, TechVentures Nigeria",
     initials: "MO",
@@ -38,12 +38,12 @@ export default function Testimonials() {
               <div className="w-5 h-px" style={{ background: '#000' }} />
               <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>Client Stories</span>
             </div>
-            <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight" style={{ color: '#000', letterSpacing: '-0.03em' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Real results from<br />real businesses.
             </h2>
           </div>
           <p className="text-base leading-relaxed max-w-md" style={{ color: '#666' }}>
-            Don&apos;t take our word for it. Here&apos;s what business owners and leaders who rely on Mouse Tech every day have to say.
+            Don&apos;t take our word for it. Here&apos;s what business owners and leaders who rely on MouseTech every day have to say.
           </p>
         </div>
 

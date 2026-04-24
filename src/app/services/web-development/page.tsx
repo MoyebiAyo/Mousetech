@@ -34,7 +34,7 @@ const packages = [
   },
   {
     name: "Business Website",
-    price: "₦350,000",
+    price: "₦400,000",
     description: "Ideal for growing businesses",
     features: [
       "Up to 15 pages",
@@ -50,7 +50,7 @@ const packages = [
   },
   {
     name: "E-Commerce Platform",
-    price: "₦600,000+",
+    price: "₦700,000+",
     description: "Full-featured online store",
     features: [
       "Unlimited products",
@@ -67,9 +67,9 @@ const packages = [
 
 export default function WebDevelopmentPage() {
   return (
-    <main className="min-h-screen" style={{ background: '#0d1b2a' }}>
+    <main className="min-h-screen" style={{ background: '#000' }}>
       {/* Hero */}
-      <section className="px-[5%] py-20" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
+      <section className="px-[5%] py-20" style={{ background: 'linear-gradient(160deg, #000 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-4">
             <Link href="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">
@@ -88,7 +88,7 @@ export default function WebDevelopmentPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg"
-              style={{ background: '#1e5fa8' }}
+              style={{ background: '#0070F3' }}
             >
               Get Free Quote <ArrowRight className="w-4 h-4" />
             </a>
@@ -134,12 +134,12 @@ export default function WebDevelopmentPage() {
                 key={index}
                 className="relative p-8 rounded-2xl border transition-all duration-300 hover:border-white/30"
                 style={{ 
-                  borderColor: pkg.popular ? '#1e5fa8' : 'rgba(255,255,255,0.1)',
+                  borderColor: pkg.popular ? '#0070F3' : 'rgba(255,255,255,0.1)',
                   background: pkg.popular ? 'rgba(30,95,168,0.1)' : 'rgba(255,255,255,0.02)'
                 }}
               >
                 {pkg.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold" style={{ background: '#1e5fa8', color: '#ffffff' }}>
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-semibold" style={{ background: '#0070F3', color: '#ffffff' }}>
                     Most Popular
                   </div>
                 )}
@@ -160,7 +160,7 @@ export default function WebDevelopmentPage() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 no-underline"
                   style={{ 
-                    background: pkg.popular ? '#1e5fa8' : 'rgba(255,255,255,0.05)',
+                    background: pkg.popular ? '#0070F3' : 'rgba(255,255,255,0.05)',
                     color: '#ffffff',
                     border: pkg.popular ? 'none' : '1px solid rgba(255,255,255,0.2)'
                   }}
@@ -185,7 +185,7 @@ export default function WebDevelopmentPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg"
-            style={{ background: '#1e5fa8' }}
+            style={{ background: '#0070F3' }}
           >
             Schedule Free Consultation <ArrowRight className="w-4 h-4" />
           </a>

@@ -20,8 +20,8 @@ const features = [
 
 export default function MobileAppsPage() {
   return (
-    <main className="min-h-screen" style={{ background: '#0d1b2a' }}>
-      <section className="px-[5%] py-20" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
+    <main className="min-h-screen" style={{ background: '#000' }}>
+      <section className="px-[5%] py-20" style={{ background: 'linear-gradient(160deg, #000 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-4">
             <Link href="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">← Back to Home</Link>
@@ -37,7 +37,7 @@ export default function MobileAppsPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg"
-            style={{ background: '#1e5fa8' }}
+            style={{ background: '#0070F3' }}
           >
             Start Your App <ArrowRight className="w-4 h-4" />
           </a>
@@ -63,7 +63,7 @@ export default function MobileAppsPage() {
         <div className="max-w-[800px] mx-auto">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Build Your App?</h2>
           <p className="text-white/60 mb-8">Let&apos;s discuss your app idea and create a mobile experience your users will love.</p>
-          <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20want%20to%20build%20a%20mobile%20app." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg" style={{ background: '#1e5fa8' }}>
+          <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20want%20to%20build%20a%20mobile%20app." target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg" style={{ background: '#0070F3' }}>
             Get Free Consultation <ArrowRight className="w-4 h-4" />
           </a>
         </div>

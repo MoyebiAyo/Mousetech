@@ -102,7 +102,7 @@ export default function Features() {
               <div className="w-5 h-px" style={{ background: '#000' }} />
               <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>Why MouseTech</span>
             </div>
-            <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight mb-10" style={{ color: '#000', letterSpacing: '-0.03em' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-10" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Stop worrying about<br />your website. Ever.
             </h2>
 

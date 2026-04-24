@@ -36,7 +36,7 @@ export default function HowItWorks() {
               <div className="w-5 h-px" style={{ background: '#000' }} />
               <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>How It Works</span>
             </div>
-            <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight" style={{ color: '#000', letterSpacing: '-0.03em' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Up and running in four<br />straightforward steps.
             </h2>
           </div>

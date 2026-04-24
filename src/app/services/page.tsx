@@ -1,63 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Palette, Zap, Search, ShoppingCart, Shield, BarChart3, Mail, MessageSquare, Users, Video, FileText, HeadphonesIcon, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const services = [
-  {
-    icon: Palette,
-    title: "Custom Web Design",
-    slug: "custom-web-design",
-    description: "Bespoke, conversion-focused design built entirely around your brand. No templates. No generic layouts. Every pixel deliberate.",
-    features: ["Responsive Design", "Brand Integration", "UX Optimization", "Mobile-First Approach"],
-  },
-  {
-    icon: Zap,
-    title: "Performance & Hosting",
-    slug: "performance-hosting",
-    description: "Global CDN, sub-second load times, and perfect Core Web Vitals scores. Your site runs fast everywhere, all the time.",
-    features: ["Global CDN", "99.9% Uptime", "Auto-Scaling", "Daily Backups"],
-  },
-  {
-    icon: Search,
-    title: "SEO Management",
-    slug: "seo-management",
-    description: "Technical SEO baked in from day one, plus ongoing keyword research, on-page optimization, and monthly audits.",
-    features: ["Keyword Research", "On-Page SEO", "Local SEO", "Monthly Reports"],
-  },
-  {
-    icon: ShoppingCart,
-    title: "E-Commerce Solutions",
-    slug: "ecommerce-solutions",
-    description: "Complete online store setups with payment integration, inventory management, and automated order processing.",
-    features: ["Payment Gateways", "Inventory Management", "Order Tracking", "Sales Analytics"],
-  },
-  {
-    icon: Shield,
-    title: "Security & Backups",
-    slug: "security-backups",
-    description: "Daily automated backups, malware scanning, SSL management, and 24/7 uptime monitoring for peace of mind.",
-    features: ["SSL Certificates", "Malware Scanning", "DDoS Protection", "Security Audits"],
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics & Reporting",
-    slug: "analytics-reporting",
-    description: "Custom dashboards, monthly performance reports, and actionable growth insights delivered every month.",
-    features: ["Custom Dashboards", "Traffic Analysis", "Conversion Tracking", "Growth Insights"],
-  },
-];
-
-const additionalServices = [
-  { icon: Mail, title: "Email Marketing", description: "Automated email campaigns and newsletter management" },
-  { icon: MessageSquare, title: "SMS Notifications", description: "Bulk SMS for marketing, alerts, and reminders" },
-  { icon: Users, title: "CRM Systems", description: "Customer relationship management and tracking systems" },
-  { icon: Video, title: "Video Integration", description: "Embed live streams and video content on your website" },
-  { icon: FileText, title: "Content Management", description: "Blog systems, documentation, and content workflows" },
-  { icon: HeadphonesIcon, title: "Priority Support", description: "Dedicated account manager and 24/7 support" },
-];
+import { additionalServices, coreServices } from "@/data/services";
 
 export default function ServicesPage() {
   return (
@@ -68,7 +16,7 @@ export default function ServicesPage() {
         lightLinks={[
           { label: "How It Works", href: "/#how" },
           { label: "Services", href: "/services", active: true },
-          { label: "Pricing", href: "/#pricing" },
+          { label: "Pricing", href: "/pricing" },
           { label: "About", href: "/about" },
         ]}
       />
@@ -95,7 +43,7 @@ export default function ServicesPage() {
               <span className="text-xs font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.9)' }}>Our Services</span>
             </div>
 
-            <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.04em' }}>
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.04em' }}>
               Comprehensive software<br />
               <span style={{ color: '#0070F3' }}>solutions for everyone.</span>
             </h1>
@@ -109,7 +57,7 @@ export default function ServicesPage() {
                 Explore Services
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <a href="/#pricing" className="btn-hero-ghost no-underline">View Pricing</a>
+              <a href="/pricing" className="btn-hero-ghost no-underline">View Pricing</a>
             </div>
           </motion.div>
         </div>
@@ -126,42 +74,50 @@ export default function ServicesPage() {
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Core Services</span>
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+              <div className="w-6 h-0.5 rounded" style={{ background: '#0070F3' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#0070F3' }}>Core Services</span>
+              <div className="w-6 h-0.5 rounded" style={{ background: '#0070F3' }} />
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0d1b2a' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#000' }}>
               Complete Website Solutions
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#666' }}>
               From design to maintenance, we handle it all so you can focus on your business.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((service, index) => (
+            {coreServices.map((service, index) => (
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-8 rounded-2xl bg-white border transition-all duration-300 hover:shadow-lg hover:border-[#1e5fa8]/30 group"
+                className="p-8 rounded-2xl bg-white border transition-all duration-300 hover:shadow-lg hover:border-[#0070F3]/30 group"
                 style={{ borderColor: '#e2e8f0' }}
               >
-                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#1e5fa8]" style={{ background: '#e8f1fb' }}>
-                  <service.icon className="w-7 h-7 transition-colors duration-300 group-hover:text-white" style={{ color: '#1e5fa8' }} />
+                <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:bg-[#0070F3]" style={{ background: '#fafafa' }}>
+                  <service.icon className="w-7 h-7 transition-colors duration-300 group-hover:text-white" style={{ color: '#0070F3' }} />
                 </div>
-                <h3 className="font-serif text-xl font-bold mb-3" style={{ color: '#0d1b2a' }}>{service.title}</h3>
-                <p className="text-sm leading-relaxed mb-6" style={{ color: '#64748b' }}>{service.description}</p>
+                <h3 className="font-sans text-xl font-bold mb-3" style={{ color: '#000' }}>{service.title}</h3>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: '#666' }}>{service.description}</p>
                 <ul className="space-y-2">
-                  {service.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-sm" style={{ color: '#64748b' }}>
-                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#1e5fa8' }} />
+                  {service.cardFeatures.map((feature) => (
+                    <li key={feature} className="flex items-center gap-2 text-sm" style={{ color: '#666' }}>
+                      <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#0070F3' }} />
                       {feature}
                     </li>
                   ))}
                 </ul>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-all duration-200 hover:gap-3"
+                  style={{ color: "#0070F3" }}
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -169,7 +125,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Additional Services */}
-      <section className="py-24" style={{ background: '#f7f9fc' }}>
+      <section className="py-24" style={{ background: '#fafafa' }}>
         <div className="max-w-[1100px] mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -179,14 +135,14 @@ export default function ServicesPage() {
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Additional Services</span>
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+              <div className="w-6 h-0.5 rounded" style={{ background: '#0070F3' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#0070F3' }}>Additional Services</span>
+              <div className="w-6 h-0.5 rounded" style={{ background: '#0070F3' }} />
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0d1b2a' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#000' }}>
               Even More Ways We Help
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#666' }}>
               Specialized services to enhance your digital presence.
             </p>
           </motion.div>
@@ -202,12 +158,12 @@ export default function ServicesPage() {
                 className="flex items-start gap-4 p-6 rounded-xl bg-white border"
                 style={{ borderColor: '#e2e8f0' }}
               >
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#e8f1fb' }}>
-                  <service.icon className="w-6 h-6" style={{ color: '#1e5fa8' }} />
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: '#fafafa' }}>
+                  <service.icon className="w-6 h-6" style={{ color: '#0070F3' }} />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg font-bold mb-1" style={{ color: '#0d1b2a' }}>{service.title}</h3>
-                  <p className="text-sm" style={{ color: '#64748b' }}>{service.description}</p>
+                  <h3 className="font-sans text-lg font-bold mb-1" style={{ color: '#000' }}>{service.title}</h3>
+                  <p className="text-sm" style={{ color: '#666' }}>{service.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -226,16 +182,16 @@ export default function ServicesPage() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-                <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Our Process</span>
+                <div className="w-6 h-0.5 rounded" style={{ background: '#0070F3' }} />
+                <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#0070F3' }}>Our Process</span>
               </div>
-              <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0d1b2a' }}>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#000' }}>
                 How we deliver<br />excellence every time.
               </h2>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: '#64748b' }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ color: '#666' }}>
                 Our proven process ensures your project is delivered on time, on budget, and exceeds expectations.
               </p>
-              <a href="/#how" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white transition-colors" style={{ background: '#1e5fa8' }}>
+              <a href="/#how" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white transition-colors" style={{ background: '#0070F3' }}>
                 See Full Process
                 <ArrowRight className="w-4 h-4" />
               </a>
@@ -254,11 +210,11 @@ export default function ServicesPage() {
                 { step: "03", title: "Development", desc: "We build your site with clean, optimized code" },
                 { step: "04", title: "Launch & Support", desc: "We go live and provide ongoing care" },
               ].map((item, index) => (
-                <div key={item.step} className="flex items-center gap-6 p-6 rounded-xl" style={{ background: '#f7f9fc' }}>
-                  <span className="font-serif text-3xl font-bold" style={{ color: '#1e5fa8' }}>{item.step}</span>
+                <div key={item.step} className="flex items-center gap-6 p-6 rounded-xl" style={{ background: '#fafafa' }}>
+                  <span className="font-serif text-3xl font-bold" style={{ color: '#0070F3' }}>{item.step}</span>
                   <div>
-                    <h3 className="font-serif text-lg font-bold" style={{ color: '#0d1b2a' }}>{item.title}</h3>
-                    <p className="text-sm" style={{ color: '#64748b' }}>{item.desc}</p>
+                    <h3 className="font-sans text-lg font-bold" style={{ color: '#000' }}>{item.title}</h3>
+                    <p className="text-sm" style={{ color: '#666' }}>{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -268,7 +224,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24" style={{ background: '#0d1b2a' }}>
+      <section className="py-24" style={{ background: '#000' }}>
         <div className="max-w-[680px] mx-auto px-[5%] text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -283,7 +239,7 @@ export default function ServicesPage() {
               Let&apos;s discuss how we can help transform your digital presence.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a href="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#0d1b2a] font-bold rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 no-underline">
+              <a href="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#000] font-bold rounded-lg transition-all duration-200 hover:transform hover:-translate-y-0.5 no-underline">
                 View Pricing
                 <ArrowRight className="w-4 h-4" />
               </a>

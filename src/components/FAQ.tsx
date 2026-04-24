@@ -50,7 +50,7 @@ export default function FAQ() {
               <div className="w-5 h-px" style={{ background: '#000' }} />
               <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>FAQ</span>
             </div>
-            <h2 className="font-sans text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold leading-tight mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Common questions,<br />honest answers.
             </h2>
             <p className="text-base leading-relaxed mb-8" style={{ color: '#666' }}>
@@ -64,7 +64,9 @@ export default function FAQ() {
                 Our team typically responds within 2 business hours.
               </p>
               <a 
-                href="#contact" 
+                href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I%20have%20a%20question." 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium transition-all duration-200"
                 style={{ background: '#fff', color: '#000' }}
               >
@@ -106,16 +108,17 @@ export default function FAQ() {
                       <Plus className="w-4 h-4" />
                     </span>
                   </button>
-                  <div 
-                    className="overflow-hidden transition-all duration-300"
-                    style={{ 
-                      maxHeight: openIndex === index ? '200px' : '0',
-                      paddingBottom: openIndex === index ? '1.25rem' : '0'
+                  <div
+                    className="grid transition-[grid-template-rows] duration-300"
+                    style={{
+                      gridTemplateRows: openIndex === index ? "1fr" : "0fr",
                     }}
                   >
-                    <p className="text-sm leading-relaxed" style={{ color: '#666' }}>
-                      {faq.answer}
-                    </p>
+                    <div className="overflow-hidden">
+                      <p className="text-sm leading-relaxed pb-5" style={{ color: '#666' }}>
+                        {faq.answer}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}

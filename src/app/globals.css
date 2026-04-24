@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 :root {
   /* Vercel-inspired color palette */
@@ -19,7 +19,8 @@
   --white: #ffffff;
   --blue: #0070F3;
   --blue-dark: #0060df;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 @layer base {
@@ -47,6 +48,10 @@
 @layer components {
   .font-sans {
     font-family: var(--sans);
+  }
+
+  .font-serif {
+    font-family: var(--serif);
   }
 
   /* Section Styles */
@@ -80,7 +85,7 @@
   }
 
   .section-title {
-    font-family: var(--sans);
+    font-family: var(--serif);
     font-size: clamp(2.25rem, 4vw, 3.5rem);
     color: var(--black);
     font-weight: 700;

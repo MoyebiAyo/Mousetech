@@ -7,9 +7,9 @@ import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const stats = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "30+", label: "Happy Clients" },
-  { value: "3+", label: "Years Experience" },
+  { value: "15+", label: "Projects Delivered" },
+  { value: "12+", label: "Happy Clients" },
+  { value: "1+", label: "Years Experience" },
   { value: "100%", label: "Client Satisfaction" },
 ];
 
@@ -38,23 +38,23 @@ const values = [
 
 const timeline = [
   {
-    year: "2026",
+    year: "2025",
     title: "The Beginning",
     description: "MouseTech was founded with a vision to help businesses and organizations thrive in the digital age.",
   },
   {
-    year: "2027",
-    title: "Rapid Expansion",
-    description: "Projected to expand our team and services, delivering over 50 successful projects.",
+    year: "2026",
+    title: "Growing Team",
+    description: "Expanded our services and delivered over 15 successful projects for businesses across Nigeria.",
   },
   {
-    year: "2028",
-    title: "Innovation Hub",
+    year: "2027",
+    title: "Innovation Focus",
     description: "Introducing cutting-edge solutions including AI integration and advanced analytics for businesses.",
   },
   {
-    year: "2029",
-    title: "Industry Leader",
+    year: "2028",
+    title: "Scaling Impact",
     description: "Aiming to be recognized as a leading tech agency in Nigeria with clients across multiple states.",
   },
 ];
@@ -67,8 +67,8 @@ export default function AboutPage() {
         variant="auto"
         lightLinks={[
           { label: "How It Works", href: "/#how" },
-          { label: "Services", href: "/#services" },
-          { label: "Pricing", href: "/#pricing" },
+          { label: "Services", href: "/services" },
+          { label: "Pricing", href: "/pricing" },
           { label: "About", href: "/about", active: true },
         ]}
       />
@@ -96,7 +96,7 @@ export default function AboutPage() {
                 <span className="text-xs font-medium tracking-wide" style={{ color: 'rgba(255,255,255,0.9)' }}>About Us</span>
               </div>
 
-              <h1 className="font-sans text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.04em' }}>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6" style={{ letterSpacing: '-0.04em' }}>
                 Building Digital<br />
                 <span style={{ color: '#0070F3' }}>Excellence</span>
               </h1>
@@ -106,11 +106,11 @@ export default function AboutPage() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <a href="/#services" className="btn-hero-primary no-underline">
+                <a href="/services" className="btn-hero-primary no-underline">
                   Our Services
                   <ArrowRight className="w-4 h-4" />
                 </a>
-                <a href="/#pricing" className="btn-hero-ghost no-underline">View Pricing</a>
+                <a href="/pricing" className="btn-hero-ghost no-underline">View Pricing</a>
               </div>
             </motion.div>
 
@@ -172,7 +172,7 @@ export default function AboutPage() {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-md mb-6" style={{ background: '#000' }}>
                 <Target className="w-6 h-6 text-white" />
               </div>
-              <h2 className="font-sans text-2xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.02em' }}>Our Mission</h2>
+              <h2 className="font-serif text-2xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.02em' }}>Our Mission</h2>
               <p className="leading-relaxed" style={{ color: '#666' }}>
                 To empower businesses and organizations with innovative digital solutions that drive growth, enhance efficiency, and create meaningful connections with their customers. We believe technology should be accessible, powerful, and beautiful.
               </p>
@@ -188,7 +188,7 @@ export default function AboutPage() {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-md mb-6" style={{ background: '#000' }}>
                 <Eye className="w-6 h-6 text-white" />
               </div>
-              <h2 className="font-sans text-2xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.02em' }}>Our Vision</h2>
+              <h2 className="font-serif text-2xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.02em' }}>Our Vision</h2>
               <p className="leading-relaxed" style={{ color: '#666' }}>
                 To be the leading technology partner for businesses and organizations across Nigeria and beyond, known for our innovation, reliability, and commitment to client success. We envision a world where every business can leverage technology to achieve its full potential.
               </p>
@@ -212,7 +212,7 @@ export default function AboutPage() {
               <span className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#666' }}>Our Values</span>
               <div className="w-5 h-px" style={{ background: '#000' }} />
             </div>
-            <h2 className="font-sans text-3xl md:text-4xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#000', letterSpacing: '-0.03em' }}>
               Our Core Values
             </h2>
             <p className="text-lg max-w-2xl mx-auto" style={{ color: '#666' }}>
@@ -252,20 +252,20 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
-              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#1e5fa8' }}>Our Journey</span>
-              <div className="w-6 h-0.5 rounded" style={{ background: '#1e5fa8' }} />
+              <div className="w-6 h-0.5 rounded" style={{ background: '#0070F3' }} />
+              <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#0070F3' }}>Our Journey</span>
+              <div className="w-6 h-0.5 rounded" style={{ background: '#0070F3' }} />
             </div>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0d1b2a' }}>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4" style={{ color: '#000' }}>
               Our Journey
             </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#64748b' }}>
+            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#666' }}>
               Milestones that mark our growth and evolution
             </p>
           </motion.div>
 
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full hidden md:block" style={{ background: 'linear-gradient(to bottom, #1e5fa8, transparent)' }} />
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-px h-full hidden md:block" style={{ background: 'linear-gradient(to bottom, #0070F3, transparent)' }} />
 
             <div className="space-y-12">
               {timeline.map((item, index) => (
@@ -279,13 +279,13 @@ export default function AboutPage() {
                 >
                   <div className="flex-1 text-center md:text-right">
                     <div className={`${index % 2 === 1 ? 'md:text-left' : 'md:text-right'}`}>
-                      <div className="font-serif text-3xl font-bold mb-2" style={{ color: '#1e5fa8' }}>{item.year}</div>
-                      <h3 className="text-xl font-semibold mb-2" style={{ color: '#0d1b2a' }}>{item.title}</h3>
-                      <p style={{ color: '#64748b' }}>{item.description}</p>
+                      <div className="font-sans text-3xl font-bold mb-2" style={{ color: '#0070F3' }}>{item.year}</div>
+                      <h3 className="text-xl font-semibold mb-2" style={{ color: '#000' }}>{item.title}</h3>
+                      <p style={{ color: '#666' }}>{item.description}</p>
                     </div>
                   </div>
 
-                  <div className="w-4 h-4 rounded-full border-4 relative z-10 hidden md:block" style={{ background: '#1e5fa8', borderColor: '#ffffff' }} />
+                  <div className="w-4 h-4 rounded-full border-4 relative z-10 hidden md:block" style={{ background: '#0070F3', borderColor: '#ffffff' }} />
 
                   <div className="flex-1" />
                 </motion.div>
@@ -296,7 +296,7 @@ export default function AboutPage() {
       </section>
 
       {/* Testimonial Section */}
-      <section className="py-24" style={{ background: '#f7f9fc' }}>
+      <section className="py-24" style={{ background: '#fafafa' }}>
         <div className="max-w-4xl mx-auto px-[5%]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -306,16 +306,16 @@ export default function AboutPage() {
             className="text-center"
           >
             <Quote className="w-16 h-16 mx-auto mb-8" style={{ color: 'rgba(30,95,168,0.2)' }} />
-            <blockquote className="font-serif text-2xl md:text-3xl font-medium leading-relaxed mb-8" style={{ color: '#0d1b2a' }}>
-              &ldquo;Mouse Tech transformed our online presence completely. Their attention to detail and commitment to excellence is unmatched. Highly recommended!&rdquo;
+            <blockquote className="font-sans text-2xl md:text-3xl font-medium leading-relaxed mb-8" style={{ color: '#000' }}>
+              &ldquo;MouseTech transformed our online presence completely. Their attention to detail and commitment to excellence is unmatched. Highly recommended!&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold" style={{ background: '#1e5fa8' }}>
+              <div className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold" style={{ background: '#0070F3' }}>
                 OA
               </div>
               <div className="text-left">
-                <div className="font-semibold" style={{ color: '#0d1b2a' }}>Oluwaseun Adeyemi</div>
-                <div className="text-sm" style={{ color: '#64748b' }}>CEO, GraceTech Solutions</div>
+                <div className="font-semibold" style={{ color: '#000' }}>Oluwaseun Adeyemi</div>
+                <div className="text-sm" style={{ color: '#666' }}>CEO, GraceTech Solutions</div>
               </div>
             </div>
           </motion.div>
@@ -342,7 +342,7 @@ export default function AboutPage() {
             <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(0,112,243,0.15), transparent 60%)' }} />
             
             <div className="relative px-8 py-16 md:px-16 md:py-20 text-center">
-              <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white" style={{ letterSpacing: '-0.03em' }}>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-white" style={{ letterSpacing: '-0.03em' }}>
                 Let&apos;s Work Together
               </h2>
               <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8" style={{ color: 'rgba(255,255,255,0.6)' }}>

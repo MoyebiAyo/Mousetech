@@ -18,7 +18,7 @@ const faqCategories = [
   {
     category: "Services & Pricing",
     faqs: [
-      { q: "How much does a website cost?", a: "Website costs vary based on complexity. Starter websites start at ₦150,000, business websites at ₦350,000, and e-commerce platforms at ₦600,000+. Contact us for a detailed quote." },
+      { q: "How much does a website cost?", a: "Website costs vary based on complexity. Starter websites start at ₦150,000, growth websites at ₦400,000, and advanced e-commerce builds at ₦700,000+. Contact us for a detailed quote." },
       { q: "How long does it take to build a website?", a: "A simple website takes 2-4 weeks, while complex projects can take 2-3 months. We'll provide a timeline during consultation." },
       { q: "Do you offer payment plans?", a: "Yes, we offer flexible payment plans. Typically, we require 50% upfront and 50% upon completion, but we can customize this based on your needs." },
       { q: "What technologies do you use?", a: "We use modern technologies like Next.js, React, React Native, Flutter, Node.js, and various cloud platforms depending on project requirements." },
@@ -59,7 +59,7 @@ export default function FAQPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="px-[5%] py-32" style={{ background: '#000' }}>
+      <section className="relative overflow-hidden px-[5%] py-32" style={{ background: '#000' }}>
         <div className="absolute inset-0" style={{ 
           backgroundImage: `
             linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -71,7 +71,7 @@ export default function FAQPage() {
           <div className="mb-6">
             <Link href="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">← Back to Home</Link>
           </div>
-          <h1 className="font-sans text-4xl sm:text-5xl font-bold text-white mb-6" style={{ letterSpacing: '-0.04em' }}>
+          <h1 className="font-serif text-4xl sm:text-5xl font-bold text-white mb-6" style={{ letterSpacing: '-0.04em' }}>
             Frequently Asked <span style={{ color: '#0070F3' }}>Questions</span>
           </h1>
           <p className="text-xl text-white/60">

@@ -12,10 +12,9 @@ export default function Hero() {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 50;
       setScrolled(isScrolled);
-      console.log('Hero nav scroll state:', isScrolled);
     };
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial state
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -74,7 +73,7 @@ export default function Hero() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="fixed top-[72px] left-0 right-0 z-40 px-[5%] py-6 shadow-xl" style={{ background: scrolled ? '#fff' : '#000', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="fixed top-[72px] left-0 right-0 z-40 px-[5%] py-6 shadow-xl" style={{ background: scrolled ? '#fff' : '#000', borderBottom: scrolled ? '1px solid #eaeaea' : '1px solid rgba(255,255,255,0.08)' }}>
           <div className="flex flex-col gap-4">
             <a href="/#how" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>How It Works</a>
             <a href="/services" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>Services</a>
@@ -106,7 +105,7 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-sans text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tighter mb-8" style={{ letterSpacing: '-0.04em' }}>
+          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tighter mb-8" style={{ letterSpacing: '-0.04em' }}>
             Custom software solutions,<br />
             <span style={{ color: '#0070F3' }}>built to scale</span><br />
             your business.

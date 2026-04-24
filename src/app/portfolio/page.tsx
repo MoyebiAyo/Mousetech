@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Code, Smartphone, Layout, ShoppingCart, Globe } from "lucide-react";
+import { ArrowRight, ExternalLink, Globe } from "lucide-react";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 const projects = [
   {
     title: "Mouse STEAM Club",
+    type: "Custom Software",
     category: "Education Platform",
     description: "Interactive STEM education platform for schools with science, technology, engineering, arts, and mathematics resources and activities.",
     image: "https://steam.mousetech.app",
@@ -23,6 +24,7 @@ const projects = [
   },
   {
     title: "Ayodele Portfolio",
+    type: "Web Development",
     category: "Web Development",
     description: "Professional portfolio website showcasing design work and creative projects with modern UI/UX.",
     image: "https://ayo.mousetech.app",
@@ -34,6 +36,7 @@ const projects = [
   },
   {
     title: "Dorcas Ayomide Portfolio",
+    type: "Web Development",
     category: "Web Development",
     description: "Elegant portfolio website for a virtual assistant showcasing services and professional experience.",
     image: "https://dorcasayomide.vercel.app",
@@ -45,6 +48,7 @@ const projects = [
   },
   {
     title: "Praise Okwuchi Portfolio",
+    type: "Web Development",
     category: "Web Development",
     description: "Modern portfolio website with smooth animations and responsive design for showcasing creative work.",
     image: "https://praiseokwuchi.vercel.app",
@@ -56,13 +60,32 @@ const projects = [
   },
 ];
 
-const categories = ["All", "Web Development", "Mobile App", "Custom Software"];
+const categories = [
+  "All",
+  ...Array.from(new Set(projects.map((project) => project.type))),
+];
 
-export default function PortfolioPage() {
+type PortfolioPageProps = {
+  searchParams?: {
+    category?: string;
+  };
+};
+
+export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
+  const selectedCategory =
+    searchParams?.category && categories.includes(searchParams.category)
+      ? searchParams.category
+      : "All";
+
+  const filteredProjects =
+    selectedCategory === "All"
+      ? projects
+      : projects.filter((project) => project.type === selectedCategory);
+
   return (
-    <main className="min-h-screen" style={{ background: '#0d1b2a' }}>
+    <main className="min-h-screen" style={{ background: '#000' }}>
       {/* Hero Section */}
-      <section className="px-[5%] py-20" style={{ background: 'linear-gradient(160deg, #0d1b2a 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
+      <section className="px-[5%] py-20" style={{ background: 'linear-gradient(160deg, #000 0%, #1a2e42 55%, #1a3a5c 100%)' }}>
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-4">
             <Link href="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">
@@ -84,45 +107,55 @@ export default function PortfolioPage() {
           {/* Category Filter */}
           <div className="flex flex-wrap gap-4 mb-12">
             {categories.map((category) => (
-              <button
+              <Link
                 key={category}
+                href={
+                  category === "All"
+                    ? "/portfolio"
+                    : `/portfolio?category=${encodeURIComponent(category)}`
+                }
                 className="px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200"
                 style={{ 
-                  background: category === "All" ? '#1e5fa8' : 'rgba(255,255,255,0.05)',
-                  color: category === "All" ? '#ffffff' : 'rgba(255,255,255,0.7)',
+                  background: category === selectedCategory ? '#0070F3' : 'rgba(255,255,255,0.05)',
+                  color: category === selectedCategory ? '#ffffff' : 'rgba(255,255,255,0.7)',
                   border: '1px solid rgba(255,255,255,0.1)'
                 }}
               >
                 {category}
-              </button>
+              </Link>
             ))}
           </div>
 
           {/* Projects */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
+            {filteredProjects.map((project, index) => (
               <div
                 key={index}
                 className="rounded-2xl overflow-hidden border transition-all duration-300 hover:border-white/30 hover:shadow-2xl"
                 style={{ 
                   borderColor: 'rgba(255,255,255,0.1)',
-                  background: 'linear-gradient(145deg, #1a2e42 0%, #0d1b2a 100%)'
+                  background: 'linear-gradient(145deg, #1a2e42 0%, #000 100%)'
                 }}
               >
                 {/* Site Preview */}
-                <div className="relative h-56 overflow-hidden" style={{ background: '#f7f9fc' }}>
-                  <iframe
-                    src={project.image}
-                    title={project.title}
-                    className="w-full h-full border-0 pointer-events-none"
-                    style={{ transform: 'scale(0.9)', transformOrigin: 'top left' }}
-                    loading="lazy"
-                    sandbox="allow-scripts"
-                  />
-                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold" style={{ background: '#1e5fa8', color: '#ffffff' }}>
+                <div
+                  className="relative h-56 overflow-hidden"
+                  style={{ background: '#fafafa' }}
+                >
+                  {/* Placeholder with gradient and project info */}
+                  <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #fafafa 0%, #eaeaea 100%)' }}>
+                    <div className="text-center">
+                      <project.icon className="w-16 h-16 mx-auto mb-3" style={{ color: '#0070F3' }} />
+                      <p className="text-sm font-semibold" style={{ color: '#333' }}>{project.title}</p>
+                      <p className="text-xs mt-1" style={{ color: '#666' }}>{project.category}</p>
+                    </div>
+                  </div>
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold" style={{ background: '#0070F3', color: '#ffffff' }}>
                     {project.category}
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1b2a]/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                    <span className="text-white text-sm font-medium">Click to visit site →</span>
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -177,7 +210,7 @@ export default function PortfolioPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 hover:shadow-lg"
-                style={{ background: '#1e5fa8' }}
+                style={{ background: '#0070F3' }}
               >
                 Start Your Project <ArrowRight className="w-4 h-4" />
               </a>
