@@ -1,23 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, Menu, X } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
+import NavBar from "@/components/Navbar";
+import LimitedTimeOfferBanner from "@/components/LimitedTimeOfferBanner";
 
 export default function Hero() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
-    };
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="hero flex flex-col relative overflow-hidden" style={{ background: '#000', paddingTop: '72px', minHeight: '100vh' }}>
       {/* Background Grid Pattern */}
@@ -31,67 +19,21 @@ export default function Hero() {
       <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(0,112,243,0.15) 0%, transparent 60%)' }} />
       
       {/* Navigation */}
-      <nav 
-        className="fixed top-0 left-0 right-0 z-50 px-[5%] flex items-center justify-between h-[72px] transition-all duration-300" 
-        style={{ 
-          backdropFilter: 'blur(12px)',
-          backgroundColor: scrolled ? 'rgba(255,255,255,0.98)' : 'transparent',
-          borderBottom: scrolled ? '1px solid #eaeaea' : '1px solid rgba(255,255,255,0.08)',
-        }}
-      >
-        <a href="/" className="font-sans text-xl font-bold tracking-tight no-underline transition-colors duration-300" style={{ color: scrolled ? '#000' : '#fff' }}>
-          MouseTech
-        </a>
-        
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 list-none">
-          <li><a href="/#how" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>How It Works</a></li>
-          <li><a href="/services" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>Services</a></li>
-          <li><a href="/portfolio" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>Portfolio</a></li>
-          <li><a href="/pricing" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>Pricing</a></li>
-          <li><a href="/about" className="text-sm font-medium no-underline transition-all duration-200" style={{ color: scrolled ? '#333' : 'rgba(255,255,255,0.8)' }}>About</a></li>
-        </ul>
-        
-        <div className="flex gap-3 items-center">
-          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I%20have%20a%20question%20about%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-md transition-all duration-200 no-underline items-center gap-2" style={{ color: scrolled ? '#000' : '#fff', border: `1px solid ${scrolled ? '#eaeaea' : 'rgba(255,255,255,0.3)'}` }}>
-            Contact
-          </a>
-          <a href="https://wa.me/2348078933943?text=Hi%20Mouse%20Tech!%20I'm%20interested%20in%20your%20software%20solutions.%20Can%20we%20discuss?" target="_blank" rel="noopener noreferrer" className="hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-md transition-all duration-200 no-underline" style={{ background: scrolled ? '#000' : '#fff', color: scrolled ? '#fff' : '#000' }}>
-            Get Started
-          </a>
-          
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-md transition-all duration-300"
-            style={{ color: scrolled ? '#0d1b2a' : '#ffffff' }}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-      </nav>
+      <NavBar
+        variant="auto"
+        lightLinks={[
+          { label: "How It Works", href: "/#how" },
+          { label: "Services", href: "/services" },
+          { label: "Portfolio", href: "/portfolio" },
+          { label: "Pricing", href: "/pricing" },
+          { label: "About", href: "/about" },
+        ]}
+      />
 
-      {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <div className="fixed top-[72px] left-0 right-0 z-40 px-[5%] py-6 shadow-xl" style={{ background: scrolled ? '#fff' : '#000', borderBottom: scrolled ? '1px solid #eaeaea' : '1px solid rgba(255,255,255,0.08)' }}>
-          <div className="flex flex-col gap-4">
-            <a href="/#how" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>How It Works</a>
-            <a href="/services" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>Services</a>
-            <a href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>Portfolio</a>
-            <a href="/pricing" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>Pricing</a>
-            <a href="/about" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>About</a>
-            <a href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-base font-medium py-2 no-underline" style={{ color: scrolled ? '#333' : '#fff' }}>FAQ</a>
-            <div className="pt-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
-              <a href="https://wa.me/2348078933943?text=Hi%20MouseTech!%20I'm%20interested%20in%20your%20software%20solutions." target="_blank" rel="noopener noreferrer" className="block w-full text-center text-base font-medium px-6 py-3 rounded-md no-underline" style={{ background: '#fff', color: '#000' }}>
-                Get Started
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+      <LimitedTimeOfferBanner />
 
       {/* Hero Content */}
-      <div className="flex-1 flex items-center px-[5%] py-3 sm:py-5 md:py-8 lg:py-16 relative z-10" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', gap: '4rem' }}>
+      <div className="flex-1 flex items-start px-[5%] pt-8 pb-3 sm:pt-10 sm:pb-5 md:pt-14 md:pb-8 lg:pt-16 lg:pb-16 relative z-10" style={{ maxWidth: '1400px', margin: '0 auto', width: '100%', gap: '4rem' }}>
         <motion.div 
           className="flex-1 max-w-[640px]"
           initial={{ opacity: 0, y: 24 }}

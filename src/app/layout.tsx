@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-dm-sans",
+});
 
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const siteUrl =
@@ -94,6 +101,54 @@ const professionalServiceSchema = {
   },
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${siteUrl}/#localbusiness`,
+  name: "MouseTech",
+  url: siteUrl,
+  image: `${siteUrl}/mouse-tech-logo.png`,
+  telephone: "+234-807-893-3943",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "NG",
+    addressRegion: "Lagos",
+  },
+  areaServed: [
+    { "@type": "Country", name: "Nigeria" },
+    { "@type": "City", name: "Lagos" },
+    { "@type": "City", name: "Abuja" },
+    { "@type": "City", name: "Port Harcourt" },
+    { "@type": "City", name: "Ibadan" },
+    { "@type": "City", name: "Kano" },
+  ],
+};
+
+const servicesCatalogSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "MouseTech Services",
+  itemListElement: [
+    "Web Development",
+    "Mobile App Development",
+    "Custom Software Development",
+    "UI/UX Design",
+    "SEO Management",
+    "Performance & Hosting",
+    "Security & Backups",
+    "Analytics & Reporting",
+  ].map((name, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    item: {
+      "@type": "Service",
+      name,
+      provider: { "@id": `${siteUrl}/#localbusiness` },
+      areaServed: { "@type": "Country", name: "Nigeria" },
+    },
+  })),
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -179,7 +234,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.variable}>
       <head>
         <script
           type="application/ld+json"
@@ -193,6 +248,16 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(professionalServiceSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(servicesCatalogSchema),
           }}
         />
       </head>

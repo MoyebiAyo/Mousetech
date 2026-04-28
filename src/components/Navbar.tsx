@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 interface NavBarProps {
@@ -8,6 +9,51 @@ interface NavBarProps {
   lightLinks?: Array<{ label: string; href: string; active?: boolean }>;
   ctaText?: string;
   ctaHref?: string;
+}
+
+function NavLink({
+  href,
+  children,
+  active,
+  className,
+  style,
+  onClick,
+}: {
+  href: string;
+  children: React.ReactNode;
+  active?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}) {
+  const isExternal = /^https?:\/\//i.test(href);
+  const isHash = href.startsWith("#") || href.includes("/#");
+
+  const commonProps = {
+    className,
+    style,
+    onClick,
+    "aria-current": active ? ("page" as const) : undefined,
+  };
+
+  if (!isExternal && !isHash) {
+    return (
+      <Link href={href} {...commonProps}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      {...commonProps}
+    >
+      {children}
+    </a>
+  );
 }
 
 export default function NavBar({ 
@@ -46,27 +92,29 @@ export default function NavBar({
           borderBottom: borderColor,
         }}
       >
-        <a
+        <Link
           href="/"
-          className="font-sans text-xl font-bold tracking-tight no-underline transition-colors duration-300"
+          className="font-sans text-xl font-bold tracking-tight no-underline transition-colors duration-300 focus-visible:outline-none"
           style={{ color: textColor, letterSpacing: "-0.02em" }}
+          aria-label="MouseTech home"
         >
           MouseTech
-        </a>
+        </Link>
 
         <ul className="hidden md:flex gap-10 list-none">
           {lightLinks.map((link, index) => (
             <li key={index}>
-              <a
+              <NavLink
                 href={link.href}
-                className="text-sm font-medium no-underline transition-all duration-200"
+                active={link.active}
+                className="text-sm font-medium no-underline transition-all duration-200 focus-visible:outline-none"
                 style={{
                   color: link.active ? "#0070F3" : linkColor,
                   opacity: link.active ? 1 : 0.9,
                 }}
               >
                 {link.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -76,14 +124,14 @@ export default function NavBar({
             href={ctaHref}
             target={ctaIsExternal ? "_blank" : undefined}
             rel={ctaIsExternal ? "noopener noreferrer" : undefined}
-            className="hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-md bg-black text-white hover:bg-gray-900 transition-all duration-200 no-underline"
+            className="hidden sm:inline-flex text-sm font-medium px-4 py-2 rounded-md bg-black text-white hover:bg-gray-900 transition-all duration-200 no-underline focus-visible:outline-none"
           >
             {ctaText}
           </a>
 
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="md:hidden p-2 rounded-md transition-all duration-300"
+            className="md:hidden p-2 rounded-md transition-all duration-300 focus-visible:outline-none"
             style={{ color: textColor }}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -102,17 +150,18 @@ export default function NavBar({
         >
           <div className="flex flex-col gap-2">
             {lightLinks.map((link, index) => (
-              <a
+              <NavLink
                 key={index}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-base font-medium py-2 no-underline transition-colors"
+                active={link.active}
+                className="text-base font-medium py-2 no-underline transition-colors focus-visible:outline-none"
                 style={{
                   color: link.active ? "#0070F3" : hasWhiteBg ? "#333333" : "#ffffff",
                 }}
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
             <div
               className="pt-4 mt-2 border-t"
@@ -125,7 +174,7 @@ export default function NavBar({
                 target={ctaIsExternal ? "_blank" : undefined}
                 rel={ctaIsExternal ? "noopener noreferrer" : undefined}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center text-base font-medium px-6 py-3 rounded-md no-underline bg-black text-white"
+                className="block w-full text-center text-base font-medium px-6 py-3 rounded-md no-underline bg-black text-white focus-visible:outline-none"
               >
                 {ctaText}
               </a>

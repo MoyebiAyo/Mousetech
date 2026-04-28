@@ -57,25 +57,15 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-center px-6 relative"
+              className="group text-center px-6 relative"
             >
               {/* Step Bubble */}
-              <div 
-                className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6 font-sans text-lg font-semibold relative z-10 transition-all duration-200"
-                style={{ 
-                  background: '#fff', 
-                  border: '1.5px solid #eaeaea', 
-                  color: '#000',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#000';
-                  e.currentTarget.style.color = '#fff';
-                  e.currentTarget.style.borderColor = '#000';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#fff';
-                  e.currentTarget.style.color = '#000';
-                  e.currentTarget.style.borderColor = '#eaeaea';
+              <div
+                className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6 font-sans text-lg font-semibold relative z-10 transition-all duration-200 group-hover:bg-black group-hover:text-white"
+                style={{
+                  background: "#fff",
+                  border: "1.5px solid #eaeaea",
+                  color: "#000",
                 }}
               >
                 {step.number}

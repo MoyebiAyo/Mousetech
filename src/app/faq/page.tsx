@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import Link from "next/link";
+import Script from "next/script";
 import Footer from "@/components/Footer";
 
 const faqCategories = [
@@ -57,8 +58,28 @@ const faqCategories = [
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<string | null>(null);
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqCategories.flatMap((category) =>
+      category.faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      }))
+    ),
+  };
+
   return (
     <main className="min-h-screen bg-white">
+      <Script
+        id="faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <section className="relative overflow-hidden px-[5%] py-32" style={{ background: '#000' }}>
         <div className="absolute inset-0" style={{ 
           backgroundImage: `

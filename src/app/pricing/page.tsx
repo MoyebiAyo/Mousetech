@@ -1,10 +1,19 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Check, ArrowRight, HelpCircle, MessageCircle } from "lucide-react";
+import { Check, ArrowRight, HelpCircle, MessageCircle, Sparkles } from "lucide-react";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LimitedTimeOfferBanner from "@/components/LimitedTimeOfferBanner";
+
+function formatCountdown(totalSeconds: number) {
+  const clamped = Math.max(0, totalSeconds);
+  const days = Math.floor(clamped / (24 * 3600));
+  const hours = Math.floor((clamped % (24 * 3600)) / 3600);
+  const minutes = Math.floor((clamped % 3600) / 60);
+  return { days, hours, minutes };
+}
 
 const plans = [
   {
@@ -100,6 +109,30 @@ const comparisons = [
 
 export default function PricingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const promoWhatsappMessage = encodeURIComponent(
+    "Hi MouseTech! I want to claim the limited-time website promo for ₦50,000. Please share what’s included, the next steps, and how we can start today."
+  );
+
+  const offerEndsAt = useMemo(
+    () => new Date("2026-05-12T23:59:59+01:00"),
+    []
+  );
+  const offerStartsAt = useMemo(
+    () => new Date("2026-04-28T00:00:00+01:00"),
+    []
+  );
+  const [now, setNow] = useState<Date>(() => new Date());
+
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(new Date()), 30_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  const remainingSeconds = Math.floor(
+    (offerEndsAt.getTime() - now.getTime()) / 1000
+  );
+  const promoIsActive = now >= offerStartsAt && now <= offerEndsAt;
+  const promoCountdown = formatCountdown(remainingSeconds);
 
   return (
     <main className="min-h-screen bg-white">
@@ -114,8 +147,10 @@ export default function PricingPage() {
         ]}
       />
 
+      <LimitedTimeOfferBanner className="pt-[72px]" />
+
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:py-32 overflow-hidden" style={{ background: '#000' }}>
+      <section className="relative pt-20 pb-20 md:pt-28 md:pb-28 overflow-hidden" style={{ background: '#000' }}>
         <div className="absolute inset-0" style={{ 
           backgroundImage: `
             linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
@@ -148,8 +183,179 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Limited-Time Offer Detail */}
+      {promoIsActive && (
+        <section className="py-16 md:py-20" style={{ background: "#ffffff" }}>
+          <div className="max-w-[1100px] mx-auto px-[5%]">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55 }}
+              className="rounded-2xl overflow-hidden border"
+              style={{
+                borderColor: "#dce6f0",
+                boxShadow: "0 18px 45px rgba(13,27,42,0.08)",
+              }}
+            >
+            <div
+              className="px-8 py-8 md:px-12 md:py-10"
+              style={{
+                background:
+                  "linear-gradient(160deg, #000 0%, #1a2e42 55%, #1a3a5c 100%)",
+              }}
+            >
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div>
+                  <div
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-5"
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.12)",
+                    }}
+                  >
+                    <Sparkles className="w-4 h-4" style={{ color: "#7ab8f5" }} />
+                    <span
+                      className="text-xs font-bold tracking-widest uppercase"
+                      style={{ color: "rgba(255,255,255,0.9)" }}
+                    >
+                      Limited-time promo
+                    </span>
+                  </div>
+
+                  <h2
+                    className="font-serif text-3xl md:text-4xl font-bold text-white leading-tight mb-3"
+                    style={{ letterSpacing: "-0.03em" }}
+                  >
+                    Website build for{" "}
+                    <span style={{ color: "#7ab8f5" }}>₦50,000</span>
+                  </h2>
+                  <p
+                    className="text-base md:text-lg"
+                    style={{ color: "rgba(255,255,255,0.7)" }}
+                  >
+                    Offer runs from <strong>Apr 28, 2026</strong> to{" "}
+                    <strong>May 12, 2026</strong>. Perfect if you need a
+                    clean, fast, professional website without breaking the bank.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={`https://wa.me/2348078933943?text=${promoWhatsappMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-semibold no-underline transition-all duration-200"
+                    style={{ background: "#ffffff", color: "#000000" }}
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    Claim offer on WhatsApp
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                  <a
+                    href="#standard-plans"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-medium no-underline transition-all duration-200"
+                    style={{
+                      background: "rgba(255,255,255,0.08)",
+                      border: "1px solid rgba(255,255,255,0.16)",
+                      color: "rgba(255,255,255,0.9)",
+                    }}
+                  >
+                    Compare with plans
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="px-8 py-8 md:px-12 md:py-10 bg-white">
+              <div className="grid lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2">
+                  <h3 className="text-xl font-bold mb-4" style={{ color: "#000" }}>
+                    What you get for ₦50,000
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      "1–3 page website (Landing / Business profile)",
+                      "Mobile-responsive design",
+                      "Basic on-page SEO (titles, descriptions, sitemap)",
+                      "Contact button + WhatsApp click-to-chat",
+                      "Fast loading + image optimization",
+                      "Launch-ready on your hosting (or we guide setup)",
+                      "3 rounds of revisions",
+                      "Delivery in 3–5 business days (after content is received)",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 p-4 rounded-lg border"
+                        style={{ borderColor: "#e2e8f0", background: "#f8fafc" }}
+                      >
+                        <span
+                          className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                          style={{ background: "#e8f1fb" }}
+                        >
+                          <Check className="w-4 h-4" style={{ color: "#0070F3" }} />
+                        </span>
+                        <span className="text-sm" style={{ color: "#1a2535" }}>
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div
+                    className="p-6 rounded-2xl border"
+                    style={{ borderColor: "#e2e8f0", background: "#ffffff" }}
+                  >
+                    <h3 className="text-lg font-bold mb-3" style={{ color: "#000" }}>
+                      Promo terms (simple)
+                    </h3>
+                    <ul className="space-y-3 text-sm" style={{ color: "#475569" }}>
+                      <li>
+                        <strong style={{ color: "#0f172a" }}>Ends in:</strong>{" "}
+                        {promoCountdown.days}d {promoCountdown.hours}h{" "}
+                        {promoCountdown.minutes}m
+                      </li>
+                      <li>
+                        <strong style={{ color: "#0f172a" }}>Deadline:</strong>{" "}
+                        May 12, 2026
+                      </li>
+                      <li>
+                        <strong style={{ color: "#0f172a" }}>Best for:</strong> new
+                        businesses, personal brands, simple landing pages
+                      </li>
+                      <li>
+                        <strong style={{ color: "#0f172a" }}>Not included:</strong>{" "}
+                        e-commerce, complex dashboards, custom web apps (we’ll quote those)
+                      </li>
+                    </ul>
+                    <div
+                      className="mt-5 p-4 rounded-lg"
+                      style={{ background: "#0b1220" }}
+                    >
+                      <div
+                        className="text-xs uppercase tracking-widest font-bold mb-2"
+                        style={{ color: "rgba(255,255,255,0.65)" }}
+                      >
+                        To start today
+                      </div>
+                      <p className="text-sm" style={{ color: "rgba(255,255,255,0.8)" }}>
+                        Send your business name, phone/email, and any text/images you want on the site.
+                        We’ll reply with a quick outline and timeline.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
       {/* Pricing Cards */}
-      <section className="py-28 bg-white">
+      <section id="standard-plans" className="py-28 bg-white">
         <div className="max-w-[1200px] mx-auto px-[5%]">
           <div className="grid md:grid-cols-3 gap-6 max-w-[1100px] mx-auto">
             {plans.map((plan, index) => (

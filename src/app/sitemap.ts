@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { coreServices } from "@/data/services";
+import { locations } from "@/data/locations";
+import { caseStudies } from "@/data/caseStudies";
 
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const siteUrl =
@@ -16,8 +18,14 @@ const staticRoutes: Array<{
   { path: "/services", changeFrequency: "weekly", priority: 0.9 },
   { path: "/services/web-development", changeFrequency: "monthly", priority: 0.8 },
   { path: "/services/mobile-apps", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/services/web-development-nigeria", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/services/seo-nigeria", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/services/ecommerce-website-nigeria", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/services/website-design-lagos", changeFrequency: "weekly", priority: 0.85 },
   { path: "/pricing", changeFrequency: "weekly", priority: 0.8 },
   { path: "/portfolio", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/case-studies", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/locations", changeFrequency: "weekly", priority: 0.8 },
   { path: "/about", changeFrequency: "monthly", priority: 0.7 },
   { path: "/faq", changeFrequency: "monthly", priority: 0.7 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.5 },
@@ -26,8 +34,8 @@ const staticRoutes: Array<{
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Use a fixed date to ensure it's never in the future
-  const lastModified = new Date('2025-01-24');
+  // Slightly in the past to avoid any “future date” issues with clock skew.
+  const lastModified = new Date(Date.now() - 60_000);
 
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: `${siteUrl}${route.path}`,
@@ -43,5 +51,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticEntries, ...serviceEntries];
+  const locationEntries: MetadataRoute.Sitemap = locations.map((location) => ({
+    url: `${siteUrl}/locations/${location.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.75,
+  }));
+
+  const caseStudyEntries: MetadataRoute.Sitemap = caseStudies.map((cs) => ({
+    url: `${siteUrl}/case-studies/${cs.slug}`,
+    lastModified,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...serviceEntries, ...locationEntries, ...caseStudyEntries];
 }

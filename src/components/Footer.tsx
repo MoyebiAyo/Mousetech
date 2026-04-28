@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer style={{ background: '#fafafa', color: '#666', borderTop: '1px solid #eaeaea' }}>
@@ -7,11 +9,23 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 pb-12" style={{ borderBottom: '1px solid #eaeaea' }}>
           {/* Brand */}
           <div className="md:col-span-1">
-            <a href="/" className="font-sans text-2xl font-bold text-black no-underline mb-4 inline-block" style={{ letterSpacing: '-0.02em' }}>
+            <Link href="/" className="font-sans text-2xl font-bold text-black no-underline mb-4 inline-block focus-visible:outline-none" style={{ letterSpacing: '-0.02em' }}>
               MouseTech
-            </a>
+            </Link>
             <p className="text-sm leading-relaxed max-w-[260px]" style={{ color: '#666' }}>
               We design, develop, and maintain professional websites, mobile apps, and custom software solutions for businesses and organizations.
+            </p>
+            <p className="text-sm mt-4" style={{ color: "#666" }}>
+              <span className="font-semibold" style={{ color: "#000" }}>
+                Service areas:
+              </span>{" "}
+              Lagos, Abuja, Port Harcourt, Kano, Jos — and remote across Nigeria.
+            </p>
+            <p className="text-sm mt-3" style={{ color: "#666" }}>
+              <span className="font-semibold" style={{ color: "#000" }}>
+                Address:
+              </span>{" "}
+              Lagos, Nigeria
             </p>
           </div>
 
@@ -19,11 +33,11 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold tracking-wider uppercase mb-5" style={{ color: '#999' }}>Services</h4>
             <ul className="flex flex-col gap-3 list-none">
-              <li><a href="/services/web-development" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Web Development</a></li>
-              <li><a href="/services/mobile-apps" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Mobile Apps</a></li>
-              <li><a href="/services" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Custom Software</a></li>
-              <li><a href="/services" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>UI/UX Design</a></li>
-              <li><a href="/services" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Maintenance</a></li>
+              <li><Link href="/services/web-development" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Web Development</Link></li>
+              <li><Link href="/services/mobile-apps" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Mobile Apps</Link></li>
+              <li><Link href="/services" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Custom Software</Link></li>
+              <li><Link href="/services" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>UI/UX Design</Link></li>
+              <li><Link href="/services" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Maintenance</Link></li>
             </ul>
           </div>
 
@@ -31,11 +45,11 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold tracking-wider uppercase mb-5" style={{ color: '#999' }}>Company</h4>
             <ul className="flex flex-col gap-3 list-none">
-              <li><a href="/about" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>About Us</a></li>
-              <li><a href="/portfolio" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Portfolio</a></li>
-              <li><a href="/pricing" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Pricing</a></li>
-              <li><a href="/faq" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>FAQ</a></li>
-              <li><a href="mailto:hello@mousetech.app" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>hello@mousetech.app</a></li>
+              <li><Link href="/about" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>About Us</Link></li>
+              <li><Link href="/portfolio" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Portfolio</Link></li>
+              <li><Link href="/pricing" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Pricing</Link></li>
+              <li><Link href="/faq" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>FAQ</Link></li>
+              <li><a href="mailto:hello@mousetech.app" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>hello@mousetech.app</a></li>
             </ul>
           </div>
 
@@ -43,8 +57,8 @@ export default function Footer() {
           <div>
             <h4 className="text-xs font-semibold tracking-wider uppercase mb-5" style={{ color: '#999' }}>Legal</h4>
             <ul className="flex flex-col gap-3 list-none">
-              <li><a href="/privacy" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Privacy Policy</a></li>
-              <li><a href="/terms" className="text-sm no-underline transition-colors" style={{ color: '#666' }}>Terms of Service</a></li>
+              <li><Link href="/privacy" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Terms of Service</Link></li>
             </ul>
           </div>
         </div>
