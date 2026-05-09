@@ -328,6 +328,257 @@ export default function VibecodeLanding() {
         </div>
       </Section>
 
+      {/* Schedule + Pricing */}
+      <Section
+        id="schedule"
+        className="px-[5%] py-16 md:py-20 lg:py-24"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+      >
+        <div className="max-w-[1100px] mx-auto">
+          <div
+            className="flex flex-col md:flex-row md:items-center gap-4 p-6 md:p-8 rounded-2xl mb-12"
+            style={{
+              background: ACCENT_DIM,
+              border: "1px solid rgba(223,255,74,0.25)",
+            }}
+          >
+            <div
+              className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center"
+              style={{ background: "rgba(0,0,0,0.35)", color: ACCENT }}
+            >
+              <Calendar className="w-7 h-7" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-white mb-1">
+                Class holds 18th–20th May 2026
+              </h3>
+              <p className="text-white/70 flex flex-wrap items-center gap-2">
+                <Video className="w-4 h-4 inline text-white/50" />
+                Online via Google Meet · Join link shared after registration
+              </p>
+            </div>
+          </div>
+
+          <p
+            id="pricing"
+            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+            style={{ color: ACCENT }}
+          >
+            Pricing
+          </p>
+          <h2
+            className="text-3xl sm:text-4xl font-bold text-white mb-4"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            Choose your window — early bird saves ₦3,000
+          </h2>
+          <p className="text-white/50 text-sm max-w-[640px] mb-10">
+            After you pay by transfer, send your proof on WhatsApp: attach the
+            screenshot or PDF, and use <strong className="text-white/70">VIBECODE</strong>{" "}
+            plus your full name in the message (nothing is uploaded on this site).
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div
+              className="p-8 rounded-2xl relative overflow-hidden"
+              style={{
+                border: `2px solid ${ACCENT}`,
+                background: "linear-gradient(145deg, rgba(223,255,74,0.08), rgba(0,0,0,0.2))",
+              }}
+            >
+              <span
+                className="absolute top-4 right-4 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full text-black"
+                style={{ background: ACCENT }}
+              >
+                Best value
+              </span>
+              <h3 className="text-lg font-semibold text-white/80 mb-2">
+                Early bird
+              </h3>
+              <p className="text-4xl font-bold mb-2" style={{ color: ACCENT }}>
+                ₦7,000
+              </p>
+              <p className="text-white/55 text-sm mb-6">
+                8th–15th May 2026 · Lock this rate before it closes.
+              </p>
+              <ul className="space-y-2 text-sm text-white/70 mb-8 list-none p-0">
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 flex-shrink-0" style={{ color: ACCENT }} />
+                  Full 3-day live sessions
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 flex-shrink-0" style={{ color: ACCENT }} />
+                  Google Meet access
+                </li>
+              </ul>
+              <a
+                href={WHATSAPP_REGISTER}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center py-3.5 rounded-lg font-semibold text-black no-underline"
+                style={{ background: ACCENT }}
+              >
+                Reserve early bird
+              </a>
+            </div>
+
+            <div
+              className="p-8 rounded-2xl"
+              style={{
+                border: "1px solid rgba(255,255,255,0.12)",
+                background: "rgba(255,255,255,0.03)",
+              }}
+            >
+              <h3 className="text-lg font-semibold text-white/80 mb-2">
+                Regular
+              </h3>
+              <p className="text-4xl font-bold text-white mb-2">₦10,000</p>
+              <p className="text-white/55 text-sm mb-6">
+                16th–18th May 2026 · Same full access — higher investment.
+              </p>
+              <ul className="space-y-2 text-sm text-white/70 mb-8 list-none p-0">
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 flex-shrink-0 text-white/40" />
+                  Full 3-day live sessions
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="w-4 h-4 flex-shrink-0 text-white/40" />
+                  Google Meet access
+                </li>
+              </ul>
+              <a
+                href={WHATSAPP_REGISTER}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-center py-3.5 rounded-lg font-semibold no-underline border border-white/25 text-white hover:bg-white/5 transition-colors"
+              >
+                Register at regular price
+              </a>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Payment */}
+      <Section
+        id="payment"
+        className="px-[5%] pb-16 md:pb-20 lg:pb-24 pt-4 md:pt-6"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+      >
+        <div className="max-w-[640px] mx-auto">
+          <p
+            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
+            style={{ color: ACCENT }}
+          >
+            Pay by transfer
+          </p>
+          <h2
+            className="text-3xl font-bold text-white mb-4"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            OPAY account details
+          </h2>
+          <p className="text-white/55 mb-6 space-y-3">
+            <span className="block">
+              <strong className="text-white/90">1.</strong> Pay into the OPAY
+              account below (use a transfer reference that includes{" "}
+              <strong className="text-white/90">VIBECODE</strong> and your name
+              if your bank allows it).
+            </span>
+            <span className="block">
+              <strong className="text-white/90">2.</strong> On{" "}
+              <strong className="text-white/90">WhatsApp</strong>, open a chat
+              with <strong className="text-white/90">0807 893 3943</strong>,
+              <strong className="text-white/90"> attach</strong> your payment
+              receipt or screenshot{" "}
+              <strong className="text-white/90">manually</strong>, then send your
+              message starting with <strong className="text-white/90">VIBECODE</strong>{" "}
+              and your <strong className="text-white/90">full name</strong> so we can
+              match your payment and confirm your seat.
+            </span>
+          </p>
+          <p className="text-white/45 text-sm mb-8">
+            We do not collect proof on this website — everything goes through
+            WhatsApp after you pay.
+          </p>
+
+          <div
+            className="rounded-2xl p-6 md:p-8 space-y-6"
+            style={{
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
+          >
+            {[
+              { label: "Account number", value: "8078933943" },
+              { label: "Bank", value: "OPAY" },
+              { label: "Account name", value: "Ayodele Oluwasegun Moyebi" },
+            ].map((row) => (
+              <div
+                key={row.label}
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-6 border-b border-white/10 last:border-0 last:pb-0"
+              >
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-white/40 mb-1">
+                    {row.label}
+                  </p>
+                  <p className="text-lg font-semibold text-white">{row.value}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => copyText(row.label, row.value)}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-white/15 text-white/85 hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 self-start sm:self-center"
+                >
+                  {copiedField === row.label ? (
+                    <>
+                      <Check className="w-4 h-4" style={{ color: ACCENT }} />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-4 h-4" />
+                      Copy
+                    </>
+                  )}
+                </button>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={() => copyText("all", paymentBlock)}
+              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-lg font-semibold border transition-colors"
+              style={{
+                borderColor: "rgba(223,255,74,0.4)",
+                color: ACCENT,
+                background: ACCENT_DIM,
+              }}
+            >
+              {copiedField === "all" ? (
+                <>
+                  <Check className="w-5 h-5" />
+                  Copied all details
+                </>
+              ) : (
+                <>
+                  <Copy className="w-5 h-5" />
+                  Copy all payment details
+                </>
+              )}
+            </button>
+
+            <a
+              href={WHATSAPP_REGISTER}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-lg font-semibold no-underline border border-white/20 text-white hover:bg-white/5 transition-colors"
+            >
+              Open WhatsApp to send proof
+            </a>
+          </div>
+        </div>
+      </Section>
+
       {/* Instructor — profile only */}
       <Section
         id="instructor"
@@ -510,249 +761,6 @@ export default function VibecodeLanding() {
             >
               About MouseTech
             </Link>
-          </div>
-        </div>
-      </Section>
-
-      {/* Schedule + Pricing */}
-      <Section id="schedule" className="px-[5%] pt-8 pb-12 md:pb-16">
-        <div className="max-w-[1100px] mx-auto">
-          <div
-            className="flex flex-col md:flex-row md:items-center gap-4 p-6 md:p-8 rounded-2xl mb-12"
-            style={{
-              background: ACCENT_DIM,
-              border: "1px solid rgba(223,255,74,0.25)",
-            }}
-          >
-            <div
-              className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(0,0,0,0.35)", color: ACCENT }}
-            >
-              <Calendar className="w-7 h-7" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-1">
-                Class holds 18th–20th May 2026
-              </h3>
-              <p className="text-white/70 flex flex-wrap items-center gap-2">
-                <Video className="w-4 h-4 inline text-white/50" />
-                Online via Google Meet · Join link shared after registration
-              </p>
-            </div>
-          </div>
-
-          <p
-            id="pricing"
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
-            style={{ color: ACCENT }}
-          >
-            Pricing
-          </p>
-          <h2
-            className="text-3xl sm:text-4xl font-bold text-white mb-4"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            Choose your window — early bird saves ₦3,000
-          </h2>
-          <p className="text-white/50 text-sm max-w-[640px] mb-10">
-            After you pay by transfer, send your proof on WhatsApp: attach the
-            screenshot or PDF, and use <strong className="text-white/70">VIBECODE</strong>{" "}
-            plus your full name in the message (nothing is uploaded on this site).
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div
-              className="p-8 rounded-2xl relative overflow-hidden"
-              style={{
-                border: `2px solid ${ACCENT}`,
-                background: "linear-gradient(145deg, rgba(223,255,74,0.08), rgba(0,0,0,0.2))",
-              }}
-            >
-              <span
-                className="absolute top-4 right-4 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full text-black"
-                style={{ background: ACCENT }}
-              >
-                Best value
-              </span>
-              <h3 className="text-lg font-semibold text-white/80 mb-2">
-                Early bird
-              </h3>
-              <p className="text-4xl font-bold mb-2" style={{ color: ACCENT }}>
-                ₦7,000
-              </p>
-              <p className="text-white/55 text-sm mb-6">
-                8th–15th May 2026 · Lock this rate before it closes.
-              </p>
-              <ul className="space-y-2 text-sm text-white/70 mb-8 list-none p-0">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0" style={{ color: ACCENT }} />
-                  Full 3-day live sessions
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0" style={{ color: ACCENT }} />
-                  Google Meet access
-                </li>
-              </ul>
-              <a
-                href={WHATSAPP_REGISTER}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center py-3.5 rounded-lg font-semibold text-black no-underline"
-                style={{ background: ACCENT }}
-              >
-                Reserve early bird
-              </a>
-            </div>
-
-            <div
-              className="p-8 rounded-2xl"
-              style={{
-                border: "1px solid rgba(255,255,255,0.12)",
-                background: "rgba(255,255,255,0.03)",
-              }}
-            >
-              <h3 className="text-lg font-semibold text-white/80 mb-2">
-                Regular
-              </h3>
-              <p className="text-4xl font-bold text-white mb-2">₦10,000</p>
-              <p className="text-white/55 text-sm mb-6">
-                16th–18th May 2026 · Same full access — higher investment.
-              </p>
-              <ul className="space-y-2 text-sm text-white/70 mb-8 list-none p-0">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0 text-white/40" />
-                  Full 3-day live sessions
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0 text-white/40" />
-                  Google Meet access
-                </li>
-              </ul>
-              <a
-                href={WHATSAPP_REGISTER}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center py-3.5 rounded-lg font-semibold no-underline border border-white/25 text-white hover:bg-white/5 transition-colors"
-              >
-                Register at regular price
-              </a>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Payment */}
-      <Section id="payment" className="px-[5%] py-20 md:py-28">
-        <div className="max-w-[640px] mx-auto">
-          <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
-            style={{ color: ACCENT }}
-          >
-            Pay by transfer
-          </p>
-          <h2
-            className="text-3xl font-bold text-white mb-4"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            OPAY account details
-          </h2>
-          <p className="text-white/55 mb-6 space-y-3">
-            <span className="block">
-              <strong className="text-white/90">1.</strong> Pay into the OPAY
-              account below (use a transfer reference that includes{" "}
-              <strong className="text-white/90">VIBECODE</strong> and your name
-              if your bank allows it).
-            </span>
-            <span className="block">
-              <strong className="text-white/90">2.</strong> On{" "}
-              <strong className="text-white/90">WhatsApp</strong>, open a chat
-              with <strong className="text-white/90">0807 893 3943</strong>,
-              <strong className="text-white/90"> attach</strong> your payment
-              receipt or screenshot{" "}
-              <strong className="text-white/90">manually</strong>, then send your
-              message starting with <strong className="text-white/90">VIBECODE</strong>{" "}
-              and your <strong className="text-white/90">full name</strong> so we can
-              match your payment and confirm your seat.
-            </span>
-          </p>
-          <p className="text-white/45 text-sm mb-8">
-            We do not collect proof on this website — everything goes through
-            WhatsApp after you pay.
-          </p>
-
-          <div
-            className="rounded-2xl p-6 md:p-8 space-y-6"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            {[
-              { label: "Account number", value: "8078933943" },
-              { label: "Bank", value: "OPAY" },
-              { label: "Account name", value: "Ayodele Oluwasegun Moyebi" },
-            ].map((row) => (
-              <div
-                key={row.label}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-6 border-b border-white/10 last:border-0 last:pb-0"
-              >
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-white/40 mb-1">
-                    {row.label}
-                  </p>
-                  <p className="text-lg font-semibold text-white">{row.value}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => copyText(row.label, row.value)}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-white/15 text-white/85 hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 self-start sm:self-center"
-                >
-                  {copiedField === row.label ? (
-                    <>
-                      <Check className="w-4 h-4" style={{ color: ACCENT }} />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4" />
-                      Copy
-                    </>
-                  )}
-                </button>
-              </div>
-            ))}
-
-            <button
-              type="button"
-              onClick={() => copyText("all", paymentBlock)}
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-lg font-semibold border transition-colors"
-              style={{
-                borderColor: "rgba(223,255,74,0.4)",
-                color: ACCENT,
-                background: ACCENT_DIM,
-              }}
-            >
-              {copiedField === "all" ? (
-                <>
-                  <Check className="w-5 h-5" />
-                  Copied all details
-                </>
-              ) : (
-                <>
-                  <Copy className="w-5 h-5" />
-                  Copy all payment details
-                </>
-              )}
-            </button>
-
-            <a
-              href={WHATSAPP_REGISTER}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-lg font-semibold no-underline border border-white/20 text-white hover:bg-white/5 transition-colors"
-            >
-              Open WhatsApp to send proof
-            </a>
           </div>
         </div>
       </Section>
