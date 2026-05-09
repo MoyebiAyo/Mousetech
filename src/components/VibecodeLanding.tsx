@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Building2,
   Calendar,
   Check,
   Code2,
@@ -58,7 +57,7 @@ const outcomes = [
 function BuiltHighlightCard({ cs }: { cs: CaseStudy }) {
   return (
     <li
-      className="rounded-xl p-5 transition-colors"
+      className="rounded-xl p-6 md:p-7 transition-colors"
       style={{
         background: "rgba(255,255,255,0.04)",
         border: "1px solid rgba(255,255,255,0.08)",
@@ -160,14 +159,15 @@ export default function VibecodeLanding() {
           { label: "Home", href: "/" },
           { label: "What you'll learn", href: "#outcomes" },
           { label: "Instructor", href: "#instructor" },
+          { label: "Selected work", href: "#highlights" },
           { label: "Dates & pricing", href: "#pricing" },
           { label: "Payment", href: "#payment" },
         ]}
       />
 
-      {/* Hero */}
+      {/* Hero — full viewport on desktop so the grid band fills the first screen */}
       <section
-        className="relative overflow-hidden pt-[88px] pb-16 md:pb-24 px-[5%]"
+        className="relative overflow-hidden flex flex-col pt-[88px] pb-16 md:pb-24 px-[5%] min-h-screen lg:min-h-[100dvh]"
         style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
       >
         <div
@@ -185,7 +185,7 @@ export default function VibecodeLanding() {
           style={{ background: ACCENT }}
         />
 
-        <div className="max-w-[1200px] mx-auto relative grid lg:grid-cols-[1fr_minmax(280px,420px)] gap-12 lg:gap-16 items-center">
+        <div className="max-w-[1200px] mx-auto relative w-full flex-1 grid lg:grid-cols-[1fr_minmax(280px,420px)] gap-12 lg:gap-16 items-center lg:py-4">
           <div>
             <p
               className="text-xs font-semibold tracking-[0.2em] uppercase mb-6"
@@ -328,11 +328,14 @@ export default function VibecodeLanding() {
         </div>
       </Section>
 
-      {/* Instructor & profile */}
+      {/* Instructor — profile only */}
       <Section
         id="instructor"
-        className="px-[5%] py-20 md:py-28"
-        style={{ background: "rgba(255,255,255,0.02)" }}
+        className="px-[5%] py-24 md:py-32 lg:py-36"
+        style={{
+          background: "rgba(255,255,255,0.02)",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+        }}
       >
         <div className="max-w-[1100px] mx-auto">
           <p
@@ -347,12 +350,12 @@ export default function VibecodeLanding() {
           >
             Meet Ayodele
           </h2>
-          <p className="text-lg text-white/55 text-center max-w-[640px] mx-auto mb-14">
+          <p className="text-lg text-white/55 text-center max-w-[640px] mx-auto mb-16 md:mb-20">
             Founder of Mouse Technologies — building and shipping real products
             for businesses, creators, and learners across Nigeria.
           </p>
 
-          <div className="grid lg:grid-cols-[minmax(0,380px)_1fr] gap-12 lg:gap-16 items-start">
+          <div className="grid lg:grid-cols-[minmax(0,380px)_1fr] gap-14 lg:gap-20 lg:items-center">
             <div className="mx-auto w-full max-w-[380px] lg:mx-0">
               <div
                 className="relative rounded-2xl overflow-hidden border"
@@ -370,17 +373,17 @@ export default function VibecodeLanding() {
                   sizes="(max-width: 1024px) 90vw, 380px"
                 />
               </div>
-              <p className="mt-4 text-center lg:text-left text-sm text-white/45">
+              <p className="mt-5 text-center lg:text-left text-sm text-white/45">
                 Ayodele Oluwasegun Moyebi · Founder, Mouse Technologies
               </p>
             </div>
 
-            <div className="text-left space-y-6">
+            <div className="text-left space-y-8 md:space-y-10">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-2">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
                   I teach what I build every week
                 </h3>
-                <p className="text-white/65 leading-relaxed">
+                <p className="text-white/65 leading-relaxed text-[17px] md:text-lg">
                   I run Mouse Technologies as a hands-on developer, not a
                   slide-only coach. My day job is shipping production software:
                   performant websites, structured platforms, and client
@@ -389,107 +392,124 @@ export default function VibecodeLanding() {
                   masterclass.
                 </p>
               </div>
-              <p className="text-white/60 leading-relaxed">
-                We take on education, events, portfolios, and business sites —
-                the kind of work you see in our case studies below. I care about
-                clear UX, fast shipping, and writing code you&apos;re not
-                ashamed to show — including using AI as a lever, not a crutch.
+              <p className="text-white/60 leading-relaxed text-[17px] md:text-lg">
+                We take on education, events, portfolios, and business sites. I
+                care about clear UX, fast shipping, and writing code you&apos;re
+                not ashamed to show — including using AI as a lever, not a
+                crutch. A few shipped highlights are in the next section.
               </p>
-
-              <div>
-                <p
-                  className="text-xs font-semibold tracking-[0.2em] uppercase mb-4 flex items-center gap-2"
-                  style={{ color: ACCENT }}
-                >
-                  <Building2 className="w-4 h-4" strokeWidth={1.75} />
-                  What I&apos;ve built (highlights)
-                </p>
-                <ul className="space-y-4 list-none p-0 m-0">
-                  {eventPassCs ? (
-                    <BuiltHighlightCard cs={eventPassCs} key={eventPassCs.slug} />
-                  ) : null}
-                  {steamCs ? (
-                    <BuiltHighlightCard cs={steamCs} key={steamCs.slug} />
-                  ) : null}
-                  <li
-                    className="rounded-xl p-5 transition-colors"
-                    style={{
-                      background: "rgba(255,255,255,0.04)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                    }}
-                  >
-                    <p className="font-semibold text-white">Portfolios</p>
-                    <p className="text-sm text-white/50 mt-1">
-                      Personal &amp; client showcase sites
-                    </p>
-                    <p className="text-sm text-white/60 mt-2 leading-relaxed">
-                      Fast, premium portfolio experiences — clear layouts,
-                      strong first impressions, and contact-forward flows for
-                      personal brands and service businesses.
-                    </p>
-                    <div className="mt-5 space-y-5">
-                      {portfolioCs.map((cs, i) => (
-                        <div
-                          key={cs.slug}
-                          className={
-                            i > 0 ? "pt-5 border-t border-white/10" : ""
-                          }
-                        >
-                          <p className="font-medium text-white/90">{cs.title}</p>
-                          <p className="text-xs text-white/45 mt-0.5">
-                            {cs.industry} · {cs.clientType}
-                          </p>
-                          <p className="text-sm text-white/55 mt-2 leading-relaxed">
-                            {cs.summary}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mt-3">
-                            <Link
-                              href={`/case-studies/${cs.slug}`}
-                              className="text-sm font-medium no-underline px-3 py-1.5 rounded-lg border border-white/15 text-white/85 hover:bg-white/5 transition-colors whitespace-nowrap"
-                            >
-                              Case study
-                            </Link>
-                            {cs.href ? (
-                              <a
-                                href={cs.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-sm font-medium no-underline px-3 py-1.5 rounded-lg text-black transition-colors whitespace-nowrap"
-                                style={{ background: ACCENT }}
-                              >
-                                Live site
-                                <ExternalLink className="w-3.5 h-3.5" />
-                              </a>
-                            ) : null}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </li>
-                </ul>
-                <div className="mt-6 flex flex-wrap gap-4">
-                  <Link
-                    href="/case-studies"
-                    className="text-sm font-semibold no-underline"
-                    style={{ color: ACCENT }}
-                  >
-                    Browse all case studies →
-                  </Link>
-                  <Link
-                    href="/portfolio"
-                    className="text-sm font-semibold text-white/55 hover:text-white/80 no-underline"
-                  >
-                    Portfolio
-                  </Link>
-                  <Link
-                    href="/about"
-                    className="text-sm font-semibold text-white/55 hover:text-white/80 no-underline"
-                  >
-                    About MouseTech
-                  </Link>
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Selected work — case highlights, separate band */}
+      <Section
+        id="highlights"
+        className="px-[5%] py-24 md:py-32 lg:py-36"
+        style={{
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+        }}
+      >
+        <div className="max-w-[1100px] mx-auto">
+          <p
+            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
+            style={{ color: ACCENT }}
+          >
+            Selected work
+          </p>
+          <h2
+            className="text-3xl sm:text-4xl font-bold mb-4 text-center max-w-[720px] mx-auto"
+            style={{ letterSpacing: "-0.03em" }}
+          >
+            What I&apos;ve built
+          </h2>
+          <p className="text-white/50 text-center max-w-[560px] mx-auto mb-14 md:mb-16 text-base md:text-lg leading-relaxed">
+            Real products and client launches — the same kind of shipping
+            mindset you&apos;ll practice in the masterclass.
+          </p>
+
+          <ul className="space-y-5 md:space-y-6 list-none p-0 m-0">
+            {eventPassCs ? (
+              <BuiltHighlightCard cs={eventPassCs} key={eventPassCs.slug} />
+            ) : null}
+            {steamCs ? (
+              <BuiltHighlightCard cs={steamCs} key={steamCs.slug} />
+            ) : null}
+            <li
+              className="rounded-xl p-6 md:p-8 transition-colors"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              <p className="font-semibold text-white text-lg">Portfolios</p>
+              <p className="text-sm text-white/50 mt-2">
+                Personal &amp; client showcase sites
+              </p>
+              <p className="text-sm text-white/60 mt-3 leading-relaxed max-w-[720px]">
+                Fast, premium portfolio experiences — clear layouts, strong
+                first impressions, and contact-forward flows for personal brands
+                and service businesses.
+              </p>
+              <div className="mt-8 space-y-6 md:space-y-8">
+                {portfolioCs.map((cs, i) => (
+                  <div
+                    key={cs.slug}
+                    className={i > 0 ? "pt-6 md:pt-8 border-t border-white/10" : ""}
+                  >
+                    <p className="font-medium text-white/90">{cs.title}</p>
+                    <p className="text-xs text-white/45 mt-1">
+                      {cs.industry} · {cs.clientType}
+                    </p>
+                    <p className="text-sm text-white/55 mt-3 leading-relaxed">
+                      {cs.summary}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <Link
+                        href={`/case-studies/${cs.slug}`}
+                        className="text-sm font-medium no-underline px-3 py-1.5 rounded-lg border border-white/15 text-white/85 hover:bg-white/5 transition-colors whitespace-nowrap"
+                      >
+                        Case study
+                      </Link>
+                      {cs.href ? (
+                        <a
+                          href={cs.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-sm font-medium no-underline px-3 py-1.5 rounded-lg text-black transition-colors whitespace-nowrap"
+                          style={{ background: ACCENT }}
+                        >
+                          Live site
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </li>
+          </ul>
+          <div className="mt-12 md:mt-14 flex flex-wrap gap-x-8 gap-y-4 justify-center md:justify-start">
+            <Link
+              href="/case-studies"
+              className="text-sm font-semibold no-underline"
+              style={{ color: ACCENT }}
+            >
+              Browse all case studies →
+            </Link>
+            <Link
+              href="/portfolio"
+              className="text-sm font-semibold text-white/55 hover:text-white/80 no-underline"
+            >
+              Portfolio
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm font-semibold text-white/55 hover:text-white/80 no-underline"
+            >
+              About MouseTech
+            </Link>
           </div>
         </div>
       </Section>
