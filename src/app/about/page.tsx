@@ -5,12 +5,13 @@ import { Target, Eye, Heart, Users, Zap, ArrowRight, Quote, MessageCircle } from
 import Image from "next/image";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { caseStudies } from "@/data/caseStudies";
 
 const stats = [
-  { value: "15+", label: "Projects Delivered" },
-  { value: "12+", label: "Happy Clients" },
-  { value: "1+", label: "Years Experience" },
-  { value: "100%", label: "Client Satisfaction" },
+  { value: String(caseStudies.length), label: "Case studies" },
+  { value: "Nigeria", label: "Lagos · remote nationwide" },
+  { value: "2025", label: "MouseTech founded" },
+  { value: "Next.js", label: "Core build stack" },
 ];
 
 const values = [
@@ -45,7 +46,8 @@ const timeline = [
   {
     year: "2026",
     title: "Growing Team",
-    description: "Expanded our services and delivered over 15 successful projects for businesses across Nigeria.",
+    description:
+      "Expanded our services with a stronger focus on performance-first sites, product work, and AI-aware development workflows.",
   },
   {
     year: "2027",

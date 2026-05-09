@@ -18,6 +18,32 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: "eventpass",
+    title: "EventPass",
+    clientType: "Product",
+    industry: "Events / ticketing",
+    summary:
+      "An events platform built for organisers and attendees — ticketing, access control, and a smooth mobile-first experience from discovery to check-in.",
+    problem:
+      "Events needed a dependable way to sell and validate access without friction, with a product that stays fast when traffic spikes.",
+    solution:
+      "We engineered a focused flow for tickets, passes, and on-the-door verification, with performance and clarity as first-class concerns.",
+    results: [
+      "Clear attendee journey from ticket to entry",
+      "Flows tuned for real-world event-day load",
+      "Modern stack ready to extend with new features",
+    ],
+    stack: ["Next.js", "React", "TypeScript"],
+    timeline: "Ongoing product development",
+    scope: ["Product UX", "Ticketing & access flows", "Performance"],
+    metrics: [
+      { label: "Focus", value: "Events" },
+      { label: "Experience", value: "Mobile-first" },
+      { label: "Stack", value: "Next.js" },
+    ],
+    href: "https://theeventpass.com",
+  },
+  {
     slug: "mouse-steam-club",
     title: "Mouse STEAM Club",
     clientType: "Education initiative",
@@ -95,6 +121,32 @@ export const caseStudies: CaseStudy[] = [
       role: "Virtual Assistant",
     },
     href: "https://dorcasayomide.vercel.app",
+  },
+  {
+    slug: "praise-okwuchi-portfolio",
+    title: "Praise Okwuchi Portfolio",
+    clientType: "Personal brand",
+    industry: "Creative / Portfolio",
+    summary:
+      "A polished portfolio site that presents work and personality clearly, stays fast on every device, and makes it effortless for visitors to connect.",
+    problem:
+      "The client needed a standout online presence that reflects their craft, loads quickly, and turns visitors into conversations.",
+    solution:
+      "We shipped a responsive, performance-minded site with strong typography, scannable sections, and obvious next steps to get in touch.",
+    results: [
+      "A memorable first impression that matches the client’s brand",
+      "Smooth experience on mobile and desktop",
+      "Simple path from discovery to contact",
+    ],
+    stack: ["Next.js", "React", "Responsive UI", "Vercel"],
+    timeline: "1–2 weeks",
+    scope: ["Portfolio structure", "Visual polish", "Contact flow"],
+    metrics: [
+      { label: "Hosting", value: "Vercel" },
+      { label: "UX", value: "Mobile-first" },
+      { label: "Goal", value: "Clear CTAs" },
+    ],
+    href: "https://praiseokwuchi.vercel.app",
   },
 ];
 
