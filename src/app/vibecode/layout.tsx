@@ -1,4 +1,11 @@
 import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
+
+const vibeDisplay = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-vibe-display",
+  display: "swap",
+});
 
 const title = "Vibecode Like a Pro Dev — Live Masterclass";
 const description =
@@ -45,9 +52,10 @@ export default function VibecodeLayout({
 }>) {
   return (
     <div
+      className={vibeDisplay.variable}
       style={{
-        backgroundColor: "#050505",
-        color: "#f5f5f5",
+        backgroundColor: "#080808",
+        color: "#fafafa",
         minHeight: "100vh",
       }}
     >

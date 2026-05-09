@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Calendar,
   Check,
@@ -16,7 +17,6 @@ import {
   Video,
 } from "lucide-react";
 import NavBar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { caseStudies, type CaseStudy } from "@/data/caseStudies";
 
 const WHATSAPP_PRESET_MESSAGE = `VIBECODE
@@ -28,55 +28,106 @@ const WHATSAPP_REGISTER =
   "https://wa.me/2348078933943?text=" +
   encodeURIComponent(WHATSAPP_PRESET_MESSAGE);
 
-const ACCENT = "#dfff4a";
-const ACCENT_DIM = "rgba(223, 255, 74, 0.12)";
+/** Primary electric lime — MouseTech energy */
+const ACCENT = "#d4ff3d";
+const ACCENT_DIM = "rgba(212, 255, 61, 0.09)";
+const ACCENT_BORDER = "rgba(212, 255, 61, 0.32)";
+
+const glass =
+  "rounded-[22px] border border-white/[0.07] bg-white/[0.03] backdrop-blur-xl shadow-[0_12px_48px_rgba(0,0,0,0.4)]";
+
+const glassHover =
+  "transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.045] hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)]";
 
 const outcomes = [
-  {
-    title: "Build your own startup like a pro developer",
-    icon: Rocket,
-  },
-  {
-    title: "Build websites without AI slop",
-    icon: Sparkles,
-  },
-  {
-    title: "Gain real experience to work as a developer",
-    icon: GraduationCap,
-  },
-  {
-    title: "Build frontend and backends with AI",
-    icon: Code2,
-  },
-  {
-    title: "Build platforms — not just websites",
-    icon: Users,
-  },
+  { title: "Build your own startup like a pro developer", icon: Rocket },
+  { title: "Build websites without AI slop", icon: Sparkles },
+  { title: "Gain real experience to work as a developer", icon: GraduationCap },
+  { title: "Build frontend and backends with AI", icon: Code2 },
+  { title: "Build platforms — not just websites", icon: Users },
 ];
+
+const bentoSpans = [
+  "md:col-span-4 md:row-span-2 min-h-[200px] md:min-h-[260px]",
+  "md:col-span-2 min-h-[120px]",
+  "md:col-span-2 min-h-[120px]",
+  "md:col-span-3 min-h-[140px]",
+  "md:col-span-3 min-h-[140px]",
+] as const;
+
+function Reveal({
+  children,
+  className = "",
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const reduce = useReducedMotion();
+  if (reduce) return <div className={className}>{children}</div>;
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.12, margin: "0px 0px -60px 0px" }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function AmbientBackdrop() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-[#080808]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-15%,rgba(59,130,246,0.14),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_45%_at_100%_30%,rgba(167,139,250,0.12),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_0%_70%,rgba(212,255,61,0.06),transparent_45%)]" />
+      <div className="absolute -top-[20%] left-[5%] h-[min(70vw,520px)] w-[min(70vw,520px)] animate-vibe-aurora rounded-full bg-[#3b82f6] opacity-[0.11] blur-[120px]" />
+      <div className="absolute bottom-[-15%] right-[-8%] h-[min(55vw,440px)] w-[min(55vw,440px)] rounded-full bg-[#a78bfa] opacity-[0.13] blur-[100px] animate-vibe-glow" />
+      <div
+        className="absolute inset-0 opacity-[0.14]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: "56px 56px",
+          maskImage:
+            "radial-gradient(ellipse 75% 65% at 50% 40%, black 15%, transparent 75%)",
+        }}
+      />
+    </div>
+  );
+}
 
 function BuiltHighlightCard({ cs }: { cs: CaseStudy }) {
   return (
     <li
-      className="rounded-xl p-6 md:p-7 transition-colors"
-      style={{
-        background: "rgba(255,255,255,0.04)",
-        border: "1px solid rgba(255,255,255,0.08)",
-      }}
+      className={`${glass} ${glassHover} group list-none p-6 md:p-8 rounded-[22px]`}
     >
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+      <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="font-semibold text-white">{cs.title}</p>
-          <p className="text-sm text-white/50 mt-1">
+          <p className="font-display text-lg font-semibold tracking-tight text-white">
+            {cs.title}
+          </p>
+          <p className="mt-1.5 text-sm text-white/45">
             {cs.industry} · {cs.clientType}
           </p>
-          <p className="text-sm text-white/60 mt-2 leading-relaxed">
+          <p className="mt-3 text-[15px] leading-relaxed text-white/55">
             {cs.summary}
           </p>
         </div>
-        <div className="flex flex-wrap gap-2 sm:flex-col sm:items-end shrink-0">
+        <div className="flex shrink-0 flex-wrap gap-2 sm:flex-col sm:items-end">
           <Link
             href={`/case-studies/${cs.slug}`}
-            className="text-sm font-medium no-underline px-3 py-1.5 rounded-lg border border-white/15 text-white/85 hover:bg-white/5 transition-colors whitespace-nowrap"
+            className="whitespace-nowrap rounded-xl border border-white/12 bg-white/[0.02] px-4 py-2 text-sm font-medium text-white/85 no-underline transition-colors hover:border-white/22 hover:bg-white/[0.06]"
           >
             Case study
           </Link>
@@ -85,11 +136,10 @@ function BuiltHighlightCard({ cs }: { cs: CaseStudy }) {
               href={cs.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium no-underline px-3 py-1.5 rounded-lg text-black transition-colors whitespace-nowrap"
-              style={{ background: ACCENT }}
+              className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-xl bg-gradient-to-br from-[#d4ff3d] to-[#9fe82a] px-4 py-2 text-sm font-semibold text-[#0a0a0a] no-underline shadow-[0_0_24px_rgba(212,255,61,0.25)] transition-transform hover:scale-[1.02]"
             >
               Live site
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="h-3.5 w-3.5" />
             </a>
           ) : null}
         </div>
@@ -98,26 +148,93 @@ function BuiltHighlightCard({ cs }: { cs: CaseStudy }) {
   );
 }
 
-function Section({
+function Eyebrow({
+  children,
+  className = "",
+  id,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+}) {
+  return (
+    <p
+      id={id}
+      className={`text-[11px] font-semibold uppercase tracking-[0.22em] text-white/45 ${className}`}
+    >
+      {children}
+    </p>
+  );
+}
+
+function SectionShell({
   id,
   children,
   className = "",
-  style,
 }: {
   id?: string;
   children: React.ReactNode;
   className?: string;
-  style?: React.CSSProperties;
 }) {
   return (
-    <section id={id} className={className} style={style}>
+    <section id={id} className={`px-[5%] ${className}`}>
       {children}
     </section>
   );
 }
 
+function VibeFooter() {
+  return (
+    <footer className="relative mt-6 border-t border-white/[0.06] px-[5%] py-16 md:py-20">
+      <div className="mx-auto flex max-w-[1100px] flex-col gap-10 md:flex-row md:items-center md:justify-between">
+        <Link
+          href="/"
+          className="font-display text-lg font-semibold tracking-tight text-white no-underline transition-opacity hover:opacity-85"
+        >
+          MouseTech
+        </Link>
+        <nav
+          aria-label="Footer"
+          className="flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/42"
+        >
+          <Link
+            href="/about"
+            className="no-underline transition-colors hover:text-white/85"
+          >
+            About
+          </Link>
+          <Link
+            href="/case-studies"
+            className="no-underline transition-colors hover:text-white/85"
+          >
+            Case studies
+          </Link>
+          <Link
+            href="/portfolio"
+            className="no-underline transition-colors hover:text-white/85"
+          >
+            Portfolio
+          </Link>
+          <a
+            href={WHATSAPP_REGISTER}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="no-underline transition-colors hover:text-[#d4ff3d]"
+          >
+            WhatsApp
+          </a>
+        </nav>
+        <p className="text-xs text-white/28 md:text-right">
+          © {new Date().getFullYear()} Mouse Technologies
+        </p>
+      </div>
+    </footer>
+  );
+}
+
 export default function VibecodeLanding() {
   const [copiedField, setCopiedField] = useState<string | null>(null);
+  const reduceMotion = useReducedMotion();
 
   const copyText = async (label: string, text: string) => {
     try {
@@ -143,14 +260,9 @@ export default function VibecodeLanding() {
   );
 
   return (
-    <main
-      className="min-h-screen bg-[#050505] text-white"
-      style={{
-        backgroundColor: "#050505",
-        color: "#f5f5f5",
-        minHeight: "100vh",
-      }}
-    >
+    <main className="relative min-h-screen text-[#fafafa] antialiased">
+      <AmbientBackdrop />
+
       <NavBar
         variant="dark"
         ctaText="Register on WhatsApp"
@@ -165,644 +277,647 @@ export default function VibecodeLanding() {
         ]}
       />
 
-      {/* Hero — full viewport on desktop so the grid band fills the first screen */}
-      <section
-        className="relative overflow-hidden flex flex-col pt-[88px] pb-16 md:pb-24 px-[5%] min-h-screen lg:min-h-[100dvh]"
-        style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
-      >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)
-          `,
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div
-          className="absolute -top-24 right-[-10%] w-[420px] h-[420px] rounded-full blur-3xl opacity-40 pointer-events-none"
-          style={{ background: ACCENT }}
-        />
+      {/* Hero */}
+      <section className="relative flex min-h-screen flex-col overflow-hidden px-[5%] pb-20 pt-[88px] lg:min-h-[100dvh] lg:pb-28">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -right-[15%] top-[10%] h-[380px] w-[380px] rounded-full bg-[#d4ff3d] opacity-[0.07] blur-[100px]" />
+          <div className="absolute bottom-[15%] left-[-10%] h-[280px] w-[280px] rounded-full bg-[#3b82f6] opacity-[0.08] blur-[90px]" />
+        </div>
 
-        <div className="max-w-[1200px] mx-auto relative w-full flex-1 grid lg:grid-cols-[1fr_minmax(280px,420px)] gap-12 lg:gap-16 items-center lg:py-4">
+        <div className="relative mx-auto grid w-full max-w-[1200px] flex-1 items-center gap-14 py-6 lg:grid-cols-[1fr_minmax(280px,424px)] lg:gap-20 lg:py-10">
           <div>
-            <p
-              className="text-xs font-semibold tracking-[0.2em] uppercase mb-6"
-              style={{ color: "rgba(255,255,255,0.55)" }}
-            >
-              Mouse Technologies · Live masterclass
-            </p>
+            <Reveal>
+              <Eyebrow className="mb-7 text-[#d4ff3d]/90">
+                Mouse Technologies · Live masterclass
+              </Eyebrow>
+            </Reveal>
 
-            <h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08] mb-6"
-              style={{ letterSpacing: "-0.04em" }}
-            >
-              <span className="text-white">Vibecode</span>
-              <br />
-              <span style={{ color: ACCENT }}>like a pro dev</span>
-            </h1>
+            <Reveal delay={0.04}>
+              <h1 className="font-display text-[2.5rem] font-bold leading-[1.05] tracking-[-0.04em] text-white sm:text-5xl lg:text-[3.5rem] lg:leading-[1.02]">
+                Vibecode
+                <br />
+                <span style={{ color: ACCENT }}>like a pro dev</span>
+              </h1>
+            </Reveal>
 
-            <p className="text-lg sm:text-xl text-white/65 max-w-[520px] leading-relaxed mb-8">
-              A premium, hands-on masterclass for aspiring developers who want
-              to build, ship, and scale real-world products — live on Google Meet.
-            </p>
+            <Reveal delay={0.08}>
+              <p className="mt-7 max-w-[32rem] text-lg leading-relaxed text-white/58 sm:text-xl">
+                A premium, hands-on sprint for builders who want to ship real
+                products — live on Google Meet.
+              </p>
+            </Reveal>
 
-            <div className="flex flex-wrap items-center gap-3 mb-10">
-              <span
-                className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full"
-                style={{
-                  background: ACCENT_DIM,
-                  color: ACCENT,
-                  border: "1px solid rgba(223,255,74,0.35)",
+            <Reveal delay={0.1}>
+              <div className="mt-9 flex flex-wrap items-center gap-3">
+                <span
+                  className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold"
+                  style={{
+                    background: ACCENT_DIM,
+                    borderColor: ACCENT_BORDER,
+                    color: ACCENT,
+                    boxShadow: "0 0 32px rgba(212,255,61,0.12)",
+                  }}
+                >
+                  <span
+                    className="h-2 w-2 animate-pulse rounded-full bg-[#ff5c5c]"
+                    aria-hidden
+                  />
+                  No experience required
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-sm text-white/62 backdrop-blur-md">
+                  <Video className="h-4 w-4 text-white/40" strokeWidth={1.6} />
+                  Google Meet
+                </span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.12}>
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+                <a
+                  href={WHATSAPP_REGISTER}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-gradient-to-br from-[#d4ff3d] to-[#9fe82a] px-8 py-4 text-[15px] font-semibold text-[#0a0a0a] no-underline shadow-[0_0_40px_rgba(212,255,61,0.22)] transition-[transform,box-shadow] hover:scale-[1.02] hover:shadow-[0_0_52px_rgba(212,255,61,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff3d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080808]"
+                >
+                  Open WhatsApp to register
+                </a>
+                <Link
+                  href="#pricing"
+                  className="inline-flex items-center justify-center rounded-[18px] border border-white/[0.12] bg-white/[0.03] px-8 py-4 text-[15px] font-semibold text-white no-underline backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25"
+                >
+                  Dates &amp; pricing
+                </Link>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.14}>
+              <p className="mt-8 max-w-[32rem] text-sm leading-relaxed text-white/42">
+                WhatsApp <span className="text-white/65">0807 893 3943</span>:
+                pay into OPAY first, then{" "}
+                <strong className="font-medium text-white/80">
+                  attach your receipt
+                </strong>{" "}
+                in WhatsApp with{" "}
+                <strong className="font-medium text-[#d4ff3d]/90">
+                  VIBECODE
+                </strong>{" "}
+                and your full name so we can confirm your seat.
+              </p>
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.06} className="relative mx-auto w-full max-w-[420px] lg:max-w-none">
+            <div className="relative">
+              {!reduceMotion ? (
+                <motion.div
+                  aria-hidden
+                  className="absolute -inset-4 rounded-[28px] bg-gradient-to-br from-[#3b82f6]/25 via-[#a78bfa]/20 to-[#d4ff3d]/15 opacity-70 blur-2xl"
+                  animate={{ opacity: [0.55, 0.85, 0.55], scale: [1, 1.03, 1] }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              ) : (
+                <div
+                  aria-hidden
+                  className="absolute -inset-4 rounded-[28px] bg-gradient-to-br from-[#3b82f6]/20 via-[#a78bfa]/15 to-[#d4ff3d]/12 opacity-60 blur-2xl"
+                />
+              )}
+              <motion.div
+                className="relative"
+                animate={
+                  reduceMotion
+                    ? undefined
+                    : { y: [0, -10, 0], rotate: [0, 0.4, 0] }
+                }
+                transition={{
+                  duration: 7,
+                  repeat: Infinity,
+                  ease: "easeInOut",
                 }}
               >
-                <span
-                  className="w-2 h-2 rounded-full animate-pulse"
-                  style={{ background: "#ff4d4d" }}
+                <div
+                  className={`overflow-hidden rounded-[24px] border shadow-[0_24px_80px_rgba(0,0,0,0.55),inset_0_1px_0_rgba(255,255,255,0.06)] ${glass}`}
+                  style={{ borderColor: ACCENT_BORDER }}
+                >
+                  <Image
+                    src="/vibecode-flyer.png"
+                    alt="Vibecode masterclass promotional flyer"
+                    width={900}
+                    height={1200}
+                    className="h-auto w-full object-cover"
+                    priority
+                  />
+                </div>
+                <div
                   aria-hidden
+                  className="pointer-events-none absolute -right-5 -top-5 h-16 w-16 rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md"
                 />
-                No experience required
-              </span>
-              <span
-                className="inline-flex items-center gap-2 text-sm text-white/70 px-4 py-2 rounded-full border border-white/12"
-              >
-                Live on Google Meet
-              </span>
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -bottom-4 -left-6 h-12 w-28 rounded-full border border-white/[0.06] bg-gradient-to-r from-[#3b82f6]/20 to-transparent blur-[1px]"
+                />
+              </motion.div>
             </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href={WHATSAPP_REGISTER}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex justify-center items-center gap-2 px-7 py-3.5 rounded-lg font-semibold text-black no-underline transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#dfff4a] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
-                style={{ background: ACCENT }}
-              >
-                Open WhatsApp to register
-              </a>
-              <Link
-                href="#pricing"
-                className="inline-flex justify-center items-center px-7 py-3.5 rounded-lg font-semibold no-underline transition-colors border border-white/20 text-white hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30"
-              >
-                See dates &amp; pricing
-              </Link>
-            </div>
-
-            <p className="mt-6 text-sm text-white/45 max-w-[520px] leading-relaxed">
-              WhatsApp <span className="text-white/70">0807 893 3943</span>: pay
-              into the OPAY account below first, then <strong className="text-white/90">manually attach</strong> your
-              receipt in WhatsApp with the caption{" "}
-              <strong className="text-white/90">VIBECODE</strong> and your full name so we can confirm your seat.
-            </p>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-[420px] lg:max-w-none">
-            <div
-              className="absolute inset-0 rounded-2xl blur-2xl scale-95 opacity-50"
-              style={{ background: ACCENT }}
-              aria-hidden
-            />
-            <div
-              className="relative rounded-2xl overflow-hidden border"
-              style={{
-                borderColor: "rgba(223,255,74,0.35)",
-                boxShadow: "0 0 0 1px rgba(0,0,0,0.4), 0 24px 64px rgba(0,0,0,0.45)",
-              }}
-            >
-              <Image
-                src="/vibecode-flyer.png"
-                alt="Vibecode masterclass promotional flyer"
-                width={900}
-                height={1200}
-                className="w-full h-auto object-cover"
-                priority
-              />
-            </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Outcomes */}
-      <Section id="outcomes" className="px-[5%] py-20 md:py-28">
-        <div className="max-w-[1100px] mx-auto">
-          <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
-            style={{ color: ACCENT }}
-          >
-            What you&apos;ll learn
-          </p>
-          <h2
-            className="text-3xl sm:text-4xl font-bold text-white mb-4 max-w-[640px]"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            Practical skills you can use immediately — from idea to shipped
-            product.
-          </h2>
-          <p className="text-white/55 text-lg max-w-[560px] mb-12">
-            This is not theory-only training. Expect hands-on building,
-            real workflows, and a roadmap to present yourself as job-ready.
-          </p>
-          <ul className="grid sm:grid-cols-2 gap-4 list-none p-0 m-0">
+      {/* Outcomes — bento */}
+      <SectionShell
+        id="outcomes"
+        className="border-t border-white/[0.06] py-24 md:py-32"
+      >
+        <div className="mx-auto max-w-[1100px]">
+          <Reveal>
+            <Eyebrow className="mb-4 text-[#a78bfa]">What you&apos;ll learn</Eyebrow>
+            <h2 className="font-display max-w-[38rem] text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl md:text-[2.75rem]">
+              From idea to shipped product — without the fluff.
+            </h2>
+            <p className="mt-5 max-w-[36rem] text-lg text-white/52">
+              Hands-on building, real workflows, and a credible path to present
+              yourself as job-ready.
+            </p>
+          </Reveal>
+
+          <ul className="mt-14 grid list-none auto-rows-[minmax(100px,auto)] grid-cols-1 gap-3 p-0 md:grid-cols-6 md:gap-4">
             {outcomes.map(({ title, icon: Icon }, i) => (
-              <li
-                key={i}
-                className="flex gap-4 p-6 rounded-xl transition-colors"
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                <span
-                  className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
-                  style={{ background: ACCENT_DIM, color: ACCENT }}
+              <Reveal key={title} delay={0.03 * i}>
+                <li
+                  className={`group flex h-full flex-col justify-between gap-4 p-6 md:p-7 ${glass} ${glassHover} ${bentoSpans[i]}`}
                 >
-                  <Icon className="w-6 h-6" strokeWidth={1.75} />
-                </span>
-                <span className="text-base font-medium text-white/90 leading-snug pt-1">
-                  {title}
-                </span>
-              </li>
+                  <span
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.06] to-transparent text-[#d4ff3d] transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_0_28px_rgba(212,255,61,0.15)]"
+                  >
+                    <Icon className="h-6 w-6" strokeWidth={1.65} />
+                  </span>
+                  <p className="pt-1 font-medium leading-snug text-white/88">
+                    {title}
+                  </p>
+                </li>
+              </Reveal>
             ))}
           </ul>
         </div>
-      </Section>
+      </SectionShell>
 
       {/* Schedule + Pricing */}
-      <Section
+      <SectionShell
         id="schedule"
-        className="px-[5%] py-16 md:py-20 lg:py-24"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+        className="border-t border-white/[0.06] py-20 md:py-28"
       >
-        <div className="max-w-[1100px] mx-auto">
-          <div
-            className="flex flex-col md:flex-row md:items-center gap-4 p-6 md:p-8 rounded-2xl mb-12"
-            style={{
-              background: ACCENT_DIM,
-              border: "1px solid rgba(223,255,74,0.25)",
-            }}
-          >
+        <div className="mx-auto max-w-[1100px]">
+          <Reveal>
             <div
-              className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center"
-              style={{ background: "rgba(0,0,0,0.35)", color: ACCENT }}
-            >
-              <Calendar className="w-7 h-7" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-1">
-                Class holds 18th–20th May 2026
-              </h3>
-              <p className="text-white/70 flex flex-wrap items-center gap-2">
-                <Video className="w-4 h-4 inline text-white/50" />
-                Online via Google Meet · Join link shared after registration
-              </p>
-            </div>
-          </div>
-
-          <p
-            id="pricing"
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
-            style={{ color: ACCENT }}
-          >
-            Pricing
-          </p>
-          <h2
-            className="text-3xl sm:text-4xl font-bold text-white mb-4"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            Choose your window — early bird saves ₦3,000
-          </h2>
-          <p className="text-white/50 text-sm max-w-[640px] mb-10">
-            After you pay by transfer, send your proof on WhatsApp: attach the
-            screenshot or PDF, and use <strong className="text-white/70">VIBECODE</strong>{" "}
-            plus your full name in the message (nothing is uploaded on this site).
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div
-              className="p-8 rounded-2xl relative overflow-hidden"
+              className={`mb-14 flex flex-col gap-5 p-6 md:flex-row md:items-center md:gap-8 md:p-8 ${glass}`}
               style={{
-                border: `2px solid ${ACCENT}`,
-                background: "linear-gradient(145deg, rgba(223,255,74,0.08), rgba(0,0,0,0.2))",
+                borderColor: "rgba(167, 139, 250, 0.22)",
+                background:
+                  "linear-gradient(135deg, rgba(167,139,250,0.08), rgba(255,255,255,0.02))",
               }}
             >
-              <span
-                className="absolute top-4 right-4 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full text-black"
-                style={{ background: ACCENT }}
-              >
-                Best value
-              </span>
-              <h3 className="text-lg font-semibold text-white/80 mb-2">
-                Early bird
-              </h3>
-              <p className="text-4xl font-bold mb-2" style={{ color: ACCENT }}>
-                ₦7,000
-              </p>
-              <p className="text-white/55 text-sm mb-6">
-                8th–15th May 2026 · Lock this rate before it closes.
-              </p>
-              <ul className="space-y-2 text-sm text-white/70 mb-8 list-none p-0">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0" style={{ color: ACCENT }} />
-                  Full 3-day live sessions
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0" style={{ color: ACCENT }} />
-                  Google Meet access
-                </li>
-              </ul>
-              <a
-                href={WHATSAPP_REGISTER}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center py-3.5 rounded-lg font-semibold text-black no-underline"
-                style={{ background: ACCENT }}
-              >
-                Reserve early bird
-              </a>
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-black/30 text-[#c4b5fd]">
+                <Calendar className="h-7 w-7" strokeWidth={1.5} />
+              </div>
+              <div>
+                <h3 className="font-display text-xl font-bold tracking-tight text-white md:text-2xl">
+                  18th–20th May 2026
+                </h3>
+                <p className="mt-1.5 flex flex-wrap items-center gap-2 text-white/58">
+                  <Video className="h-4 w-4 text-white/40" strokeWidth={1.6} />
+                  Online · Google Meet · Link after registration
+                </p>
+              </div>
             </div>
+          </Reveal>
 
-            <div
-              className="p-8 rounded-2xl"
-              style={{
-                border: "1px solid rgba(255,255,255,0.12)",
-                background: "rgba(255,255,255,0.03)",
-              }}
-            >
-              <h3 className="text-lg font-semibold text-white/80 mb-2">
-                Regular
-              </h3>
-              <p className="text-4xl font-bold text-white mb-2">₦10,000</p>
-              <p className="text-white/55 text-sm mb-6">
-                16th–18th May 2026 · Same full access — higher investment.
-              </p>
-              <ul className="space-y-2 text-sm text-white/70 mb-8 list-none p-0">
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0 text-white/40" />
-                  Full 3-day live sessions
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="w-4 h-4 flex-shrink-0 text-white/40" />
-                  Google Meet access
-                </li>
-              </ul>
-              <a
-                href={WHATSAPP_REGISTER}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full text-center py-3.5 rounded-lg font-semibold no-underline border border-white/25 text-white hover:bg-white/5 transition-colors"
+          <Reveal>
+            <Eyebrow id="pricing" className="mb-4 text-[#7dd3fc]">
+              Pricing
+            </Eyebrow>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+              Early bird saves ₦3,000.
+            </h2>
+            <p className="mt-4 max-w-[38rem] text-sm leading-relaxed text-white/48">
+              After you pay by transfer, send proof on WhatsApp: attach your
+              screenshot or PDF, and use{" "}
+              <strong className="font-medium text-white/70">VIBECODE</strong> plus
+              your full name (nothing is uploaded on this site).
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 md:gap-6">
+            <Reveal>
+              <div
+                className={`relative overflow-hidden p-8 md:p-9 ${glass} border-2`}
+                style={{
+                  borderColor: ACCENT,
+                  background:
+                    "linear-gradient(165deg, rgba(212,255,61,0.09), rgba(255,255,255,0.02))",
+                  boxShadow: "0 0 60px rgba(212,255,61,0.08)",
+                }}
               >
-                Register at regular price
-              </a>
-            </div>
+                <span className="absolute right-5 top-5 rounded-full bg-[#d4ff3d] px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#0a0a0a]">
+                  Best value
+                </span>
+                <h3 className="text-base font-medium text-white/72">
+                  Early bird
+                </h3>
+                <p
+                  className="font-display mt-3 text-4xl font-bold tracking-tight sm:text-5xl"
+                  style={{ color: ACCENT }}
+                >
+                  ₦7,000
+                </p>
+                <p className="mt-2 text-sm text-white/52">
+                  8th–15th May 2026 · Lock before it closes.
+                </p>
+                <ul className="mt-8 list-none space-y-2.5 p-0 text-sm text-white/65">
+                  <li className="flex items-center gap-2.5">
+                    <Check
+                      className="h-4 w-4 shrink-0"
+                      style={{ color: ACCENT }}
+                      strokeWidth={2.2}
+                    />
+                    Full 3-day live sessions
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <Check
+                      className="h-4 w-4 shrink-0"
+                      style={{ color: ACCENT }}
+                      strokeWidth={2.2}
+                    />
+                    Google Meet access
+                  </li>
+                </ul>
+                <a
+                  href={WHATSAPP_REGISTER}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 block w-full rounded-[16px] bg-gradient-to-br from-[#d4ff3d] to-[#9fe82a] py-3.5 text-center text-[15px] font-semibold text-[#0a0a0a] no-underline transition-[transform,box-shadow] hover:scale-[1.01] hover:shadow-[0_0_36px_rgba(212,255,61,0.25)]"
+                >
+                  Reserve early bird
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.05}>
+              <div className={`p-8 md:p-9 ${glass} ${glassHover}`}>
+                <h3 className="text-base font-medium text-white/72">Regular</h3>
+                <p className="font-display mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+                  ₦10,000
+                </p>
+                <p className="mt-2 text-sm text-white/52">
+                  16th–18th May 2026 · Same access, higher investment.
+                </p>
+                <ul className="mt-8 list-none space-y-2.5 p-0 text-sm text-white/55">
+                  <li className="flex items-center gap-2.5">
+                    <Check
+                      className="h-4 w-4 shrink-0 text-white/35"
+                      strokeWidth={2.2}
+                    />
+                    Full 3-day live sessions
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <Check
+                      className="h-4 w-4 shrink-0 text-white/35"
+                      strokeWidth={2.2}
+                    />
+                    Google Meet access
+                  </li>
+                </ul>
+                <a
+                  href={WHATSAPP_REGISTER}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 block w-full rounded-[16px] border border-white/[0.14] bg-white/[0.03] py-3.5 text-center text-[15px] font-semibold text-white no-underline transition-colors hover:border-white/25 hover:bg-white/[0.07]"
+                >
+                  Register at regular price
+                </a>
+              </div>
+            </Reveal>
           </div>
         </div>
-      </Section>
+      </SectionShell>
 
       {/* Payment */}
-      <Section
+      <SectionShell
         id="payment"
-        className="px-[5%] pb-16 md:pb-20 lg:pb-24 pt-4 md:pt-6"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+        className="border-t border-white/[0.06] pb-20 pt-8 md:pb-28 md:pt-12"
       >
-        <div className="max-w-[640px] mx-auto">
-          <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4"
-            style={{ color: ACCENT }}
-          >
-            Pay by transfer
-          </p>
-          <h2
-            className="text-3xl font-bold text-white mb-4"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            OPAY account details
-          </h2>
-          <p className="text-white/55 mb-6 space-y-3">
-            <span className="block">
-              <strong className="text-white/90">1.</strong> Pay into the OPAY
-              account below (use a transfer reference that includes{" "}
-              <strong className="text-white/90">VIBECODE</strong> and your name
-              if your bank allows it).
-            </span>
-            <span className="block">
-              <strong className="text-white/90">2.</strong> On{" "}
-              <strong className="text-white/90">WhatsApp</strong>, open a chat
-              with <strong className="text-white/90">0807 893 3943</strong>,
-              <strong className="text-white/90"> attach</strong> your payment
-              receipt or screenshot{" "}
-              <strong className="text-white/90">manually</strong>, then send your
-              message starting with <strong className="text-white/90">VIBECODE</strong>{" "}
-              and your <strong className="text-white/90">full name</strong> so we can
-              match your payment and confirm your seat.
-            </span>
-          </p>
-          <p className="text-white/45 text-sm mb-8">
-            We do not collect proof on this website — everything goes through
-            WhatsApp after you pay.
-          </p>
+        <div className="mx-auto max-w-[640px]">
+          <Reveal>
+            <Eyebrow className="mb-4 text-[#d4ff3d]">Pay by transfer</Eyebrow>
+            <h2 className="font-display text-3xl font-bold tracking-[-0.035em] text-white">
+              OPAY details
+            </h2>
+            <div className="mt-6 space-y-4 text-white/55">
+              <p>
+                <strong className="font-medium text-white/82">1.</strong> Pay
+                into OPAY (reference with{" "}
+                <strong className="text-white/82">VIBECODE</strong> and your name
+                if your bank allows).
+              </p>
+              <p>
+                <strong className="font-medium text-white/82">2.</strong> On{" "}
+                <strong className="text-white/82">WhatsApp</strong> (0807 893
+                3943), <strong className="text-white/82">attach</strong> your
+                receipt, then message starting with{" "}
+                <strong className="text-[#d4ff3d]/90">VIBECODE</strong> and your{" "}
+                <strong className="text-white/82">full name</strong>.
+              </p>
+            </div>
+            <p className="mt-6 text-sm text-white/38">
+              We don&apos;t collect proof on this site — only WhatsApp after
+              payment.
+            </p>
+          </Reveal>
 
-          <div
-            className="rounded-2xl p-6 md:p-8 space-y-6"
-            style={{
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            {[
-              { label: "Account number", value: "8078933943" },
-              { label: "Bank", value: "OPAY" },
-              { label: "Account name", value: "Ayodele Oluwasegun Moyebi" },
-            ].map((row) => (
-              <div
-                key={row.label}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-6 border-b border-white/10 last:border-0 last:pb-0"
-              >
-                <div>
-                  <p className="text-xs uppercase tracking-wider text-white/40 mb-1">
-                    {row.label}
-                  </p>
-                  <p className="text-lg font-semibold text-white">{row.value}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => copyText(row.label, row.value)}
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border border-white/15 text-white/85 hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 self-start sm:self-center"
+          <Reveal delay={0.06}>
+            <div className={`mt-10 space-y-6 p-6 md:p-8 ${glass}`}>
+              {[
+                { label: "Account number", value: "8078933943" },
+                { label: "Bank", value: "OPAY" },
+                { label: "Account name", value: "Ayodele Oluwasegun Moyebi" },
+              ].map((row) => (
+                <div
+                  key={row.label}
+                  className="flex flex-col gap-3 border-b border-white/[0.08] pb-6 last:border-0 last:pb-0 sm:flex-row sm:items-center sm:justify-between"
                 >
-                  {copiedField === row.label ? (
-                    <>
-                      <Check className="w-4 h-4" style={{ color: ACCENT }} />
-                      Copied
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="w-4 h-4" />
-                      Copy
-                    </>
-                  )}
-                </button>
-              </div>
-            ))}
+                  <div>
+                    <p className="mb-1 text-[11px] uppercase tracking-wider text-white/38">
+                      {row.label}
+                    </p>
+                    <p className="text-lg font-semibold text-white">
+                      {row.value}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => copyText(row.label, row.value)}
+                    className="inline-flex items-center justify-center gap-2 self-start rounded-xl border border-white/[0.12] bg-white/[0.03] px-4 py-2 text-sm font-medium text-white/85 transition-colors hover:border-white/22 hover:bg-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 sm:self-center"
+                  >
+                    {copiedField === row.label ? (
+                      <>
+                        <Check className="h-4 w-4 text-[#d4ff3d]" />
+                        Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-4 w-4" />
+                        Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+              ))}
 
-            <button
-              type="button"
-              onClick={() => copyText("all", paymentBlock)}
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-lg font-semibold border transition-colors"
-              style={{
-                borderColor: "rgba(223,255,74,0.4)",
-                color: ACCENT,
-                background: ACCENT_DIM,
-              }}
-            >
-              {copiedField === "all" ? (
-                <>
-                  <Check className="w-5 h-5" />
-                  Copied all details
-                </>
-              ) : (
-                <>
-                  <Copy className="w-5 h-5" />
-                  Copy all payment details
-                </>
-              )}
-            </button>
-
-            <a
-              href={WHATSAPP_REGISTER}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-lg font-semibold no-underline border border-white/20 text-white hover:bg-white/5 transition-colors"
-            >
-              Open WhatsApp to send proof
-            </a>
-          </div>
-        </div>
-      </Section>
-
-      {/* Instructor — profile only */}
-      <Section
-        id="instructor"
-        className="px-[5%] py-24 md:py-32 lg:py-36"
-        style={{
-          background: "rgba(255,255,255,0.02)",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-        }}
-      >
-        <div className="max-w-[1100px] mx-auto">
-          <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
-            style={{ color: ACCENT }}
-          >
-            Your instructor
-          </p>
-          <h2
-            className="text-3xl sm:text-4xl font-bold mb-4 text-center"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            Meet Ayodele
-          </h2>
-          <p className="text-lg text-white/55 text-center max-w-[640px] mx-auto mb-16 md:mb-20">
-            Founder of Mouse Technologies — building and shipping real products
-            for businesses, creators, and learners across Nigeria.
-          </p>
-
-          <div className="grid lg:grid-cols-[minmax(0,380px)_1fr] gap-14 lg:gap-20 lg:items-center">
-            <div className="mx-auto w-full max-w-[380px] lg:mx-0">
-              <div
-                className="relative rounded-2xl overflow-hidden border"
+              <button
+                type="button"
+                onClick={() => copyText("all", paymentBlock)}
+                className="w-full rounded-[16px] border py-3.5 text-[15px] font-semibold transition-colors"
                 style={{
-                  borderColor: "rgba(223,255,74,0.28)",
-                  boxShadow: "0 24px 64px rgba(0,0,0,0.35)",
+                  borderColor: ACCENT_BORDER,
+                  color: ACCENT,
+                  background: ACCENT_DIM,
                 }}
+              >
+                {copiedField === "all" ? (
+                  <span className="inline-flex items-center justify-center gap-2">
+                    <Check className="h-5 w-5" />
+                    Copied all details
+                  </span>
+                ) : (
+                  <span className="inline-flex items-center justify-center gap-2">
+                    <Copy className="h-5 w-5" />
+                    Copy all payment details
+                  </span>
+                )}
+              </button>
+
+              <a
+                href={WHATSAPP_REGISTER}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex w-full items-center justify-center gap-2 rounded-[16px] border border-white/[0.12] bg-white/[0.03] py-3.5 text-[15px] font-semibold text-white no-underline transition-colors hover:border-white/22 hover:bg-white/[0.06]"
+              >
+                Open WhatsApp to send proof
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </SectionShell>
+
+      {/* Instructor */}
+      <SectionShell
+        id="instructor"
+        className="border-t border-white/[0.06] bg-gradient-to-b from-white/[0.02] to-transparent py-24 md:py-32"
+      >
+        <div className="mx-auto max-w-[1100px]">
+          <Reveal>
+            <Eyebrow className="mb-4 text-center text-[#7dd3fc]">
+              Your instructor
+            </Eyebrow>
+            <h2 className="font-display text-center text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+              Meet Ayodele
+            </h2>
+            <p className="mx-auto mt-5 max-w-[36rem] text-center text-lg text-white/52">
+              Founder of Mouse Technologies — shipping real products for
+              businesses and learners.
+            </p>
+          </Reveal>
+
+          <div className="mt-16 grid gap-14 lg:grid-cols-[minmax(0,380px)_1fr] lg:items-center lg:gap-20">
+            <Reveal className="mx-auto w-full max-w-[380px] lg:mx-0">
+              <div
+                className={`overflow-hidden rounded-[24px] border shadow-[0_24px_64px_rgba(0,0,0,0.45)] ${glass}`}
+                style={{ borderColor: ACCENT_BORDER }}
               >
                 <Image
                   src="/profile-picture.jpeg"
                   alt="Ayodele Oluwasegun Moyebi"
                   width={600}
                   height={720}
-                  className="w-full h-auto object-cover aspect-[5/6] lg:aspect-auto lg:min-h-[420px]"
+                  className="aspect-[5/6] h-auto w-full object-cover lg:aspect-auto lg:min-h-[420px]"
                   sizes="(max-width: 1024px) 90vw, 380px"
                 />
               </div>
-              <p className="mt-5 text-center lg:text-left text-sm text-white/45">
+              <p className="mt-5 text-center text-sm text-white/42 lg:text-left">
                 Ayodele Oluwasegun Moyebi · Founder, Mouse Technologies
               </p>
-            </div>
+            </Reveal>
 
-            <div className="text-left space-y-8 md:space-y-10">
+            <Reveal delay={0.06} className="space-y-8 text-left md:space-y-10">
               <div>
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                <h3 className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
                   I teach what I build every week
                 </h3>
-                <p className="text-white/65 leading-relaxed text-[17px] md:text-lg">
+                <p className="mt-4 text-[17px] leading-relaxed text-white/60 md:text-lg">
                   I run Mouse Technologies as a hands-on developer, not a
                   slide-only coach. My day job is shipping production software:
-                  performant websites, structured platforms, and client
-                  projects using modern stacks like Next.js, React, and
-                  TypeScript — the same tools you&apos;ll touch in this
-                  masterclass.
+                  performant websites, structured platforms, and client projects
+                  using modern stacks like Next.js, React, and TypeScript — the
+                  same tools you&apos;ll touch in this masterclass.
                 </p>
               </div>
-              <p className="text-white/60 leading-relaxed text-[17px] md:text-lg">
+              <p className="text-[17px] leading-relaxed text-white/55 md:text-lg">
                 We take on education, events, portfolios, and business sites. I
-                care about clear UX, fast shipping, and writing code you&apos;re
-                not ashamed to show — including using AI as a lever, not a
-                crutch. A few shipped highlights are in the next section.
+                care about clear UX, fast shipping, and code you&apos;re proud to
+                show — including AI as a lever, not a crutch.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
-      </Section>
+      </SectionShell>
 
-      {/* Selected work — case highlights, separate band */}
-      <Section
+      {/* Highlights */}
+      <SectionShell
         id="highlights"
-        className="px-[5%] py-24 md:py-32 lg:py-36"
-        style={{
-          borderTop: "1px solid rgba(255,255,255,0.08)",
-        }}
+        className="border-t border-white/[0.06] py-24 md:py-32"
       >
-        <div className="max-w-[1100px] mx-auto">
-          <p
-            className="text-xs font-semibold tracking-[0.2em] uppercase mb-4 text-center"
-            style={{ color: ACCENT }}
-          >
-            Selected work
-          </p>
-          <h2
-            className="text-3xl sm:text-4xl font-bold mb-4 text-center max-w-[720px] mx-auto"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            What I&apos;ve built
-          </h2>
-          <p className="text-white/50 text-center max-w-[560px] mx-auto mb-14 md:mb-16 text-base md:text-lg leading-relaxed">
-            Real products and client launches — the same kind of shipping
-            mindset you&apos;ll practice in the masterclass.
-          </p>
+        <div className="mx-auto max-w-[1100px]">
+          <Reveal>
+            <Eyebrow className="mb-4 text-center text-[#a78bfa]">
+              Selected work
+            </Eyebrow>
+            <h2 className="font-display mx-auto max-w-[40rem] text-center text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+              What we&apos;ve shipped
+            </h2>
+            <p className="mx-auto mt-5 max-w-[34rem] text-center text-base leading-relaxed text-white/48 md:text-lg">
+              Real launches — the same shipping mindset you&apos;ll practice live.
+            </p>
+          </Reveal>
 
-          <ul className="space-y-5 md:space-y-6 list-none p-0 m-0">
+          <ul className="mt-14 list-none space-y-5 p-0 md:space-y-6">
             {eventPassCs ? (
-              <BuiltHighlightCard cs={eventPassCs} key={eventPassCs.slug} />
+              <Reveal>
+                <BuiltHighlightCard cs={eventPassCs} />
+              </Reveal>
             ) : null}
             {steamCs ? (
-              <BuiltHighlightCard cs={steamCs} key={steamCs.slug} />
+              <Reveal delay={0.04}>
+                <BuiltHighlightCard cs={steamCs} />
+              </Reveal>
             ) : null}
-            <li
-              className="rounded-xl p-6 md:p-8 transition-colors"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-              }}
-            >
-              <p className="font-semibold text-white text-lg">Portfolios</p>
-              <p className="text-sm text-white/50 mt-2">
-                Personal &amp; client showcase sites
-              </p>
-              <p className="text-sm text-white/60 mt-3 leading-relaxed max-w-[720px]">
-                Fast, premium portfolio experiences — clear layouts, strong
-                first impressions, and contact-forward flows for personal brands
-                and service businesses.
-              </p>
-              <div className="mt-8 space-y-6 md:space-y-8">
-                {portfolioCs.map((cs, i) => (
-                  <div
-                    key={cs.slug}
-                    className={i > 0 ? "pt-6 md:pt-8 border-t border-white/10" : ""}
-                  >
-                    <p className="font-medium text-white/90">{cs.title}</p>
-                    <p className="text-xs text-white/45 mt-1">
-                      {cs.industry} · {cs.clientType}
-                    </p>
-                    <p className="text-sm text-white/55 mt-3 leading-relaxed">
-                      {cs.summary}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      <Link
-                        href={`/case-studies/${cs.slug}`}
-                        className="text-sm font-medium no-underline px-3 py-1.5 rounded-lg border border-white/15 text-white/85 hover:bg-white/5 transition-colors whitespace-nowrap"
-                      >
-                        Case study
-                      </Link>
-                      {cs.href ? (
-                        <a
-                          href={cs.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-sm font-medium no-underline px-3 py-1.5 rounded-lg text-black transition-colors whitespace-nowrap"
-                          style={{ background: ACCENT }}
+            <Reveal delay={0.08}>
+              <li
+                className={`${glass} ${glassHover} list-none rounded-[22px] p-6 md:p-8`}
+              >
+                <p className="font-display text-lg font-semibold text-white">
+                  Portfolios
+                </p>
+                <p className="mt-2 text-sm text-white/45">
+                  Personal &amp; client showcase sites
+                </p>
+                <p className="mt-3 max-w-[720px] text-sm leading-relaxed text-white/55">
+                  Fast, premium portfolio experiences — clear layouts, strong
+                  first impressions, contact-forward flows.
+                </p>
+                <div className="mt-8 space-y-6 md:space-y-8">
+                  {portfolioCs.map((cs, i) => (
+                    <div
+                      key={cs.slug}
+                      className={
+                        i > 0 ? "border-t border-white/[0.08] pt-6 md:pt-8" : ""
+                      }
+                    >
+                      <p className="font-medium text-white/90">{cs.title}</p>
+                      <p className="mt-1 text-xs text-white/42">
+                        {cs.industry} · {cs.clientType}
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-white/55">
+                        {cs.summary}
+                      </p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <Link
+                          href={`/case-studies/${cs.slug}`}
+                          className="whitespace-nowrap rounded-xl border border-white/12 bg-white/[0.02] px-3 py-1.5 text-sm font-medium text-white/85 no-underline transition-colors hover:bg-white/[0.06]"
                         >
-                          Live site
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      ) : null}
+                          Case study
+                        </Link>
+                        {cs.href ? (
+                          <a
+                            href={cs.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-xl bg-gradient-to-br from-[#d4ff3d] to-[#9fe82a] px-3 py-1.5 text-sm font-semibold text-[#0a0a0a] no-underline hover:scale-[1.02]"
+                          >
+                            Live site
+                            <ExternalLink className="h-3.5 w-3.5" />
+                          </a>
+                        ) : null}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </li>
+                  ))}
+                </div>
+              </li>
+            </Reveal>
           </ul>
-          <div className="mt-12 md:mt-14 flex flex-wrap gap-x-8 gap-y-4 justify-center md:justify-start">
-            <Link
-              href="/case-studies"
-              className="text-sm font-semibold no-underline"
-              style={{ color: ACCENT }}
-            >
-              Browse all case studies →
-            </Link>
-            <Link
-              href="/portfolio"
-              className="text-sm font-semibold text-white/55 hover:text-white/80 no-underline"
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="/about"
-              className="text-sm font-semibold text-white/55 hover:text-white/80 no-underline"
-            >
-              About MouseTech
-            </Link>
-          </div>
+
+          <Reveal>
+            <div className="mt-12 flex flex-wrap justify-center gap-x-10 gap-y-4 md:justify-start">
+              <Link
+                href="/case-studies"
+                className="text-sm font-semibold text-[#d4ff3d] no-underline transition-opacity hover:opacity-85"
+              >
+                Browse all case studies →
+              </Link>
+              <Link
+                href="/portfolio"
+                className="text-sm font-semibold text-white/45 no-underline transition-colors hover:text-white/75"
+              >
+                Portfolio
+              </Link>
+              <Link
+                href="/about"
+                className="text-sm font-semibold text-white/45 no-underline transition-colors hover:text-white/75"
+              >
+                About MouseTech
+              </Link>
+            </div>
+          </Reveal>
         </div>
-      </Section>
+      </SectionShell>
 
       {/* Bottom CTA */}
-      <section
-        className="px-[5%] py-24 text-center"
-        style={{
-          background: "linear-gradient(180deg, rgba(223,255,74,0.08), transparent)",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-        }}
-      >
-        <div className="max-w-[560px] mx-auto">
-          <h2
-            className="text-3xl sm:text-4xl font-bold text-white mb-4"
-            style={{ letterSpacing: "-0.03em" }}
-          >
-            Ready to vibecode like a pro?
+      <section className="relative border-t border-white/[0.06] px-[5%] py-24 text-center">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(212,255,61,0.08),transparent_60%)]"
+        />
+        <Reveal className="relative mx-auto max-w-[540px]">
+          <h2 className="font-display text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
+            Ready to ship like a pro?
           </h2>
-          <p className="text-white/60 mb-8">
-            Pay by transfer, then on WhatsApp <strong className="text-white">attach</strong> your
-            receipt and send <strong className="text-white">VIBECODE</strong> with your full name
-            — we&apos;ll confirm your seat and Meet link.
+          <p className="mt-5 text-white/58">
+            Pay by transfer, then on WhatsApp{" "}
+            <strong className="font-medium text-white">attach</strong> your
+            receipt and send{" "}
+            <strong className="font-medium text-[#d4ff3d]">VIBECODE</strong> with
+            your full name — we&apos;ll confirm your seat and Meet link.
           </p>
           <a
             href={WHATSAPP_REGISTER}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold text-black no-underline transition-transform hover:scale-[1.02]"
-            style={{ background: ACCENT }}
+            className="mt-9 inline-flex items-center justify-center rounded-[18px] bg-gradient-to-br from-[#d4ff3d] to-[#9fe82a] px-10 py-4 text-[15px] font-semibold text-[#0a0a0a] no-underline shadow-[0_0_40px_rgba(212,255,61,0.2)] transition-[transform,box-shadow] hover:scale-[1.02] hover:shadow-[0_0_52px_rgba(212,255,61,0.3)]"
           >
             Open WhatsApp
           </a>
-          <p className="mt-6 text-sm text-white/40">
-            <Link href="/" className="text-white/60 hover:text-white no-underline">
-              ← Back to MouseTech home
+          <p className="mt-8 text-sm text-white/38">
+            <Link
+              href="/"
+              className="text-white/55 no-underline transition-colors hover:text-white/80"
+            >
+              ← MouseTech home
             </Link>
           </p>
-        </div>
+        </Reveal>
       </section>
 
-      <Footer />
+      <VibeFooter />
     </main>
   );
 }

@@ -25,6 +25,7 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
         heading: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-vibe-display)", "var(--font-dm-sans)", "system-ui", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-out",
@@ -34,6 +35,8 @@ const config: Config = {
         "float-delay": "float 8s ease-in-out infinite 2s",
         "pulse-slow": "pulse-slow 4s ease-in-out infinite",
         "bounce-x": "bounceX 1s infinite",
+        "vibe-aurora": "vibeAurora 18s ease-in-out infinite",
+        "vibe-glow": "vibeGlow 12s ease-in-out infinite",
       },
       keyframes: {
         bounceX: {
@@ -59,6 +62,14 @@ const config: Config = {
         "pulse-slow": {
           "0%, 100%": { opacity: "0.3", transform: "scale(1)" },
           "50%": { opacity: "0.5", transform: "scale(1.05)" },
+        },
+        vibeAurora: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: "0.12" },
+          "50%": { transform: "translate(4%, -3%) scale(1.05)", opacity: "0.18" },
+        },
+        vibeGlow: {
+          "0%, 100%": { opacity: "0.08" },
+          "50%": { opacity: "0.14" },
         },
       },
     },
