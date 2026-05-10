@@ -744,7 +744,7 @@ export default function VibecodeLanding() {
             <Reveal delay={0.06} className="space-y-8 text-left md:space-y-10">
               <div>
                 <h3 className="font-display text-2xl font-bold tracking-tight text-white md:text-3xl">
-                  I teach what I build every week
+                  I teach what I build every day
                 </h3>
                 <p className="mt-4 text-[17px] leading-relaxed text-white/60 md:text-lg">
                   I run Mouse Technologies as a hands-on developer, not a
