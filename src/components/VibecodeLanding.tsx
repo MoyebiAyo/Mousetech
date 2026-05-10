@@ -308,7 +308,7 @@ export default function VibecodeLanding() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
+              <div className="mt-9 hidden flex-wrap items-center gap-3 md:flex">
                 <span
                   className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold"
                   style={{
@@ -332,18 +332,18 @@ export default function VibecodeLanding() {
             </Reveal>
 
             <Reveal delay={0.12}>
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="mt-10 flex flex-row items-stretch gap-3 sm:gap-4">
                 <a
                   href={WHATSAPP_REGISTER}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-[18px] bg-gradient-to-br from-[#d4ff3d] to-[#9fe82a] px-8 py-4 text-[15px] font-semibold text-[#0a0a0a] no-underline shadow-[0_0_40px_rgba(212,255,61,0.22)] transition-[transform,box-shadow] hover:scale-[1.02] hover:shadow-[0_0_52px_rgba(212,255,61,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff3d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080808]"
+                  className="inline-flex min-h-[52px] flex-1 basis-0 items-center justify-center gap-2 rounded-[18px] bg-gradient-to-br from-[#d4ff3d] to-[#9fe82a] px-3 py-3.5 text-center text-[13px] font-semibold leading-tight text-[#0a0a0a] no-underline shadow-[0_0_40px_rgba(212,255,61,0.22)] transition-[transform,box-shadow] hover:scale-[1.02] hover:shadow-[0_0_52px_rgba(212,255,61,0.32)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4ff3d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#080808] sm:px-8 sm:text-[15px] sm:leading-normal"
                 >
                   Open WhatsApp to register
                 </a>
                 <Link
                   href="#pricing"
-                  className="inline-flex items-center justify-center rounded-[18px] border border-white/[0.12] bg-white/[0.03] px-8 py-4 text-[15px] font-semibold text-white no-underline backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25"
+                  className="inline-flex min-h-[52px] flex-1 basis-0 items-center justify-center rounded-[18px] border border-white/[0.12] bg-white/[0.03] px-3 py-3.5 text-center text-[13px] font-semibold leading-tight text-white no-underline backdrop-blur-sm transition-colors hover:border-white/[0.2] hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/25 sm:px-8 sm:text-[15px] sm:leading-normal"
                 >
                   Dates &amp; pricing
                 </Link>
@@ -411,14 +411,6 @@ export default function VibecodeLanding() {
                     priority
                   />
                 </div>
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-5 -top-5 h-16 w-16 rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-md"
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-4 -left-6 h-12 w-28 rounded-full border border-white/[0.06] bg-gradient-to-r from-[#3b82f6]/20 to-transparent blur-[1px]"
-                />
               </motion.div>
             </div>
           </Reveal>
