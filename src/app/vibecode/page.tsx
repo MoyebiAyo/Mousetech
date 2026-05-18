@@ -1,5 +1,6 @@
 import Script from "next/script";
 import VibecodeLanding from "@/components/VibecodeLanding";
+import { vibecodePricing, vibecodeSchedule } from "@/data/vibecode";
 
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
 const siteUrl =
@@ -12,9 +13,9 @@ const eventSchema = {
   "@type": "Event",
   name: "Vibecode Like a Pro Dev — Masterclass",
   description:
-    "Premium hands-on masterclass for aspiring developers. Build, ship, and scale real-world products. Live on Google Meet. No experience required.",
-  startDate: "2026-05-18",
-  endDate: "2026-05-20",
+    "5-day premium hands-on masterclass for aspiring developers. Build, ship, and scale real-world products with AI. Live on Google Meet. No experience required.",
+  startDate: "2026-05-22",
+  endDate: "2026-05-26",
   eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   location: {
@@ -32,20 +33,20 @@ const eventSchema = {
     {
       "@type": "Offer",
       name: "Early bird — Vibecode masterclass",
-      price: "7000",
+      price: String(vibecodePricing.earlyBirdNgn),
       priceCurrency: "NGN",
-      validFrom: "2026-05-08",
-      validThrough: "2026-05-15",
+      validFrom: vibecodeSchedule.earlyBirdStart.toISOString().slice(0, 10),
+      validThrough: vibecodeSchedule.earlyBirdEnd.toISOString().slice(0, 10),
       url: `${siteUrl}/vibecode`,
       availability: "https://schema.org/InStock",
     },
     {
       "@type": "Offer",
       name: "Regular — Vibecode masterclass",
-      price: "10000",
+      price: String(vibecodePricing.regularNgn),
       priceCurrency: "NGN",
-      validFrom: "2026-05-16",
-      validThrough: "2026-05-18",
+      validFrom: vibecodeSchedule.regularStart.toISOString().slice(0, 10),
+      validThrough: vibecodeSchedule.regularEnd.toISOString().slice(0, 10),
       url: `${siteUrl}/vibecode`,
       availability: "https://schema.org/InStock",
     },

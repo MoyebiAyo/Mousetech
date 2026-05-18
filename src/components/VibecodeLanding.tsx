@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
@@ -18,15 +18,17 @@ import {
 } from "lucide-react";
 import NavBar from "@/components/Navbar";
 import { caseStudies, type CaseStudy } from "@/data/caseStudies";
+import {
+  VIBECODE_WHATSAPP_URL,
+  formatClassDatesLabel,
+  formatCountdown,
+  formatEarlyBirdWindowLabel,
+  formatRegularWindowLabel,
+  isEarlyBirdActive,
+  vibecodeSchedule,
+} from "@/data/vibecode";
 
-const WHATSAPP_PRESET_MESSAGE = `VIBECODE
-
-Full name:
-See attached payment proof.`;
-
-const WHATSAPP_REGISTER =
-  "https://wa.me/2348078933943?text=" +
-  encodeURIComponent(WHATSAPP_PRESET_MESSAGE);
+const WHATSAPP_REGISTER = VIBECODE_WHATSAPP_URL;
 
 /** Primary electric lime — MouseTech energy */
 const ACCENT = "#d4ff3d";
@@ -232,6 +234,44 @@ function VibeFooter() {
   );
 }
 
+function EarlyBirdCountdown() {
+  const [secondsLeft, setSecondsLeft] = useState<number | null>(null);
+
+  useEffect(() => {
+    const tick = () => {
+      if (!isEarlyBirdActive()) {
+        setSecondsLeft(null);
+        return;
+      }
+      const ms = vibecodeSchedule.earlyBirdEnd.getTime() - Date.now();
+      setSecondsLeft(Math.floor(ms / 1000));
+    };
+    tick();
+    const id = window.setInterval(tick, 30_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  if (secondsLeft === null || secondsLeft <= 0) return null;
+
+  const { days, hours, minutes } = formatCountdown(secondsLeft);
+
+  return (
+    <p
+      className="mt-4 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium"
+      style={{
+        borderColor: ACCENT_BORDER,
+        background: ACCENT_DIM,
+        color: ACCENT,
+      }}
+    >
+      Early bird ends in{" "}
+      <span className="tabular-nums text-white">
+        {days}d {hours}h {minutes}m
+      </span>
+    </p>
+  );
+}
+
 export default function VibecodeLanding() {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const reduceMotion = useReducedMotion();
@@ -302,13 +342,14 @@ export default function VibecodeLanding() {
 
             <Reveal delay={0.08}>
               <p className="mt-7 max-w-[32rem] text-lg leading-relaxed text-white/58 sm:text-xl">
-                A premium, hands-on sprint for builders who want to ship real
-                products — live on Google Meet.
+                A 5-day premium hands-on masterclass for aspiring developers who
+                want to build, ship, and scale real-world products — live on
+                Google Meet.
               </p>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-9 hidden flex-wrap items-center gap-3 md:flex">
+              <motion.div className="mt-9 flex flex-wrap items-center gap-3">
                 <span
                   className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold"
                   style={{
@@ -325,10 +366,18 @@ export default function VibecodeLanding() {
                   No experience required
                 </span>
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-sm text-white/62 backdrop-blur-md">
-                  <Video className="h-4 w-4 text-white/40" strokeWidth={1.6} />
-                  Google Meet
+                  <Sparkles className="h-4 w-4 text-[#d4ff3d]/80" strokeWidth={1.6} />
+                  Learn to build with AI
                 </span>
-              </div>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-sm text-white/62 backdrop-blur-md">
+                  <Rocket className="h-4 w-4 text-white/40" strokeWidth={1.6} />
+                  Earn extra income
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-4 py-2 text-sm text-white/62 backdrop-blur-md">
+                  <Video className="h-4 w-4 text-white/40" strokeWidth={1.6} />
+                  Google Meet · {formatClassDatesLabel()}
+                </span>
+              </motion.div>
             </Reveal>
 
             <Reveal delay={0.12}>
@@ -361,7 +410,12 @@ export default function VibecodeLanding() {
                 <strong className="font-medium text-[#d4ff3d]/90">
                   VIBECODE
                 </strong>{" "}
-                and your full name so we can confirm your seat.
+                and your full name so we can confirm your seat. Or send{" "}
+                <strong className="font-medium text-[#d4ff3d]/90">VIBECODE</strong>{" "}
+                to start on WhatsApp — same number.
+              </p>
+              <p className="mt-3 text-xs text-white/32">
+                mousetech.app/vibecode
               </p>
             </Reveal>
           </div>
@@ -475,11 +529,11 @@ export default function VibecodeLanding() {
               </div>
               <div>
                 <h3 className="font-display text-xl font-bold tracking-tight text-white md:text-2xl">
-                  18th–20th May 2026
+                  {formatClassDatesLabel()}
                 </h3>
                 <p className="mt-1.5 flex flex-wrap items-center gap-2 text-white/58">
                   <Video className="h-4 w-4 text-white/40" strokeWidth={1.6} />
-                  Online · Google Meet · Link after registration
+                  5 days · Online · Google Meet · Link after registration
                 </p>
               </div>
             </div>
@@ -492,6 +546,7 @@ export default function VibecodeLanding() {
             <h2 className="font-display text-3xl font-bold tracking-[-0.035em] text-white sm:text-4xl">
               Early bird saves ₦3,000.
             </h2>
+            <EarlyBirdCountdown />
             <p className="mt-4 max-w-[38rem] text-sm leading-relaxed text-white/48">
               After you pay by transfer, send proof on WhatsApp: attach your
               screenshot or PDF, and use{" "}
@@ -524,7 +579,7 @@ export default function VibecodeLanding() {
                   ₦7,000
                 </p>
                 <p className="mt-2 text-sm text-white/52">
-                  8th–15th May 2026 · Lock before it closes.
+                  {formatEarlyBirdWindowLabel()} · Lock before it closes.
                 </p>
                 <ul className="mt-8 list-none space-y-2.5 p-0 text-sm text-white/65">
                   <li className="flex items-center gap-2.5">
@@ -533,7 +588,7 @@ export default function VibecodeLanding() {
                       style={{ color: ACCENT }}
                       strokeWidth={2.2}
                     />
-                    Full 3-day live sessions
+                    Full 5-day live sessions
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check
@@ -562,7 +617,7 @@ export default function VibecodeLanding() {
                   ₦10,000
                 </p>
                 <p className="mt-2 text-sm text-white/52">
-                  16th–18th May 2026 · Same access, higher investment.
+                  {formatRegularWindowLabel()} · Same access, higher investment.
                 </p>
                 <ul className="mt-8 list-none space-y-2.5 p-0 text-sm text-white/55">
                   <li className="flex items-center gap-2.5">
@@ -570,7 +625,7 @@ export default function VibecodeLanding() {
                       className="h-4 w-4 shrink-0 text-white/35"
                       strokeWidth={2.2}
                     />
-                    Full 3-day live sessions
+                    Full 5-day live sessions
                   </li>
                   <li className="flex items-center gap-2.5">
                     <Check

@@ -9,7 +9,7 @@ const vibeDisplay = Space_Grotesk({
 
 const title = "Vibecode Like a Pro Dev — Live Masterclass";
 const description =
-  "Premium hands-on masterclass (18–20 May 2026, Google Meet). No experience required. Build real products with frontend, backend, and AI — and ship like a professional developer.";
+  "5-day premium hands-on masterclass (22–26 May 2026, Google Meet). Early bird ₦7,000 (8–20 May) · Regular ₦10,000 (21–22 May). No experience required — build real products with AI.";
 
 export const metadata: Metadata = {
   title,
