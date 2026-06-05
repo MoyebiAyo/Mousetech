@@ -222,7 +222,8 @@ async function saveToGoogleSheets(payload: IntakePayload): Promise<IntegrationRe
     ],
   ];
 
-  const range = encodeURIComponent(`${sheetName}!A:N`);
+  const escapedSheetName = sheetName.replace(/'/g, "''");
+  const range = encodeURIComponent(`'${escapedSheetName}'!A:N`);
   const response = await fetch(
     `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
     {
