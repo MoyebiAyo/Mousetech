@@ -274,23 +274,50 @@ async function saveToNotion(payload: IntakePayload): Promise<IntegrationResult> 
     },
   }));
 
-  const response = await fetch("https://api.notion.com/v1/pages", {
+  const pageBody = {
+    parent: { database_id: databaseId },
+    properties: {
+      [titleProperty]: {
+        title: notionText(submissionTitle(payload)),
+      },
+    },
+    children,
+  };
+
+  let response = await fetch("https://api.notion.com/v1/pages", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
       "Notion-Version": "2022-06-28",
     },
-    body: JSON.stringify({
-      parent: { database_id: databaseId },
-      properties: {
-        [titleProperty]: {
-          title: notionText(submissionTitle(payload)),
-        },
-      },
-      children,
-    }),
+    body: JSON.stringify(pageBody),
   });
+
+  if (response.status === 400) {
+    const errorText = await response.text();
+    if (!errorText.includes("is a page, not a database")) {
+      return { name: "notion", status: "failed", message: errorText };
+    }
+
+    response = await fetch("https://api.notion.com/v1/pages", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "Notion-Version": "2022-06-28",
+      },
+      body: JSON.stringify({
+        parent: { page_id: databaseId },
+        properties: {
+          title: {
+            title: notionText(submissionTitle(payload)),
+          },
+        },
+        children,
+      }),
+    });
+  }
 
   if (!response.ok) {
     return { name: "notion", status: "failed", message: await response.text() };
