@@ -203,6 +203,52 @@ async function saveToGoogleSheets(payload: IntakePayload): Promise<IntegrationRe
     return { name: "googleSheets", status: "skipped", message: "Google service account credentials are not configured." };
   }
 
+  const metadataResponse = await fetch(
+    `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}?fields=sheets.properties.title`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    },
+  );
+
+  if (!metadataResponse.ok) {
+    return { name: "googleSheets", status: "failed", message: await metadataResponse.text() };
+  }
+
+  const metadata = (await metadataResponse.json()) as {
+    sheets?: Array<{ properties?: { title?: string } }>;
+  };
+  const hasTargetSheet = metadata.sheets?.some((sheet) => sheet.properties?.title === sheetName);
+
+  if (!hasTargetSheet) {
+    const createSheetResponse = await fetch(
+      `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}:batchUpdate`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          requests: [
+            {
+              addSheet: {
+                properties: {
+                  title: sheetName,
+                },
+              },
+            },
+          ],
+        }),
+      },
+    );
+
+    if (!createSheetResponse.ok) {
+      return { name: "googleSheets", status: "failed", message: await createSheetResponse.text() };
+    }
+  }
+
   const values = [
     [
       new Date().toISOString(),
@@ -223,7 +269,7 @@ async function saveToGoogleSheets(payload: IntakePayload): Promise<IntegrationRe
   ];
 
   const escapedSheetName = sheetName.replace(/'/g, "''");
-  const range = encodeURIComponent(`'${escapedSheetName}'!A:N`);
+  const range = encodeURIComponent(`'${escapedSheetName}'!A1`);
   const response = await fetch(
     `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}:append?valueInputOption=USER_ENTERED&insertDataOption=INSERT_ROWS`,
     {
