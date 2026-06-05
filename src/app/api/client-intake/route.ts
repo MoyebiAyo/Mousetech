@@ -312,25 +312,51 @@ export async function POST(request: Request) {
   }
 
   const payload = validation.sanitized;
-  const integrations = await Promise.allSettled([
-    sendResendEmail(payload),
-    sendClientConfirmation(payload),
+  const storageIntegrations = await Promise.allSettled([
     saveToGoogleSheets(payload),
     saveToNotion(payload),
   ]);
 
-  const results: IntegrationResult[] = integrations.map((result, index) => {
+  const storageResults: IntegrationResult[] = storageIntegrations.map((result, index) => {
     if (result.status === "fulfilled") return result.value;
-    const names: IntegrationResult["name"][] = ["email", "clientEmail", "googleSheets", "notion"];
+    const names: IntegrationResult["name"][] = ["googleSheets", "notion"];
     return { name: names[index], status: "failed", message: result.reason instanceof Error ? result.reason.message : "Unknown error" };
   });
 
-  const failed = results.filter((result) => result.status === "failed");
-  if (failed.length > 0) {
+  const failedStorage = storageResults.filter((result) => result.status === "failed");
+  if (failedStorage.length > 0) {
     return NextResponse.json(
       {
         ok: false,
-        message: "Your form was valid, but one or more delivery integrations failed. Please try again or contact MouseTech on WhatsApp.",
+        message: "Your form was valid, but one or more storage integrations failed. Please contact MouseTech on WhatsApp.",
+        integrations: [
+          { name: "email", status: "skipped", message: "Email was not sent because storage failed." },
+          { name: "clientEmail", status: "skipped", message: "Client confirmation was not sent because storage failed." },
+          ...storageResults,
+        ],
+      },
+      { status: 502 },
+    );
+  }
+
+  const emailIntegrations = await Promise.allSettled([
+    sendResendEmail(payload),
+    sendClientConfirmation(payload),
+  ]);
+
+  const emailResults: IntegrationResult[] = emailIntegrations.map((result, index) => {
+    if (result.status === "fulfilled") return result.value;
+    const names: IntegrationResult["name"][] = ["email", "clientEmail"];
+    return { name: names[index], status: "failed", message: result.reason instanceof Error ? result.reason.message : "Unknown error" };
+  });
+
+  const results = [...emailResults, ...storageResults];
+  const failedEmail = emailResults.filter((result) => result.status === "failed");
+  if (failedEmail.length > 0) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: "Your form was saved, but one or more email notifications failed. Please contact MouseTech on WhatsApp.",
         integrations: results,
       },
       { status: 502 },
