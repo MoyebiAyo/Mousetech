@@ -49,6 +49,7 @@ export default function Footer() {
               <li><Link href="/portfolio" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Portfolio</Link></li>
               <li><Link href="/pricing" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Pricing</Link></li>
               <li><Link href="/faq" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>FAQ</Link></li>
+              <li><Link href="/client-intake" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>Client Intake</Link></li>
               <li><a href="mailto:hello@mousetech.app" className="text-sm no-underline transition-colors focus-visible:outline-none" style={{ color: '#666' }}>hello@mousetech.app</a></li>
             </ul>
           </div>

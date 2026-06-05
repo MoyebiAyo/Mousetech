@@ -1,4 +1,4 @@
-import { ArrowRight, Briefcase, FileText, ShieldCheck, HelpCircle, Code, Smartphone } from "lucide-react";
+import { ArrowRight, Briefcase, FileText, ShieldCheck, HelpCircle, Code, Smartphone, ClipboardList } from "lucide-react";
 import Link from "next/link";
 
 const quickLinks = [
@@ -27,16 +27,22 @@ const quickLinks = [
     href: "/faq",
   },
   {
-    icon: ShieldCheck,
-    title: "Privacy Policy",
-    description: "How we protect your data",
-    href: "/privacy",
+    icon: ClipboardList,
+    title: "Client Intake",
+    description: "Start a project with the right details",
+    href: "/client-intake",
   },
   {
     icon: FileText,
     title: "Terms of Service",
     description: "Our service terms and conditions",
     href: "/terms",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Privacy Policy",
+    description: "How we protect your data",
+    href: "/privacy",
   },
 ];
 
